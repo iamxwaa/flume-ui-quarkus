@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header2 /}
+    <style>
+        .template-list-box {
+            overflow: auto;
+        }
+    
+        .template-list {
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+    
+        .tourist-box {
+            height: 540px;
+        }
+    
+        .tourist-list-box {
+            height: 442px;
+            overflow: auto;
+        }
+    
+        .tourist-list {
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+    
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    
+        .form-group label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 120px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: right;
+        }
+    
+        .form-group .form-control {
+            width: 560px;
+            height: 38px;
+            line-height: 38px;
+            border-radius: 2px;
+            border: 1px solid #e6e6e6;
+            padding-left: 10px;
+        }
+    
+        .form-group small {
+            padding-left: 15px;
+            margin-left: 135px;
+        }
+    
+        .form-text {
+            display: block;
+            font-size: 80%;
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+    
+        .text-muted {
+            color: #999 !important;
+        }
+    
+        .form-text.text-muted>a {
+            color: #01AAED;
+        }
+    
+        .card-header-input {
+            border: 1px solid #eee;
+            border-radius: 2px;
+            padding: 6px;
+            width: 400px;
+            margin-left: 20px;
+            color: #333;
+        }
+    
+        .layui-fluid {
+            position: relative;
+            margin: 0 auto;
+            padding: 0 1px 0 15px;
+        }
+    </style>
+</head>
+
+<div>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a href="/collect">采集器管理</a>
+            <a><cite>采集器编辑</cite></a>
+        </span>
+    </div>
+
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-md12 layui-col-lg12 layui-col-space15">
+            <div class="layui-col-md9 layui-col-lg9">
+                <div class="layui-card">
+                    <form class="layui-form" role="form" method="post" action="/collect/save">
+                        <div class="layui-card-header">
+                            采集器配置
+                        </div>
+                        <div class="layui-card-body card-add-body">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" value="{ci.name}" lay-verify="required"
+                                        placeholder="请输入名称" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">厂商</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="company" value="{ci.company}" placeholder="请输入厂商"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="product" value="{ci.product}" placeholder="请输入产品名称"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品版本</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="productVersion" value="{ci.productVersion}"
+                                        placeholder="请输入产品版本" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">描述</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="desc" value="{ci.desc}" lay-verify="required"
+                                        placeholder="请输入描述" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">内存大小(MB)</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="memSize" value="{ci.memSize ?: '2048'}"
+                                            placeholder="请输入内存大小" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">平台启动时自动启动</label>
+                                    <div class="layui-input-inline">
+                                        {#if ci.autoStart == 'on' }
+                                        <input type="checkbox" name="autoStart" checked lay-skin="switch" lay-text="ON|OFF">
+                                        {#else}
+                                        <input type="checkbox" name="autoStart" lay-skin="switch" lay-text="ON|OFF">
+                                        {/if}
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">配置改动时自动重启</label>
+                                    <div class="layui-input-inline">
+                                        {#if ci.autoRestart == 'on' }
+                                        <input type="checkbox" name="autoRestart" checked lay-skin="switch" lay-text="ON|OFF">
+                                        {#else}
+                                        <input type="checkbox" name="autoRestart" lay-skin="switch" lay-text="ON|OFF">
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">配置 <i id="bigSetting"
+                                        class="layui-icon layui-icon-fonts-code layui-bg-green"
+                                        style="border-radius: 2px;padding: 2px;cursor: pointer;"></i>
+                                </label>
+                                <div class="layui-input-block">
+                                    <textarea name="setting" id="setting" lay-verify="required" placeholder="请输入采集配置"
+                                     rows="6" class="layui-textarea card-body-textarea-show">{ci.setting}</textarea>
+                                </div>
+                            </div>
+                            <input value="{ci.id}" type="text" hidden="true" name="cid" />
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="save">保存</button>
+                                    <a href="/collect" class="layui-btn layui-btn-primary">关闭</a>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3 layui-col-lg3">
+            <div class="layui-card">
+                <div class="layui-card-header">模板参考列表</div>
+                <div class="layui-card-body card-add-body template-list-box" id="template-list-box">
+                    {#for c in templates}
+                    <a href="javascript:;" class="layui-row template-list" title="{c.setting}"><span>{c.name}</span></a>
+                    {/for}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {#include footer3 /}
+    <script>
+        layui.use(['form', 'layedit', 'layer', 'tools'], function () {
+            layui.tools.setHeight("setting", window.screen.availHeight - 730);
+            layui.tools.setHeight("template-list-box", window.screen.availHeight - 304);
+            var layer = layui.layer;
+            $("#bigSetting").click(function () {
+                layer.open({
+                    type: 1
+                    , area: ['80%', '600px']
+                    , offset: '50px'
+                    , id: 'settingBox'
+                    , move: false
+                    , content: `
+                    <pre class="card-body-pre" style="height: 492px;">
+                        <code id="codeBody" style="height: 100%;margin-top: -16px;" class="card-body-code properties">...</code>
+                    </pre>
+                    <textarea class="layui-textarea card-body-textarea" rows="24" id="codeBody2"></textarea>
+                    `
+                    , title: "采集器配置"
+                    , btn: ['确定']
+                    , yes: function () {
+                        var setting = $("#codeBody2").val();
+                        $("textarea[name='setting']").text(setting);
+                        layer.closeAll();
+                    }
+                    , cancel: function () {
+                        layer.closeAll();
+                    }
+                    , success: function () {
+                        var setting = $("textarea[name='setting']").text();
+                        $("#codeBody").text(setting);
+                        $("#codeBody2").text(setting);
+                        loadhljs();
+                    }
+                })
+            });
+            $("a.template-list").click(function () {
+                var setting = $(this).attr("title");
+                $("textarea[name='setting']").text(setting);
+            })
+        })
+    </script>
+</body>
+
+</html>

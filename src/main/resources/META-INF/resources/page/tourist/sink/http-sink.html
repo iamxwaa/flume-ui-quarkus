@@ -1,0 +1,56 @@
+<input id="G_TYPE" value="http" style="display:none;">
+<div class="form-group">
+	<label>Endpoint</label>
+	<input id="endpoint" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The fully qualified URL endpoint to POST to</small>
+</div>
+<div class="form-group">
+	<label>Connect Timeout</label>
+	<input id="connectTimeout" type="text" value="5000" class="form-control">
+	<small class="form-text text-muted">The socket connection timeout in milliseconds</small>
+</div>
+<div class="form-group">
+	<label>Request Timeout</label>
+	<input id="requestTimeout" type="text" value="5000" class="form-control">
+	<small class="form-text text-muted">The maximum request processing time in milliseconds</small>
+</div>
+<div class="form-group">
+	<label>Content Type Header</label>
+	<input id="contentTypeHeader" type="text" value="text/plain" class="form-control">
+	<small class="form-text text-muted">The HTTP Content-Type header</small>
+</div>
+<div class="form-group">
+	<label>Accept Header</label>
+	<input id="acceptHeader" type="text" value="text/plain" class="form-control">
+	<small class="form-text text-muted">The HTTP Accept header value</small>
+</div>
+<div class="form-group">
+	<label>Default Backoff</label>
+	<input id="defaultBackoff" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Whether to backoff by default on receiving all HTTP status codes</small>
+</div>
+<div class="form-group">
+	<label>Default Rollback</label>
+	<input id="defaultRollback" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Whether to rollback by default on receiving all HTTP status codes</small>
+</div>
+<div class="form-group">
+	<label>Default Increment Metrics</label>
+	<input id="defaultIncrementMetrics" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Whether to increment metrics by default on receiving all HTTP status codes</small>
+</div>
+<div class="form-group">
+	<label>Backoff  CODE</label>
+	<input id="backoff.CODE" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Configures a specific backoff for an individual (i.e. 200) code or a group (i.e. 2XX) code</small>
+</div>
+<div class="form-group">
+	<label>Rollback  CODE</label>
+	<input id="rollback.CODE" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Configures a specific rollback for an individual (i.e. 200) code or a group (i.e. 2XX) code</small>
+</div>
+<div class="form-group">
+	<label>Increment Metrics  CODE</label>
+	<input id="incrementMetrics.CODE" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Configures a specific metrics increment for an individual (i.e. 200) code or a group (i.e. 2XX) code</small>
+</div>

@@ -1,0 +1,46 @@
+<input id="G_TYPE" value="com.vrv.vap.essource.ElasticSearchScrollSource" style="display:none;">
+<div class="form-group">
+	<label>Data Type</label>
+	<input id="dataType" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据类型,对应<a href='/readme#data-fixyml' target='_blank'>data-fix.yml</a>中的type</small>
+</div>
+<div class="form-group">
+	<label>Es Batch</label>
+	<input id="esBatch" type="text" value="2000" class="form-control">
+	<small class="form-text text-muted">每次从es获取的数据量</small>
+</div>
+<div class="form-group">
+	<label>Es Yml</label>
+	<input id="esYml" type="text" value="" class="form-control">
+	<small class="form-text text-muted">es集群的yml配置文件路径</small>
+</div>
+<div class="form-group">
+	<label>Username</label>
+	<input id="username" type="text" value="" class="form-control">
+	<small class="form-text text-muted">elasticsearch 认证账号(未开启认证不配)</small>
+</div>
+<div class="form-group">
+	<label>Password</label>
+	<input id="password" type="text" value="" class="form-control">
+	<small class="form-text text-muted">elasticsearch 认证账号密码(未开启认证不配)</small>
+</div>
+<div class="form-group">
+	<label>Index</label>
+	<input id="index" type="text" value="" class="form-control">
+	<small class="form-text text-muted">索引名称</small>
+</div>
+<div class="form-group">
+	<label>Index Type</label>
+	<input id="indexType" type="text" value="" class="form-control">
+	<small class="form-text text-muted">es索引中的type,不配默认全部</small>
+</div>
+<div class="form-group">
+	<label>Time Value</label>
+	<input id="timeValue" type="text" value="600" class="form-control">
+	<small class="form-text text-muted">scroll缓存时间(单位秒)</small>
+</div>
+<div class="form-group">
+	<label>Shards</label>
+	<input id="shards" type="text" value="0" class="form-control">
+	<small class="form-text text-muted">索引分片个数</small>
+</div>

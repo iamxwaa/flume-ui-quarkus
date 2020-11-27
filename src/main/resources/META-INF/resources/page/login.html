@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>登录</title>
+    <link rel="stylesheet" href="/v3/layui/css/layui.css">
+    <style>
+        .layui-layout-admin .layui-body {
+            left: 0;
+            top: 36px;
+        }
+
+        .layui-layout-admin .layui-footer {
+            left: 0;
+        }
+
+        .layui-card {
+            box-shadow: 4px 4px 2px 0 #d2d2d2;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <ul class="layui-nav" lay-filter="">
+            <li class="layui-nav-item"><a href="#">Flume Manager</a></li>
+        </ul>
+        <div class="layui-fluid layui-body">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6 layui-col-md-offset3 layui-card">
+                    <div class="layui-card-header">
+                        <h3>登录</h3>
+                    </div>
+                    <div class="layui-card-body">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">Token</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="token" required lay-verify="required"
+                                        placeholder="请输入token" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn layui-col-md-offset9" lay-submit
+                                        lay-filter="login">验证</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-footer">
+            © VMP
+        </div>
+    </div>
+</body>
+
+</html>

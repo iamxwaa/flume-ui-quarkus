@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header /}
+</head>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>平台管理</a>
+            <a><cite>采集器运行状态</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <table lay-filter="fileTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th lay-data="\{field:'id', width:300}">采集器ID</th>
+                                    <th lay-data="\{field:'pid', width:100}">进程ID</th>
+                                    <th lay-data="\{field:'lastRestartTimeString', width:200}">上次重启时间</th>
+                                    <th lay-data="\{field:'retry'}">重试次数</th>
+                                    <th lay-data="\{field:'restartTimes'}">自动重启次数</th>
+                                    <th lay-data="\{field:'ignore'}">守护进程是否有效</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {#for u in status}
+                                <tr>
+                                    <td>{u.id}</td>
+                                    <td>{u.pid}</td>
+                                    <td>{u.lastRestartTimeString}</td>
+                                    <td>{u.retry}</td>
+                                    <td>{u.restartTimes}</td>
+                                    <td>{u.ignore}</td>
+                                </tr>
+                                {/for}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#include footer2 /}
+    <script>
+        layui.use(['table'], function () {
+            var table = layui.table;
+            table.init('fileTable', { limit: 5000 });
+        })
+    </script>
+</body>
+
+</html>

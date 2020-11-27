@@ -1,0 +1,56 @@
+<input id="G_TYPE" value="org.apache.flume.channel.kafka.KafkaChannel" style="display:none;">
+<div class="form-group">
+	<label>Kafka Bootstrap Servers</label>
+	<input id="kafka.bootstrap.servers" type="text" value="" class="form-control">
+	<small class="form-text text-muted">List of brokers in the Kafka cluster used by the channelThis can be a partial list of brokers, but we recommend at least two for HA.The format is comma separated list of hostname:port</small>
+</div>
+<div class="form-group">
+	<label>Kafka Topic</label>
+	<input id="kafka.topic" type="text" value="flume-channel" class="form-control">
+	<small class="form-text text-muted">Kafka topic which the channel will use</small>
+</div>
+<div class="form-group">
+	<label>Kafka Consumer Group Id</label>
+	<input id="kafka.consumer.group.id" type="text" value="flume" class="form-control">
+	<small class="form-text text-muted">Consumer group ID the channel uses to register with Kafka.Multiple channels must use the same topic and group to ensure that when one agent fails another can get the dataNote that having non-channel consumers with the same ID can lead to data loss.</small>
+</div>
+<div class="form-group">
+	<label>Parse As Flume Event</label>
+	<input id="parseAsFlumeEvent" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Expecting Avro datums with FlumeEvent schema in the channel.This should be true if Flume source is writing to the channel and false if other producers arewriting into the topic that the channel is using. Flume source messages to Kafka can be parsed outside of Flume by usingorg.apache.flume.source.avro.AvroFlumeEvent provided by the flume-ng-sdk artifact</small>
+</div>
+<div class="form-group">
+	<label>Migrate Zookeeper Offsets</label>
+	<input id="migrateZookeeperOffsets" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">When no Kafka stored offset is found, look up the offsets in Zookeeper and commit them to Kafka.This should be true to support seamless Kafka client migration from older versions of Flume. Once migrated this can be setto false, though that should generally not be required. If no Zookeeper offset is found the kafka.consumer.auto.offset.resetconfiguration defines how offsets are handled.</small>
+</div>
+<div class="form-group">
+	<label>Poll Timeout</label>
+	<input id="pollTimeout" type="text" value="500" class="form-control">
+	<small class="form-text text-muted">The amount of time(in milliseconds) to wait in the &#8220;poll()&#8221; call of the consumer.<a class="reference external" _href="https://kafka.apache.org/090/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#poll(long">https://kafka.apache.org/090/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#poll(long</a>)</small>
+</div>
+<div class="form-group">
+	<label>Default Partition Id</label>
+	<input id="defaultPartitionId" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Specifies a Kafka partition ID (integer) for all events in this channel to be sent to, unlessoverriden by <tt class="docutils literal"><span class="pre">partitionIdHeader</span></tt>. By default, if this property is not set, events will bedistributed by the Kafka Producer&#8217;s partitioner - including by <tt class="docutils literal"><span class="pre">key</span></tt> if specified (or by apartitioner specified by <tt class="docutils literal"><span class="pre">kafka.partitioner.class</span></tt>).</small>
+</div>
+<div class="form-group">
+	<label>Partition Id Header</label>
+	<input id="partitionIdHeader" type="text" value="" class="form-control">
+	<small class="form-text text-muted">When set, the producer will take the value of the field named using the value of this propertyfrom the event header and send the message to the specified partition of the topic. If thevalue represents an invalid partition the event will not be accepted into the channel. If the header valueis present then this setting overrides <tt class="docutils literal"><span class="pre">defaultPartitionId</span></tt>.</small>
+</div>
+<div class="form-group">
+	<label>Kafka Consumer Auto Offset Reset</label>
+	<input id="kafka.consumer.auto.offset.reset" type="text" value="latest" class="form-control">
+	<small class="form-text text-muted">What to do when there is no initial offset in Kafka or if the current offset does not exist any more on the server(e.g. because that data has been deleted):earliest: automatically reset the offset to the earliest offsetlatest: automatically reset the offset to the latest offsetnone: throw exception to the consumer if no previous offset is found for the consumer&#8217;s groupanything else: throw exception to the consumer.</small>
+</div>
+<div class="form-group">
+	<label>Kafka Producer Security Protocol</label>
+	<input id="kafka.producer.security.protocol" type="text" value="PLAINTEXT" class="form-control">
+	<small class="form-text text-muted">Set to SASL_PLAINTEXT, SASL_SSL or SSL if writing to Kafka using some level of security. See below for additional info on secure setup.</small>
+</div>
+<div class="form-group">
+	<label>Kafka Consumer Security Protocol</label>
+	<input id="kafka.consumer.security.protocol" type="text" value="PLAINTEXT" class="form-control">
+	<small class="form-text text-muted">Same as kafka.producer.security.protocol but for reading/consuming from Kafka.</small>
+</div>

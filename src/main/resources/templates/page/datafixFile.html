@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header2 /}
+</head>
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a lay-href="">配置生成</a>
+            <a><cite>datafix配置生成</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-md12 layui-col-space15">
+            <div class="layui-card">
+                <form class="layui-form" role="form" method="post" lay-filter="settings" action="/file/datafix/save">
+                    <div class="layui-card-body card-add-body">
+                        <div id="settingTemplateView"></div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="button" id="addSetting" class="layui-btn layui-btn-normal">添加</button>
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="save">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" name="datafixName" style="display: none;">
+                    <textarea name="datafixContent" style="display: none;"></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+    {#include footer3 /}
+    <script type="text/javascript" src="/static/js/datafixfile.js"></script>
+    <script id="settingTemplate" type="text/html">
+        {{#  layui.each(d, function(index, item){ }}
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>基本配置</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">数据类型</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.typeName }}" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">索引名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.indexName }}" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">时间字段</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.timeKeyName }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">时间字段格式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.timeFormatName }}" autocomplete="off"
+                        value="yyyy-MM-dd HH:mm:ss" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">索引时间格式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.esTimeFormatName }}" autocomplete="off" value="yyyy.MM.dd"
+                        class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">字段名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="{{ item.lv1FieldsName }}" lay-verify="required" autocomplete="off" placeholder="多个字段用英文逗号分隔"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">Jdata中的字段名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="{{ item.lv2FieldsName }}" autocomplete="off"
+                    placeholder="仅适用于北信源终端采集数据,多个字段用英文逗号分隔" class="layui-input">
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>字段重命名</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">原始字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.renameOldName }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">新的字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.renameNewName }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <button type="button" name="copyRow" class="layui-btn layui-btn-normal">添加</button>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>新增字段</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">原始字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.addOldName }}" autocomplete="off" placeholder="原始字段不存在则填 - "
+                        class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">新增字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.addNewName }}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <button type="button" name="copyRow" class="layui-btn layui-btn-normal">添加</button>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>字段处理</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="{{ item.fixNameName }}" autocomplete="off"
+                        placeholder="字段重命名过,以重命名为准" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">处理方法</label>
+                <div class="layui-input-inline">
+                    <select name="{{ item.fixMethodName }}">
+                        <option value="uriDecode">uri路径解码</option>
+                        <option value="dateFormat">时间格式化(yyyy-MM-dd HH:mm:ss)</option>
+                        <option value="longToDate">毫秒数转date类型</option>
+                        <option value="toUtc">gmt转utc时间</option>
+                        <option value="toDate">字符串转date类型</option>
+                        <option value="addTimestamp">添加时间戳(java date类型)</option>
+                        <option value="codeToText">vrv终端数据code转汉字</option>
+                        <option value="checkYear">年份校验(大于当年的日期改为当年</option>
+                        <option value="ipToArea">ip转区域(关联配置area.yml)</option>
+                        <option value="ipToAreaCode">ip转区域编码(关联配置area.yml)</option>
+                        <option value="ipToNumber">ip转数字(转换失败为-1)</option>
+                        <option value="numToIp">数字转ip</option>
+                        <option value="urlToDomain">url转域名(关联配置domain.yml)</option>
+                        <option value="domainToRegId">域名转系统ID(关联配置domain.yml)</option>
+                        <option value="gbkToUtf8">gbk解码(\xCB\xEC\xC4\xFE\xCA\xD0 ==> 遂宁市)</option>
+                        <option value="addTimestampString">添加时间戳(yyyyMMddHHmmss)</option>
+                        <option value="decodeBase64">base64解码</option>
+                        <option value="encodeBase64">base64加密</option>
+                        <option value="uuid">生成UUID</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" name="copyRow" class="layui-btn layui-btn-normal">添加</button>
+        </div>
+        <br>
+        <hr>
+        <br>
+        {{#  }); }}
+        </ul>
+      </script>
+</body>
+
+</html>

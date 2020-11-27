@@ -1,0 +1,51 @@
+<input id="G_TYPE" value="org.apache.flume.sink.kafka.KafkaSink" style="display:none;">
+<div class="form-group">
+	<label>Kafka Bootstrap Servers</label>
+	<input id="kafka.bootstrap.servers" type="text" value="" class="form-control">
+	<small class="form-text text-muted">List of brokers Kafka-Sink will connect to, to get the list of topic partitionsThis can be a partial list of brokers, but we recommend at least two for HA.The format is comma separated list of hostname:port</small>
+</div>
+<div class="form-group">
+	<label>Kafka Topic</label>
+	<input id="kafka.topic" type="text" value="default-flume-topic" class="form-control">
+	<small class="form-text text-muted">The topic in Kafka to which the messages will be published. If this parameter is configured,messages will be published to this topic.If the event header contains a &#8220;topic&#8221; field, the event will be published to that topicoverriding the topic configured here.Arbitrary header substitution is supported, eg. %{header} is replaced with value of event header named &#8220;header&#8221;.(If using the substitution, it is recommended to set &#8220;auto.create.topics.enable&#8221; property of Kafka broker to true.)</small>
+</div>
+<div class="form-group">
+	<label>Flume Batch Size</label>
+	<input id="flumeBatchSize" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">How many messages to process in one batch. Larger batches improve throughput while adding latency.</small>
+</div>
+<div class="form-group">
+	<label>Kafka Producer Acks</label>
+	<input id="kafka.producer.acks" type="text" value="1" class="form-control">
+	<small class="form-text text-muted">How many replicas must acknowledge a message before its considered successfully written.Accepted values are 0 (Never wait for acknowledgement), 1 (wait for leader only), -1 (wait for all replicas)Set this to -1 to avoid data loss in some cases of leader failure.</small>
+</div>
+<div class="form-group">
+	<label>Use Flume Event Format</label>
+	<input id="useFlumeEventFormat" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">By default events are put as bytes onto the Kafka topic directly from the event body. Set totrue to store events as the Flume Avro binary format. Used in conjunction with the same propertyon the KafkaSource or with the parseAsFlumeEvent property on the Kafka Channel this will preserveany Flume headers for the producing side.</small>
+</div>
+<div class="form-group">
+	<label>Default Partition Id</label>
+	<input id="defaultPartitionId" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Specifies a Kafka partition ID (integer) for all events in this channel to be sent to, unlessoverriden by <tt class="docutils literal"><span class="pre">partitionIdHeader</span></tt>. By default, if this property is not set, events will bedistributed by the Kafka Producer&#8217;s partitioner - including by <tt class="docutils literal"><span class="pre">key</span></tt> if specified (or by apartitioner specified by <tt class="docutils literal"><span class="pre">kafka.partitioner.class</span></tt>).</small>
+</div>
+<div class="form-group">
+	<label>Partition Id Header</label>
+	<input id="partitionIdHeader" type="text" value="" class="form-control">
+	<small class="form-text text-muted">When set, the sink will take the value of the field named using the value of this propertyfrom the event header and send the message to the specified partition of the topic. If thevalue represents an invalid partition, an EventDeliveryException will be thrown. If the header valueis present then this setting overrides <tt class="docutils literal"><span class="pre">defaultPartitionId</span></tt>.</small>
+</div>
+<div class="form-group">
+	<label>Allow Topic Override</label>
+	<input id="allowTopicOverride" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">When set, the sink will allow a message to be produced into a topic specified by the <tt class="docutils literal"><span class="pre">topicHeader</span></tt> property (if provided).</small>
+</div>
+<div class="form-group">
+	<label>Topic Header</label>
+	<input id="topicHeader" type="text" value="topic" class="form-control">
+	<small class="form-text text-muted">When set in conjunction with <tt class="docutils literal"><span class="pre">allowTopicOverride</span></tt> will produce a message into the value of the header named using the value of this property.Care should be taken when using in conjunction with the Kafka Source <tt class="docutils literal"><span class="pre">topicHeader</span></tt> property to avoid creating a loopback.</small>
+</div>
+<div class="form-group">
+	<label>Kafka Producer Security Protocol</label>
+	<input id="kafka.producer.security.protocol" type="text" value="PLAINTEXT" class="form-control">
+	<small class="form-text text-muted">Set to SASL_PLAINTEXT, SASL_SSL or SSL if writing to Kafka using some level of security. See below for additional info on secure setup.</small>
+</div>

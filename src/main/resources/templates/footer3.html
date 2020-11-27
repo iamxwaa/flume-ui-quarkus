@@ -1,0 +1,38 @@
+<div id="server_message" style="display: none;" th:text="${T(com.vrv.vap.flume.ui.utils.PageAlertUtils).getMgs()}">
+</div>
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/static/assets/js/xterm.js"></script>
+<script src="/static/assets/js/xterm-addon-fit.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/flumeui.js"></script>
+<script>
+    layui.use(['tools'], function () {
+        var info = $("#server_message").text().trim();
+        layui.tools.alert(info);
+    })
+</script>
+<script src="/static/assets/js/highlight.pack.js"></script>
+    <script>
+        function loadhljs() {
+            var cb = $("#codeBody");
+            var cb2 = $("#codeBody2");
+            cb.click(function () {
+                $(this).parent().hide();
+                cb2.show();
+                cb2.focus();
+            })
+            cb2.blur(function () {
+                cb.parent().show();
+                hljs.highlightBlock(cb.get()[0]);
+                $(this).hide();
+            })
+            cb2.mouseout(function () {
+                cb.html($(this).val());
+            })
+            hljs.configure({ languages: ["java", "yaml", "javascript", "properties", "json", "shell", "plaintext", "xml", "ruby"] });
+            if (undefined != cb.get()[0]) {
+                hljs.highlightBlock(cb.get()[0]);
+            }
+        }
+        loadhljs();
+    </script>

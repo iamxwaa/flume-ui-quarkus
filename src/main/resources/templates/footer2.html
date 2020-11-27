@@ -1,0 +1,13 @@
+<div id="server_message" style="display: none;" th:text="${T(com.vrv.vap.flume.ui.utils.PageAlertUtils).getMgs()}">
+</div>
+<script src="/static/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/static/assets/js/xterm.js"></script>
+<script src="/static/assets/js/xterm-addon-fit.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/flumeui.js"></script>
+<script>
+    layui.use(['tools'], function () {
+        var info = $("#server_message").text().trim();
+        layui.tools.alert(info);
+    })
+</script>

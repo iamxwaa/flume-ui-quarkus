@@ -1,0 +1,71 @@
+<input id="G_TYPE" value="TAILDIR" style="display:none;">
+<div class="form-group">
+	<label>Filegroups</label>
+	<input id="filegroups" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Space-separated list of file groups. Each file group indicates a set of files to be tailed.</small>
+</div>
+<div class="form-group">
+	<label>Filegroups &Lt;filegroup Name&gt;</label>
+	<input id="filegroups.&lt;filegroupName&gt;" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Absolute path of the file group. Regular expression (and not file system patterns) can be used for filename only.</small>
+</div>
+<div class="form-group">
+	<label>Position File</label>
+	<input id="positionFile" type="text" value="~/.flume/taildir_position.json" class="form-control">
+	<small class="form-text text-muted">File in JSON format to record the inode, the absolute path and the last position of each tailing file.</small>
+</div>
+<div class="form-group">
+	<label>Headers &Lt;filegroup Name&gt; &Lt;header Key&gt;</label>
+	<input id="headers.&lt;filegroupName&gt;.&lt;headerKey&gt;" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Header value which is the set with header key. Multiple headers can be specified for one file group.</small>
+</div>
+<div class="form-group">
+	<label>Byte Offset Header</label>
+	<input id="byteOffsetHeader" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Whether to add the byte offset of a tailed line to a header called &#8216;byteoffset&#8217;.</small>
+</div>
+<div class="form-group">
+	<label>Skip To End</label>
+	<input id="skipToEnd" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Whether to skip the position to EOF in the case of files not written on the position file.</small>
+</div>
+<div class="form-group">
+	<label>Idle Timeout</label>
+	<input id="idleTimeout" type="text" value="120000" class="form-control">
+	<small class="form-text text-muted">Time (ms) to close inactive files. If the closed file is appended new lines to, this source will automatically re-open it.</small>
+</div>
+<div class="form-group">
+	<label>Write Pos Interval</label>
+	<input id="writePosInterval" type="text" value="3000" class="form-control">
+	<small class="form-text text-muted">Interval time (ms) to write the last position of each file on the position file.</small>
+</div>
+<div class="form-group">
+	<label>Batch Size</label>
+	<input id="batchSize" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">Max number of lines to read and send to the channel at a time. Using the default is usually fine.</small>
+</div>
+<div class="form-group">
+	<label>Backoff Sleep Increment</label>
+	<input id="backoffSleepIncrement" type="text" value="1000" class="form-control">
+	<small class="form-text text-muted">The increment for time delay before reattempting to poll for new data, when the last attempt did not find any new data.</small>
+</div>
+<div class="form-group">
+	<label>Max Backoff Sleep</label>
+	<input id="maxBackoffSleep" type="text" value="5000" class="form-control">
+	<small class="form-text text-muted">The max time delay between each reattempt to poll for new data, when the last attempt did not find any new data.</small>
+</div>
+<div class="form-group">
+	<label>Cache Pattern Matching</label>
+	<input id="cachePatternMatching" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Listing directories and applying the filename regex pattern may be time consuming for directoriescontaining thousands of files. Caching the list of matching files can improve performance.The order in which files are consumed will also be cached.Requires that the file system keeps track of modification times with at least a 1-second granularity.</small>
+</div>
+<div class="form-group">
+	<label>File Header</label>
+	<input id="fileHeader" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Whether to add a header storing the absolute path filename.</small>
+</div>
+<div class="form-group">
+	<label>File Header Key</label>
+	<input id="fileHeaderKey" type="text" value="file" class="form-control">
+	<small class="form-text text-muted">Header key to use when appending absolute path filename to event header.</small>
+</div>

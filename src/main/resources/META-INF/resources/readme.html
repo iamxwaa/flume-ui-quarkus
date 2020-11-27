@@ -1,0 +1,3062 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>配置说明</title>
+<style type="text/css">
+body {
+	color: #000;
+	font: 13px/1.4 "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	background: transparent;
+	color: #4183c4;
+	text-decoration: none;
+}
+
+a:active,
+a:hover {
+	outline: 0 none;
+	text-decoration: underline;
+}
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: italic;
+}
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+small {
+	font-size: 80%;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0 none;
+}
+svg:not(:root) {
+	overflow: hidden;
+}
+figure {
+	margin: 1em 40px;
+}
+hr {
+	box-sizing: content-box;
+	height: 0;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: monospace,monospace;
+	font-size: 1em;
+}
+
+pre {
+	overflow: auto;
+	font: 12px Consolas,"Liberation Mono",Menlo,Courier,monospace;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.markdown-body {
+	padding: 30px;
+	font-size: 14px;
+	line-height: 1.6;
+	word-wrap: break-word;
+	max-width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.markdown-body>*:first-child {
+	margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+.markdown-body .absent {
+	color: #c00;
+}
+
+.markdown-body .anchor {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	padding-right: 6px;
+	padding-left: 30px;
+	margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+	outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+	position: relative;
+	margin-top: 1em;
+	margin-bottom: 16px;
+	font-weight: bold;
+	line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+	display: none;
+	color: #000;
+	vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+	padding-left: 8px;
+	margin-left: -30px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+	display: inline-block;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+	font-size: inherit;
+}
+
+.markdown-body h1 {
+	padding-bottom: 0.3em;
+	font-size: 2.25em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+	padding-bottom: 0.3em;
+	font-size: 1.75em;
+	line-height: 1.225;
+	border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+	font-size: 1.5em;
+	line-height: 1.43;
+}
+
+.markdown-body h4 {
+	font-size: 1.25em;
+}
+
+.markdown-body h5 {
+	font-size: 1em;
+}
+
+.markdown-body h6 {
+	font-size: 1em;
+	color: #777;
+}
+
+.markdown-body p,.markdown-body blockquote,
+.markdown-body ul,.markdown-body ol,
+.markdown-body dl,.markdown-body table,
+.markdown-body pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+.markdown-body ol + ul {
+	margin-left: 35px;
+}
+
+.markdown-body hr {
+	height: 4px;
+	padding: 0;
+	margin: 16px 0;
+	background-color: #e7e7e7;
+	border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+	padding-left: 2em;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.markdown-body li>p {
+	margin-top: 16px;
+}
+
+.markdown-body dl {
+	padding: 0;
+}
+
+.markdown-body dl dt {
+	padding: 0;
+	margin-top: 16px;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.markdown-body dl dd {
+	padding: 0 16px;
+	margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+	padding: 0 15px;
+	color: #777;
+	border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+	margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+	margin-bottom: 0;
+}
+
+.markdown-body table {
+	display: block;
+	width: 100%;
+	overflow: auto;
+	word-break: normal;
+	word-break: keep-all;
+}
+
+.markdown-body table th {
+	font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+	padding: 6px 13px;
+	border: 1px solid #ddd;
+	word-break: normal;
+}
+
+.markdown-body table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.markdown-body img {
+	max-width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.markdown-body span.frame {
+	display: block;
+	overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+	display: block;
+	float: left;
+	width: auto;
+	padding: 7px;
+	margin: 13px 0 0;
+	overflow: hidden;
+	border: 1px solid #ddd;
+}
+
+.markdown-body span.frame span img {
+	display: block;
+	float: left;
+}
+
+.markdown-body span.frame span span {
+	display: block;
+	padding: 5px 0 0;
+	clear: both;
+	color: #333;
+}
+
+.markdown-body span.align-center {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-center>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.markdown-body span.align-center span img {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.markdown-body span.align-right {
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.markdown-body span.align-right>span {
+	display: block;
+	margin: 13px 0 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body span.align-right span img {
+	margin: 0;
+	text-align: right;
+}
+
+.markdown-body span.float-left {
+	display: block;
+	float: left;
+	margin-right: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+	margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+	display: block;
+	float: right;
+	margin-left: 13px;
+	overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+	display: block;
+	margin: 13px auto 0;
+	overflow: hidden;
+	text-align: right;
+}
+
+.markdown-body code,.markdown-body tt {
+	padding: 0;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	margin: 0;
+	font-size: 85%;
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after,
+.markdown-body tt:before,
+.markdown-body tt:after {
+	letter-spacing: -0.2em;
+	content: "\00a0";
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+	display: none;
+}
+
+.markdown-body del code {
+	text-decoration: inherit;
+}
+
+.markdown-body pre>code {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	word-break: normal;
+	white-space: pre;
+	background: transparent;
+	border: 0;
+}
+
+.markdown-body .highlight {
+	margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+	padding: 16px;
+	overflow: auto;
+	font-size: 85%;
+	line-height: 1.45;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+	margin-bottom: 0;
+	word-break: normal;
+}
+
+.markdown-body pre {
+	word-wrap: normal;
+	border: 1px solid #ccc;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+	display: inline;
+	max-width: initial;
+	padding: 0;
+	margin: 0;
+	overflow: initial;
+	line-height: inherit;
+	word-wrap: normal;
+	background-color: transparent;
+	border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after,
+.markdown-body pre tt:before,
+.markdown-body pre tt:after {
+	content: normal;
+}
+
+.highlight .pl-coc,
+.highlight .pl-entl,
+.highlight .pl-entm,
+.highlight .pl-eoa,
+.highlight .pl-mai .pl-sf,
+.highlight .pl-mm,
+.highlight .pl-pdv,
+.highlight .pl-sc,
+.highlight .pl-som,
+.highlight .pl-sr,
+.highlight .pl-v,
+.highlight .pl-vpf {
+	color: #0086b3;
+}
+.highlight .pl-eoac,
+.highlight .pl-mdht,
+.highlight .pl-mi1,
+.highlight .pl-mri,
+.highlight .pl-va,
+.highlight .pl-vpu {
+	color: #008080;
+}
+.highlight .pl-c,
+.highlight .pl-pdc {
+	color: #b4b7b4;
+	font-style: italic;
+}
+.highlight .pl-k,
+.highlight .pl-ko,
+.highlight .pl-kolp,
+.highlight .pl-mc,
+.highlight .pl-mr,
+.highlight .pl-ms,
+.highlight .pl-s,
+.highlight .pl-sok,
+.highlight .pl-st {
+	color: #6e5494;
+}
+.highlight .pl-ef,
+.highlight .pl-enf,
+.highlight .pl-enm,
+.highlight .pl-entc,
+.highlight .pl-eoi,
+.highlight .pl-sf,
+.highlight .pl-smc {
+	color: #d12089;
+}
+.highlight .pl-ens,
+.highlight .pl-eoai,
+.highlight .pl-kos,
+.highlight .pl-mh .pl-pdh,
+.highlight .pl-mp,
+.highlight .pl-pde,
+.highlight .pl-stp {
+	color: #458;
+}
+.highlight .pl-enti {
+	color: #d12089;
+	font-weight: bold;
+}
+.highlight .pl-cce,
+.highlight .pl-enc,
+.highlight .pl-kou,
+.highlight .pl-mq {
+	color: #f93;
+}
+.highlight .pl-mp1 .pl-sf {
+	color: #458;
+	font-weight: bold;
+}
+.highlight .pl-cos,
+.highlight .pl-ent,
+.highlight .pl-md,
+.highlight .pl-mdhf,
+.highlight .pl-ml,
+.highlight .pl-pdc1,
+.highlight .pl-pds,
+.highlight .pl-s1,
+.highlight .pl-scp,
+.highlight .pl-sol {
+	color: #df5000;
+}
+.highlight .pl-c1,
+.highlight .pl-cn,
+.highlight .pl-pse,
+.highlight .pl-pse .pl-s2,
+.highlight .pl-vi {
+	color: #a31515;
+}
+.highlight .pl-mb,
+.highlight .pl-pdb {
+	color: #df5000;
+	font-weight: bold;
+}
+.highlight .pl-mi,
+.highlight .pl-pdi {
+	color: #6e5494;
+	font-style: italic;
+}
+.highlight .pl-ms1 {
+	background-color: #f5f5f5;
+}
+.highlight .pl-mdh,
+.highlight .pl-mdi {
+	font-weight: bold;
+}
+.highlight .pl-mdr {
+	color: #0086b3;
+	font-weight: bold;
+}
+.highlight .pl-s2 {
+	color: #333;
+}
+.highlight .pl-ii {
+	background-color: #df5000;
+	color: #fff;
+}
+.highlight .pl-ib {
+	background-color: #f93;
+}
+.highlight .pl-id {
+	background-color: #a31515;
+	color: #fff;
+}
+.highlight .pl-iu {
+	background-color: #b4b7b4;
+}
+.highlight .pl-mo {
+	color: #969896;
+}
+.sourceLine {
+	color: #6e5494;
+	text-decoration: none !important;
+}
+.sourceLine .kw {
+	color: #6e5494;
+}
+.sourceLine .fu {
+	color: #df5000;
+}
+.sourceLine .at {
+	color: #6e5494;
+}
+.sourceLine .co {
+	color: #b4b7b4;
+	font-style: italic;
+}
+.properties {
+	color: #333;
+}
+.sourceCode .xml .kw {
+	color: #df5000;
+}
+</style>
+
+
+<script type="text/javascript">
+
+function getDocumentScrollTop() 
+{
+   var res = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+   // alert(res);
+   return res;
+}
+
+function setDocumentScrollTop(ypos) 
+{
+	window.scrollTo(0, ypos);
+}
+
+</script>
+
+
+</head>
+<body class="markdown-body">
+<h1 id="vap-flume">vap-flume 详细配置说明</h1>
+<h2>
+<h2 id="组件清单">组件清单</h2>
+<ul>
+<li>Source
+<ul>
+<li><a href="#vap-database-source">数据库数据抽取组件</a></li>
+<li><a href="#vap-client-zip-source">vrv终端压缩包抽取组件</a></li>
+<li><a href="#vap-dynamic-source">udp/tpc/sysolog/file数据抽取组件</a></li>
+<li><a href="#vap-elasticsearch-source">elasticsearch数据抽取组件</a></li>
+<li><a href="#vap-webservice-source">webservice数据抽取组件</a></li>
+<li><a href="#vap-kafka-source">kafka数据抽取组件</a></li>
+<li><a href="#vap-spec-lvmeng-source">绿盟探针数据抽取组件</a></li>
+<li><a href="#vap-spec-twas-source">TWAS探针数据抽取组件</a></li>
+<li><a href="#vap-snmp-source">SNMP数据接收组件</a></li>
+<li><a href="#vap-redis-source">redis数据接收组件</a></li>
+<li><a href="#vap-sftp-source">sftp数据获取组件</a></li>
+</ul></li>
+<li>Channel
+<ul>
+<li><a href="#vap-test-channel">配合flume-ui提供计数的channel</a></li>
+</ul></li>
+<li>Sink
+<ul>
+<li><a href="#vap-database-sink">数据库入库组件</a></li>
+<li><a href="#vap-elasticsearch-sink">elasticsearch入库组件</a></li>
+<li><a href="#vap-hbase-sink">hbase入库组件</a></li>
+<li><a href="#vap-hive-sink">hive入库组件</a></li>
+<li><a href="#vap-log-sink">控制台数据输出组件</a></li>
+<li><a href="#vap-complex-sink">多目标输出入库组件</a></li>
+<li><a href="#vap-datahub-sink">阿里云datahub入库组件</a></li>
+<li><a href="#vap-socket-sink">udp/tcp/syslog数据转发组件</a></li>
+<li><a href="#vap-kafka-sink">kafka入库组件</a></li>
+</ul></li>
+<li>Interceptor
+<ul>
+<li><a href="#vap-avro-interceptor">Avro反序列化</a></li>
+<li><a href="#vap-ungzip-interceptor">数据解压缩</a></li>
+<li><a href="#vap-bytestohex-interceptor">byte数组转16进制字符串</a></li>
+<li><a href="#vap-function-interceptor">脚本处理Event</a></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="配置说明">配置说明</h2>
+<ul>
+<li>当组件有多个type时,参数前的[1…n]对应第n个type独有的参数</li>
+</ul>
+<blockquote>
+<p>没有标注的就是都要配<br> [1]表示对应第一个type要配<br> [1/2]表示对应第一个和第二个type要配<br> [2/3]表示对应第二个和第三个type要配<br> 以此类推</p>
+</blockquote>
+<ul>
+<li><p>可以使用 ${环境变量名称} 或 ${环境变量名称:默认值} 来获取系统变量</p></li>
+<li><strong>说明中涉及到的配置文件，在文档最下面寻找模板</strong></li>
+<li><strong>说明中涉及到的配置文件，在文档最下面寻找模板</strong></li>
+<li><p><strong>说明中涉及到的配置文件，在文档最下面寻找模板</strong></p></li>
+</ul>
+<h3 id="vap-database-sink">vap-database-sink</h3>
+<ul>
+<li>数据库入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.dbsink.DatabaseSink(数据入单个数据库)</li>
+<li>com.vrv.vap.dbsink.MultiDatabaseSink(数据入多个数据库)</li>
+</ul></li>
+<li>参数说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[1]driver</td>
+<td>数据库驱动配置</td>
+<td>com.mysql.jdbc.Driver</td>
+</tr>
+<tr class="even">
+<td>[1]sql</td>
+<td>入库的sql</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]columns</td>
+<td>入库的字段</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]url</td>
+<td>数据库连接</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]user</td>
+<td>数据库账号</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]password</td>
+<td>数据库密码</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]batch</td>
+<td>每次从channel取出条数</td>
+<td>5000</td>
+</tr>
+<tr class="even">
+<td>[1]dbBatch</td>
+<td>每次入库条数</td>
+<td>200</td>
+</tr>
+<tr class="odd">
+<td>[2]database</td>
+<td><a href="#databaseyml">database.yml</a>配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[2]batch</td>
+<td>每次从channel取出条数</td>
+<td>10000</td>
+</tr>
+<tr class="odd">
+<td>[2]dbBatch</td>
+<td>每次入库条数</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>areaTxt</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>domainTxt</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>FLATJSON</td>
+</tr>
+<tr class="odd">
+<td>[2]inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>JSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-database-source">vap-database-source</h3>
+<ul>
+<li>数据库数据抽取组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.dbsource.DatabaseSource(数据库数据抽取-SQL预编译)</li>
+<li>com.vrv.vap.dbsource.DatabaseSourceStmt(数据库数据抽取)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>driver</td>
+<td>数据库驱动配置</td>
+<td>com.mysql.jdbc.Driver</td>
+</tr>
+<tr class="even">
+<td>dataType</td>
+<td>数据类型,对应<a href="#data-fixyml">data-fix.yml</a>中的type</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>sql</td>
+<td>查询的sql语句,sql中包含<span class="math inline"><em>W</em><em>时</em>，<em>程</em><em>序</em><em>生</em><em>成</em><em>的</em><em>查</em><em>询</em><em>条</em><em>件</em><em>会</em><em>替</em><em>换</em></span>{W},否则会追加到配置的sql最后面</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>maxSql</td>
+<td>查询数据库increaseKey配置字段的最大值,如:SELECT max(id) FROM abc</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>url</td>
+<td>数据库连接</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>user</td>
+<td>数据库用户</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>password</td>
+<td>数据库密码</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>increaseKey</td>
+<td>用来每次查询的字段,timeFormat值不为空时,此字段值当时间处理,否则作为数字处理</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>interval</td>
+<td>每次查询间隔（单位秒）</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>batch</td>
+<td>每次发送到channel的条数</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>step</td>
+<td>每次查询开始到结束之间的区间大小,timeFormat不为空时单位为小时</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>timeFormat</td>
+<td>时间格式(如:yyyy-MM-dd HH:mm:ss),不为空时,increaseKey当时间处理</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-elasticsearch-sink">vap-elasticsearch-sink</h3>
+<ul>
+<li>ElasticSearch入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.essink.ElasticSearchSink(开源ElasticSearch入库组件)</li>
+<li>com.vrv.vap.essink.ElasticSearchHuaweiSink(华为ElasticSearch入库组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>每次从channel取的数据条数</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>esBatch</td>
+<td>每次入es的最大数据条数</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>upper</td>
+<td>时间校验往前多少天</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>lower</td>
+<td>时间校验往后多少天</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>noTimeCheck</td>
+<td>不需要时间校验的数据类型</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>areaTxt</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>domainTxt</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>esYml</td>
+<td>es集群yml配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>FLATJSON</td>
+</tr>
+<tr class="even">
+<td>tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]username</td>
+<td>elasticsearch 认证账号(未开启认证不配)</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]password</td>
+<td>elasticsearch 认证账号密码(未开启认证不配)</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[2]huaweiEsProp</td>
+<td>华为提供的配置文件<a href="#esproperties">es.properties</a>路径</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[2]huaweiType</td>
+<td>内置1和2两种客户端自动适配,当适配失败时,请配置3并使用华为提供的jar包替换flume里面的es包连接es</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-hbase-sink">vap-hbase-sink</h3>
+<ul>
+<li>hbase入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.hbasesink.HbaseZipPictureSink(终端图片入hbase组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>每次从channel取的数据条数</td>
+<td>1000</td>
+</tr>
+<tr class="even">
+<td>upper</td>
+<td>时间校验往前多少天</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>lower</td>
+<td>时间校验往后多少天</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>noTimeCheck</td>
+<td>不需要时间校验的数据类型</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>namespace</td>
+<td>hbase命名空间</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>hbaseSite</td>
+<td>hbase-site.xml配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>hbaseUser</td>
+<td>habse用户名</td>
+<td>hbase</td>
+</tr>
+<tr class="odd">
+<td>kerberos</td>
+<td>lc的<a href="#kerberosproperties">kerberos.properties</a>配置文件路径</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-hive-sink">vap-hive-sink</h3>
+<ul>
+<li>hive入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.hivesink.HiveParquetSink(hive入库parquet格式)</li>
+<li>com.vrv.vap.hivesink.HiveTextSink(hive入库文本格式)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>每次从channel取的数据条数</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>areaTxt</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>domainTxt</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>schema</td>
+<td><a href="#table-schemayml">table-schema.yml</a>配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>kerberos</td>
+<td>lc的<a href="#kerberosproperties">kerberos.properties</a>配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>noTimeCheck</td>
+<td>不需要时间校验的数据类型</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>fileSize</td>
+<td>hdfs中的文件大小</td>
+<td>64mb</td>
+</tr>
+<tr class="odd">
+<td>localDir</td>
+<td>存到缓存的文件目录</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]workerCount</td>
+<td>生成parquet文件的负载数</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>driver</td>
+<td>hive数据库驱动</td>
+<td>org.apache.hive.jdbc.HiveDriver</td>
+</tr>
+<tr class="even">
+<td>url</td>
+<td>hive数据库连接</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>user</td>
+<td>hive连接账号</td>
+<td>hdfs</td>
+</tr>
+<tr class="even">
+<td>password</td>
+<td>hive连接密码</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>hdfsDir</td>
+<td>hdfs中暂时存储文件的路径</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>nameNode</td>
+<td>hadoop namenode的uri</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>interval</td>
+<td>扫描本地缓存路径间隔（单位秒）</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>FLATJSON</td>
+</tr>
+<tr class="odd">
+<td>[1]workerCount</td>
+<td>写入线程数</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>maxFile</td>
+<td>每个写入线程本地保留的文件数</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>[2]useTitle</td>
+<td>生成的文本首行是否添加标题</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>[2]suffix</td>
+<td>生成的文件后缀</td>
+<td>.txt</td>
+</tr>
+<tr class="odd">
+<td>[2]sep</td>
+<td>数据之间的分割符,转义符需用引号括起来,如“”</td>
+<td>|</td>
+</tr>
+<tr class="even">
+<td>expired</td>
+<td>超过指定时间（单位毫秒）未入库的文件,强制入库</td>
+<td>86400000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-client-zip-source">vap-client-zip-source</h3>
+<ul>
+<li>终端文件读取组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.zipsource.ZipSource(终端文本压缩包采集组件)</li>
+<li>com.vrv.vap.zipsource.ZipPictureSource(终端图片压缩包采集组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>store.path</td>
+<td>终端上报文件保存目录</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>backup.path</td>
+<td>文件处理失败备份路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>type.patn</td>
+<td>正则表达式匹配终端数据类型</td>
+<td>.<em>(Z_\d</em>).*</td>
+</tr>
+<tr class="even">
+<td>afterPolicy</td>
+<td>终端文件处理完毕后的策略(DELETE, BACKUP, IGNORE)</td>
+<td>DELETE</td>
+</tr>
+<tr class="odd">
+<td>interval</td>
+<td>扫描终端文件目录间隔（单位秒）</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>encode</td>
+<td>数据编码格式</td>
+<td>UTF-8</td>
+</tr>
+<tr class="odd">
+<td>file.minSize</td>
+<td>终端压缩包最小有效文件大小(单位byte)</td>
+<td>10240</td>
+</tr>
+<tr class="even">
+<td>types</td>
+<td>需要采集的终端数据类型</td>
+<td>文本类型默认值(Z_30,Z_31,Z_32,Z_41,Z_42,Z_43,Z_44)图片类型默认值(Z_35)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-dynamic-source">vap-dynamic-source</h3>
+<ul>
+<li>动态js脚本处理组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.dysource.FileSource(文本文件采集组件)</li>
+<li>com.vrv.vap.dysource.TcpServerSource(TCP服务端接收组件)</li>
+<li>com.vrv.vap.dysource.UdpServerSource(UDP服务端接收组件)</li>
+<li>com.vrv.vap.dysource.SyslogServerSource(Syslog服务端接收组件)</li>
+<li>com.vrv.vap.dysource.Nt4TcpServerSource(Netty4 tcp服务端接收组件)</li>
+<li>com.vrv.vap.dysource.Nt4UdpServerSource(Netty4 udp服务端接收组件)</li>
+<li>com.vrv.vap.dysource.UdpAssetsServerSource(UDP服务端资产联动组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>jsPath</td>
+<td>配置javascript脚本路径，使用JavaScript解析数据，配置模板见<a href="#buildjs">build.js</a>,不配默认使用原始数据格式</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>functionClass</td>
+<td>配置java解析实现类，如:com.vrv.vap.dysource.function.JavaFunctionDemo，使用java解析数据，详见<a href="#javafunctiondemojava">JavaFunctionDemo.java</a>,不配默认使用原始数据格式</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>batch</td>
+<td>每次写入channel数据量</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>charsetIn</td>
+<td>输入数据编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="odd">
+<td>charsetOut</td>
+<td>输出数据编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="even">
+<td>[1]fileDir</td>
+<td>文本数据文件夹路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]interval</td>
+<td>文本模式每次扫描间隔(单位秒)</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>[2]ip</td>
+<td>tcp服务器地址</td>
+<td>0.0.0.0</td>
+</tr>
+<tr class="odd">
+<td>[2/3/4/5/6/7]port</td>
+<td>服务监听端口</td>
+<td>514</td>
+</tr>
+<tr class="even">
+<td>[2/3/4/5/6/7]flushInterval</td>
+<td>缓存刷写周期,单位秒</td>
+<td>600</td>
+</tr>
+<tr class="odd">
+<td>[3/6/7]assets</td>
+<td>资产列表配置路径,格式详见<a href="#assetsyml">assets.yml</a></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[3/6/7]assetsFilter</td>
+<td>启用资产列表ip过滤</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>[7]multiJsPath</td>
+<td>数据(资产)类型对应解析脚本配置<a href="#multijspathyml">multiJsPath.yml</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-elasticsearch-source">vap-elasticsearch-source</h3>
+<ul>
+<li>ElasticSearch数据查询组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.essource.ElasticSearchSource(开源ElasticSearch数据查询组件)</li>
+<li>com.vrv.vap.essource.ElasticSearchHuaweiSource(华为ElasticSearch数据查询组件)</li>
+<li>com.vrv.vap.essource.ElasticSearchScrollSource(ElasticSearch单索引抽取组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dataType</td>
+<td>数据类型,对应<a href="#data-fixyml">data-fix.yml</a>中的type</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>esBatch</td>
+<td>每次从es获取的数据量</td>
+<td>2000</td>
+</tr>
+<tr class="odd">
+<td>[1/3]esYml</td>
+<td>es集群的yml配置文件路径</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1/2]indexFormat</td>
+<td>索引格式(如:‘net-’yyyy.MM.dd或’net-2018.12.01’)</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1/2]query</td>
+<td>查询语句</td>
+<td>{&quot;query&quot;:{&quot;bool&quot;:{&quot;must&quot;:<span class="citation" data-cites="timestamp">[{\&quot;range\&quot;:{\&quot;@timestamp\&quot;:{\&quot;gte\&quot;:?,\&quot;lt\&quot;:?}}}]</span>}}}</td>
+</tr>
+<tr class="even">
+<td>[1/2]ignoreQuery</td>
+<td>是否启用查询语句</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>[1/2]cron</td>
+<td>定时查询时间配置</td>
+<td>0/10 * * * * ?</td>
+</tr>
+<tr class="even">
+<td>[1/2]interval</td>
+<td><del>每次查询间隔(单位秒)</del>（废弃，改用cron配置）</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>[1/2]incTime</td>
+<td>值为0时结束时间为当前时间,否则为开始时间+该值(单位分钟)</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>[1/3]username</td>
+<td>elasticsearch 认证账号(未开启认证不配)</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1/3]password</td>
+<td>elasticsearch 认证账号密码(未开启认证不配)</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[2]huaweiEsProp</td>
+<td>华为提供的配置文件<a href="#esproperties">es.properties</a>路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[2]huaweiType</td>
+<td>内置1和2两种客户端自动适配,当适配失败时,请配置3并使用华为提供的jar包替换flume里面的es包连接es</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[3]index</td>
+<td>索引名称</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[3]indexType</td>
+<td>es索引中的type,不配默认全部</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[3]timeValue</td>
+<td>scroll缓存时间(单位秒)</td>
+<td>600</td>
+</tr>
+<tr class="odd">
+<td>[3]shards</td>
+<td>索引分片个数</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-webservice-source">vap-webservice-source</h3>
+<ul>
+<li>webservice数据源查询组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.wssource.DemoWsSource(演示demo-天气查询)</li>
+<li>com.vrv.vap.wssource.VrvInnerNetWsSource(北信源内网webservice v2.0)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>wsdlUrl</td>
+<td>wsdl地址</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[2]user</td>
+<td>账号</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[2]password</td>
+<td>密码</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[2]pageSize</td>
+<td>查询分页大小</td>
+<td>2000</td>
+</tr>
+<tr class="odd">
+<td>[2]min</td>
+<td>时间递增范围,单位分钟</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-log-sink">vap-log-sink</h3>
+<ul>
+<li>数据输出到控制台</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.vrvlog.JsonStringSink(JSON输出到控制台组件)</li>
+<li>com.vrv.vap.vrvlog.PictureSink(终端图片保存组件)</li>
+<li>com.vrv.vap.vrvlog.ConsoleNullSink(取值不处理组件)</li>
+<li>com.vrv.vap.vrvlog.DataFixLogSink(模拟解析输出组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[2]store</td>
+<td>图片保存地址</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[4]batch</td>
+<td>每次从channel中获取的数据条数</td>
+<td>1000</td>
+</tr>
+<tr class="odd">
+<td>[4]logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[4]tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[4]filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[4]areaTxt</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[4]domainTxt</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[4]inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>JSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-complex-sink">vap-complex-sink</h3>
+<ul>
+<li>复合型入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.complex.pic.EsAndHbaseSink(终端数据同时入es和hbase)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>每次从channel取的数据条数</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>EsAndHbaseSink配置字段同vap-elasticsearch-sink和vap-hbase-sink</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-datahub-sink">vap-datahub-sink</h3>
+<ul>
+<li>阿里云datahub入库组件</li>
+<li>对应flume的type为com.vrv.vap.datahubsink.DataHubSink</li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>每次从channel取值数量</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>dataHubBatch</td>
+<td>每次写入datahub数据条数</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>areaTxt</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>domainTxt</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>accessId</td>
+<td>阿里云accessId</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>accessKey</td>
+<td>阿里云accessKey</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>endpoint</td>
+<td>阿里云endpoint</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>projectName</td>
+<td>datahub的project名称</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>FLATJSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-kafka-source">vap-kafka-source</h3>
+<ul>
+<li>kafka数据抽取组件(官网组件仅支持kafka0.9版本,这里更新支持0.10版本)</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.kafkasource.KafkaSource(kafka数据抽取组件)</li>
+<li>com.vrv.vap.kafkasource.KafkaSource2(VRV-kafka数据抽取组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>kafka.bootstrap.servers</td>
+<td>kafka服务器地址:hostname:port（多个用“,”分隔）</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>kafka.consumer.group.id</td>
+<td>group唯一id</td>
+<td>flume</td>
+</tr>
+<tr class="odd">
+<td>kafka.topics</td>
+<td>topic名称（多个用“,”分隔）</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]kafka.topics.regex</td>
+<td>匹配topic的正则表达式，配置该参数会覆盖kafka.topics配置</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>batchSize</td>
+<td>每次写入channel的最大条数</td>
+<td>1000</td>
+</tr>
+<tr class="even">
+<td>[1]batchDurationMillis</td>
+<td>Maximum time (in ms) before a batch will be written to Channel The batch will be written whenever the first of size and time will be reached.</td>
+<td>1000</td>
+</tr>
+<tr class="odd">
+<td>[1]backoffSleepIncrement</td>
+<td>Initial and incremental wait time that is triggered when a Kafka Topic appears to be empty. Wait period will reduce aggressive pinging of an empty Kafka Topic. One second is ideal for ingestion use cases but a lower value may be required for low latency operations with interceptors.</td>
+<td>1000</td>
+</tr>
+<tr class="even">
+<td>[1]maxBackoffSleep</td>
+<td>Maximum wait time that is triggered when a Kafka Topic appears to be empty. Five seconds is ideal for ingestion use cases but a lower value may be required for low latency operations with interceptors.</td>
+<td>5000</td>
+</tr>
+<tr class="odd">
+<td>useFlumeEventFormat</td>
+<td>是否使用flume avro序列化数据</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>[1]setTopicHeader</td>
+<td>是否在header中设置topic</td>
+<td>true</td>
+</tr>
+<tr class="odd">
+<td>[1]topicHeader</td>
+<td>setTopicHeader为true时，会在该字段中保存topic</td>
+<td>topic</td>
+</tr>
+<tr class="even">
+<td>[2]topicHeader</td>
+<td>header新增该字段，并保存topic</td>
+<td>_TYPE</td>
+</tr>
+<tr class="odd">
+<td>[1]migrateZookeeperOffsets</td>
+<td>When no Kafka stored offset is found, look up the offsets in Zookeeper and commit them to Kafka. This should be true to support seamless Kafka client migration from older versions of Flume. Once migrated this can be set to false, though that should generally not be required. If no Zookeeper offset is found, the Kafka configuration kafka.consumer.auto.offset.reset defines how offsets are handled. Check Kafka documentation for details</td>
+<td>true</td>
+</tr>
+<tr class="even">
+<td>[1]kafka.consumer.security.protocol</td>
+<td>Set to SASL_PLAINTEXT, SASL_SSL or SSL if writing to Kafka using some level of security. See below for additional info on secure setup.</td>
+<td>PLAINTEXT</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-test-channel">vap-test-channel</h3>
+<ul>
+<li>基于memory的计数channel</li>
+<li>对应flume的type为com.vrv.vap.test.channel.MemoryCountChannel</li>
+<li>参数配置同官网memory channel配置</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>capacity</td>
+<td>缓存容量</td>
+<td>10000</td>
+</tr>
+<tr class="even">
+<td>transactionCapacity</td>
+<td>事务容量</td>
+<td>10000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-socket-sink">vap-socket-sink</h3>
+<ul>
+<li>socket数据转发组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.socketsink.UdpSink(udp协议转发)</li>
+<li>com.vrv.vap.socketsink.TcpSink(tcp协议转发)</li>
+<li>com.vrv.vap.socketsink.SyslogSink(syslog转发)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>batch</td>
+<td>从channel中获取的数据条数</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>dstIp</td>
+<td>目标ip地址</td>
+<td>localhost</td>
+</tr>
+<tr class="odd">
+<td>dstPort</td>
+<td>目标端口</td>
+<td>514</td>
+</tr>
+<tr class="even">
+<td>delay</td>
+<td>每条数据延迟发送的时间,单位毫秒</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>JSON</td>
+</tr>
+<tr class="even">
+<td>logSettings</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>format</td>
+<td>数据重新格式化,例:<span class="math inline">${ip}##$</span>{time}##${desc},为空则输出json</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>charsetIn</td>
+<td>输入数据编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="odd">
+<td>charsetOut</td>
+<td>输出数据编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="even">
+<td>[3]facility</td>
+<td>0:kernel messages,1:user-level messages,2:mail system,3:system daemons,4:security/authorization messages (note 1),5:messages generated internally by syslogd,6:line printer subsystem,7:network news subsystem,8:UUCP subsystem,9:clock daemon (note 2),10:security/authorization messages (note 1),11:FTP daemon,12:NTP subsystem,13:log audit (note 1),14:log alert (note 1),15:clock daemon (note 2),16:local use 0  (local0),17:local use 1  (local1),18:local use 2  (local2),19:local use 3  (local3),20:local use 4  (local4),21:local use 5  (local5),22:local use 6  (local6),23:local use 7  (local7),</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>[3]serverity</td>
+<td>0:Emergency#system is unusable,1:Alert#action must be taken immediately,2:Critical#critical conditions,3:Error#error conditions,4:Warning#warning conditions,5:Notice#normal but significant condition,6:Informational#informational messages,7:Debug#debug-level messages,</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>[3]tag</td>
+<td>syslog标签</td>
+<td>vrv</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-spec-lvmeng-source">vap-spec-lvmeng-source</h3>
+<ul>
+<li>绿盟探针数据抽取组件</li>
+<li>对应flume的type为com.vrv.vap.spec.lvmengsource.LvMengSource</li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>filePath</td>
+<td>数据存放目录</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>test</td>
+<td>是否启用测试,测试模式不会删除原始数据</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>interval</td>
+<td>文件扫描间隔,单位秒</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-spec-twas-source">vap-spec-twas-source</h3>
+<ul>
+<li>TWAS探针数据抽取组件</li>
+<li>对应flume的type为com.vrv.vap.spec.twassource.TwasSource</li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ftpHost</td>
+<td>ftp服务器ip</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>username</td>
+<td>ftp服务用户名</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>password</td>
+<td>ftp服务密码</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>port</td>
+<td>ftp服务端口</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>ftpFilePath</td>
+<td>ftp服务数据存放目录</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>fileNameStorage</td>
+<td>ftp文件时间保存txt路径</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>interval</td>
+<td>文件扫描间隔,单位秒</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td>batchSize</td>
+<td>写入channel的批次大小</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>upper</td>
+<td>对文件时间校验取前几天</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>needSource</td>
+<td>是否需要原始数据填充</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>readHttpFileType</td>
+<td>读取http文件类型默认json,可配置csv</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-snmp-source">vap-snmp-source</h3>
+<ul>
+<li>SNMP数据接收组件</li>
+<li>对应flume的type为com.vrv.vap.snmpsource.SNMPSource</li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>charset</td>
+<td>字符串编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="even">
+<td>dataType</td>
+<td>数据类型,对应<a href="#data-fixyml">data-fix.yml</a>中的type</td>
+<td>snmp</td>
+</tr>
+<tr class="odd">
+<td>protocol</td>
+<td>协议</td>
+<td>udp</td>
+</tr>
+<tr class="even">
+<td>ip</td>
+<td>监听ip</td>
+<td>127.0.0.1</td>
+</tr>
+<tr class="odd">
+<td>port</td>
+<td>监听端口</td>
+<td>162</td>
+</tr>
+<tr class="even">
+<td>authPassword</td>
+<td>snmp v3认证密码</td>
+<td>authPassword</td>
+</tr>
+<tr class="odd">
+<td>privPassword</td>
+<td>snmp v3认证密码</td>
+<td>privPassword</td>
+</tr>
+<tr class="even">
+<td>batch</td>
+<td>写入channel的批次大小</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-redis-source">vap-redis-source</h3>
+<ul>
+<li>redis数据接收组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.redissource.RedisSource(网络会话格式)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ip</td>
+<td>redis服务IP地址</td>
+<td>127.0.0.1</td>
+</tr>
+<tr class="even">
+<td>port</td>
+<td>redis服务端口</td>
+<td>6379</td>
+</tr>
+<tr class="odd">
+<td>batch</td>
+<td>写入channel的批次大小</td>
+<td>1000</td>
+</tr>
+<tr class="even">
+<td>cron</td>
+<td>定时任务cron表达式</td>
+<td>0 0 3 * * ?</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-kafka-sink">vap-kafka-sink</h3>
+<ul>
+<li>kafka入库组件</li>
+<li>对应flume的type为
+<ul>
+<li>com.vrv.vap.kafkasink.KafkaSink(kafka入库组件)</li>
+<li>com.vrv.vap.kafkasink.KafkaSink2(VRV-kafka入库组件)</li>
+</ul></li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>kafka.bootstrap.servers</td>
+<td>服务器地址:hostname:port（多个用“,”分隔）</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>kafka.topic</td>
+<td>默认写入的topic</td>
+<td>default-flume-topic</td>
+</tr>
+<tr class="odd">
+<td>flumeBatchSize</td>
+<td>每次提交到kafka的数据条数</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>kafka.producer.acks</td>
+<td>数据写入持久性容忍度（1、0、-1）</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>useFlumeEventFormat</td>
+<td>数据源是否使用flume avro序列化</td>
+<td>false</td>
+</tr>
+<tr class="even">
+<td>[1]defaultPartitionId</td>
+<td>默认的partition id</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[1]partitionIdHeader</td>
+<td>header中对应partitionId的字段名</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]allowTopicOverride</td>
+<td>是否使用topicHeader替换默认topic</td>
+<td>true</td>
+</tr>
+<tr class="odd">
+<td>[1]topicHeader</td>
+<td>header中对应topic的字段名</td>
+<td>topic</td>
+</tr>
+<tr class="even">
+<td>kafka.producer.security.protocol</td>
+<td>安全协议（SASL_PLAINTEXT、SASL_SSL、SSL）</td>
+<td>PLAINTEXT</td>
+</tr>
+<tr class="odd">
+<td>[2]allowTopicOverride</td>
+<td>是否使用datafix中的index替换默认topic</td>
+<td>true</td>
+</tr>
+<tr class="even">
+<td>[2]eventKeyField</td>
+<td>数据中对应key的字段名</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>[2]partitionIdField</td>
+<td>数据中对应partition id的字段名</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>[1]openVapFix</td>
+<td>是否开启数据解析过滤</td>
+<td>false</td>
+</tr>
+<tr class="odd">
+<td>dataFix</td>
+<td><a href="#data-fixyml">data-fix.yml</a>配置文件路径<del>或lc的logSetting.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>filters</td>
+<td><a href="#data-filteryml">data-filter.yml</a>配置文件路径<del>或lc的filters.xml配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>area</td>
+<td><a href="#areayml">area.yml</a>配置文件路径<del>或lc的area.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>domain</td>
+<td><a href="#domainyml">domain.yml</a>配置文件路径<del>或lc的domain.txt配置文件路径</del></td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>inputType</td>
+<td>详见<a href="#inputtype说明">InputType说明</a></td>
+<td>FLATJSON</td>
+</tr>
+<tr class="even">
+<td>tables</td>
+<td>表关联插入配置,详见<a href="#tablescsv">tables.csv</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-sftp-source">vap-sftp-source</h3>
+<ul>
+<li>sftp数据获取组件</li>
+<li>对应flume的type为com.vrv.vap.sftpsource.SFTPSource</li>
+<li>参数配置说明</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>user</td>
+<td>用户名</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>password</td>
+<td>用户密码</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>ip</td>
+<td>服务器地址</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>downloadDir</td>
+<td>文件下载缓存目录</td>
+<td>/tmp</td>
+</tr>
+<tr class="odd">
+<td>remoteDir</td>
+<td>远程文件目录,多个用“,”分割</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>dataType</td>
+<td>数据类型,对应<a href="#data-fixyml">data-fix.yml</a>中的type</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>denySuffix</td>
+<td>需要过滤的文件名后缀,多个用“,”分割</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>jsPath</td>
+<td>配置javascript脚本路径，使用JavaScript解析数据，配置模板见<a href="#buildjs">build.js</a>,不配默认使用原始数据格式</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>functionClass</td>
+<td>配置java解析实现类，如:com.vrv.vap.dysource.function.JavaFunctionDemo，使用java解析数据，详见<a href="#javafunctiondemojava">JavaFunctionDemo.java</a>,不配默认使用原始数据格式</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>charset</td>
+<td>数据编码</td>
+<td>UTF-8</td>
+</tr>
+<tr class="odd">
+<td>batch</td>
+<td>每次写入channel的数据量</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>cron</td>
+<td>定时任务表达式配置</td>
+<td>0/10 * * * * ?</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vap-avro-interceptor">vap-avro-interceptor</h3>
+<ul>
+<li>avro数据反序列化为json组件</li>
+<li>配置样例</li>
+</ul>
+<pre class="properties"><code>a1.sources.r1.interceptors = i1
+#拦截器type配置
+a1.sources.r1.interceptors.i1.type = com.vrv.vap.interceptor.AvroInterceptor$Builder
+#avro数据schema路径
+a1.sources.r1.interceptors.i1.avsc= C:\\Users\\admin\\Desktop\\schema.avsc
+#byte[]偏移位置,默认0
+#a1.sources.r1.interceptors.i1.offset= 4</code></pre>
+<h3 id="vap-ungzip-interceptor">vap-ungzip-interceptor</h3>
+<ul>
+<li>数据解压缩</li>
+<li>配置样例</li>
+</ul>
+<pre class="properties"><code>a1.sources.r1.interceptors = i1
+#拦截器type配置
+a1.sources.r1.interceptors.i1.type = com.vrv.vap.interceptor.UnGzipInterceptor$Builder</code></pre>
+<h3 id="vap-bytestohex-interceptor">vap-bytestohex-interceptor</h3>
+<ul>
+<li>byte数组转16进制string</li>
+<li>配置样例</li>
+</ul>
+<pre class="properties"><code>a1.sources.r1.interceptors = i1
+#拦截器type配置
+a1.sources.r1.interceptors.i1.type = com.vrv.vap.interceptor.BytesToStringInterceptor$Builder</code></pre>
+<h3 id="vap-function-interceptor">vap-function-interceptor</h3>
+<ul>
+<li>js脚本处理数据</li>
+<li>配置样例</li>
+</ul>
+<pre class="properties"><code>a1.sources.r1.interceptors = i1
+#拦截器type配置
+a1.sources.r1.interceptors.i1.type = com.vrv.vap.interceptor.FunctionInterceptor$Builder
+#java代码处理
+#a1.sources.r1.interceptors.i1.functionClass = com.vrv.vap.dysource.function.UseSourceFunction
+#js处理
+a1.sources.r1.interceptors.i1.jsPath = D:\\flume_ui\\file\\00\\test.js
+#数据编码,默认UTF-8
+#a1.sources.r1.interceptors.i1.charset = UTF-8
+#是否使用原始event中的头信息
+#a1.sources.r1.interceptors.i1.useHeader = false
+#是否将原始数据转为event中的data
+#a1.sources.r1.interceptors.i1.useData = false</code></pre>
+<hr />
+<h2 id="配置模板">配置模板</h2>
+<h3 id="areayml">area.yml</h3>
+<p>区域信息配置,ip范围从上往下,由小到大配置</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="fu">省厅:</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="fu">area-code:</span><span class="at"> 510001</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="fu">ip-ranges:</span><span class="at"> 10.64.0.0-10.64.255.255,10.71.0.0-10.71.255.255</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="fu">乐山市:</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="fu">area-code:</span><span class="at"> 510002</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="fu">ip-ranges:</span><span class="at"> 10.66.192.0-10.66.255.255</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="fu">内江市:</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">  <span class="fu">area-code:</span><span class="at"> 510003</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">  <span class="fu">ip-ranges:</span><span class="at"> 10.68.64.0-10.68.127.255</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">......</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="fu">雅安市:</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">  <span class="fu">area-code:</span><span class="at"> 510022</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">  <span class="fu">ip-ranges:</span><span class="at"> 10.69.192.1-10.69.192.108</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="fu">公安部:</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">  <span class="fu">area-code:</span><span class="at"> 100000</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">  <span class="fu">ip-ranges:</span><span class="at"> 10.0.0.0-10.7.255.255</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="fu">外省:</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">  <span class="fu">area-code:</span><span class="at"> 999999</span></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">  <span class="fu">ip-ranges:</span><span class="at"> 10.0.0.0-10.255.255.255</span></a></code></pre></div>
+<h3 id="data-filteryml">data-filter.yml</h3>
+<p>数据过滤配置</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">conf.filters:</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">filter:</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#索引名称</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">      <span class="fu">index:</span><span class="at"> pro</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#启动开关0/1,ture/false</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">      <span class="fu">open:</span><span class="at"> true </span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#字段包含以下值时将过滤掉</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">      <span class="fu">includes:</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#字段名称:包含的过滤内容</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">        <span class="fu">name:</span><span class="at"> </span><span class="kw">[</span>iexplore.exe<span class="kw">,</span>explorer.exe<span class="kw">,</span>PHz2004.exe<span class="kw">,</span>PunishPlat.exe<span class="kw">]</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">  <span class="kw">-</span> <span class="fu">filter:</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">      <span class="fu">index:</span><span class="at"> net</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">      <span class="fu">open:</span><span class="at"> 1</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">      <span class="fu">includes:</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">        <span class="fu">uri:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">          <span class="kw">-</span> 360.fri</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">          <span class="kw">-</span> rising.fri</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">          <span class="kw">-</span> kingsoft.fri</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">          <span class="kw">-</span> ..</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">          <span class="kw">-</span> .jpg</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">          <span class="kw">-</span> .exe</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22">          <span class="kw">-</span> .swf</a>
+<a class="sourceLine" id="cb8-23" data-line-number="23">          <span class="kw">-</span> .jpeg</a>
+<a class="sourceLine" id="cb8-24" data-line-number="24">          <span class="kw">-</span> .gif</a>
+<a class="sourceLine" id="cb8-25" data-line-number="25">          <span class="kw">-</span> .png</a>
+<a class="sourceLine" id="cb8-26" data-line-number="26">          <span class="kw">-</span> .ioc</a>
+<a class="sourceLine" id="cb8-27" data-line-number="27">          <span class="kw">-</span> .asmx</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="co">#ip范围过滤,配置的ip会被过滤掉</span></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29">      <span class="fu">ip-excludes:</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="co">#&lt;存放ip的字段名称&gt;:&lt;ip范围数组&gt;</span></a>
+<a class="sourceLine" id="cb8-31" data-line-number="31">        <span class="fu">ni:</span><span class="at"> </span><span class="kw">[</span>10.64.0.0-10.64.255.255<span class="kw">,</span>10.71.0.0-10.71.255.255<span class="kw">]</span></a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">  <span class="kw">-</span> <span class="fu">filter:</span></a>
+<a class="sourceLine" id="cb8-33" data-line-number="33">      <span class="fu">index:</span><span class="at"> pki</span></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34">      <span class="fu">open:</span><span class="at"> 1</span></a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="co">#ip范围过滤,只会取配置范围内的ip数据 </span></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36">      <span class="fu">ip-includes:</span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">#&lt;存放ip的字段名称&gt;:&lt;ip范围数组&gt;</span></a>
+<a class="sourceLine" id="cb8-38" data-line-number="38">        <span class="fu">ni:</span><span class="at"> </span><span class="kw">[</span>192.168.0.1-192.168.0.255<span class="kw">]</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">#时间范围过滤</span></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40">      <span class="fu">time-range:</span></a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="co">#&lt;字段名&gt;:&lt;[往前n天，往后n天]&gt;</span></a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">        <span class="fu">time:</span><span class="at"> </span><span class="kw">[</span>7<span class="kw">,</span>0<span class="kw">]</span></a>
+<a class="sourceLine" id="cb8-43" data-line-number="43">        <span class="fu">std_time:</span><span class="at"> </span><span class="kw">[</span>2<span class="kw">,</span>3<span class="kw">]</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">#空值过滤 [字段1,字段2]</span></a>
+<a class="sourceLine" id="cb8-45" data-line-number="45">      <span class="fu">empty-check:</span><span class="at"> </span><span class="kw">[</span>time<span class="kw">,</span>uri<span class="kw">]</span></a></code></pre></div>
+<h3 id="data-fixyml">data-fix.yml</h3>
+<p>数据处理逻辑配置</p>
+<p>fix 配置执行顺序 rename → add → handle</p>
+<p>fix.handle 中支持的转换方法</p>
+<table>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>uriDecode</td>
+<td>uri路径解码</td>
+</tr>
+<tr class="even">
+<td>dateFormat</td>
+<td>时间格式化(yyyy-MM-dd HH:mm:ss)</td>
+</tr>
+<tr class="odd">
+<td>longToDate</td>
+<td>毫秒数转date类型</td>
+</tr>
+<tr class="even">
+<td>toUtc</td>
+<td>gmt转utc时间</td>
+</tr>
+<tr class="odd">
+<td>toDate</td>
+<td>字符串转date类型</td>
+</tr>
+<tr class="even">
+<td>addTimestamp</td>
+<td>添加时间戳,java date类型</td>
+</tr>
+<tr class="odd">
+<td>codeToText</td>
+<td>vrv终端数据code转汉字</td>
+</tr>
+<tr class="even">
+<td>checkYear</td>
+<td>年份校验,大于当年的日期改为当年</td>
+</tr>
+<tr class="odd">
+<td>ipToArea</td>
+<td>ip转区域,关联配置<a href="#areayml">area.yml</a></td>
+</tr>
+<tr class="even">
+<td>ipToAreaCode</td>
+<td>ip转区域编码,关联配置<a href="#areayml">area.yml</a></td>
+</tr>
+<tr class="odd">
+<td>ipToNumber</td>
+<td>ip转数字,转换失败为-1</td>
+</tr>
+<tr class="even">
+<td>numToIp</td>
+<td>数字转ip</td>
+</tr>
+<tr class="odd">
+<td>urlToDomain</td>
+<td>url转域名,关联配置<a href="#domainyml">domain.yml</a></td>
+</tr>
+<tr class="even">
+<td>domainToRegId</td>
+<td>域名转系统ID,关联配置<a href="#domainyml">domain.yml</a></td>
+</tr>
+<tr class="odd">
+<td>gbkToUtf8</td>
+<td>gbk解码,\xCB\xEC\xC4\xFE\xCA\xD0 ==&gt; 遂宁市</td>
+</tr>
+<tr class="even">
+<td>sdf#原始时间格式#新的时间格式</td>
+<td>时间重新格式化,sdf#yyyy-MM-dd HH:mm:ss#yyyyMMdd</td>
+</tr>
+<tr class="odd">
+<td>setString#需要设置的字符串</td>
+<td>给指定字段设值</td>
+</tr>
+<tr class="even">
+<td>joinBy#表名</td>
+<td>根据配置添加字段,关联配置<a href="#tablescsv">tables.csv</a></td>
+</tr>
+<tr class="odd">
+<td>betweenIp#表名</td>
+<td>根据配置添加字段,关联配置<a href="#tablescsv">tables.csv</a></td>
+</tr>
+<tr class="even">
+<td>addTimestampString</td>
+<td>添加时间戳,yyyyMMddHHmmss</td>
+</tr>
+<tr class="odd">
+<td>decodeBase64</td>
+<td>base64解码</td>
+</tr>
+<tr class="even">
+<td>encodeBase64</td>
+<td>base64加密</td>
+</tr>
+<tr class="odd">
+<td>uuid</td>
+<td>生成UUID</td>
+</tr>
+<tr class="even">
+<td>delLineBreak</td>
+<td>删除换行符“\n”</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">conf.settings:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">setting:</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#终端数据类型  </span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">      <span class="fu">type:</span><span class="at"> Z_30</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#es索引名称</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">      <span class="fu">index:</span><span class="at"> net</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#数据中表示时间的字段,不配置该字段则不会按时间生成索引</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">      <span class="fu">time-key:</span><span class="at"> time</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#数据中表示时间字段的时间格式</span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">      <span class="fu">time-format:</span><span class="at"> yyyy-MM-dd HH:mm:ss</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#索引时间格式</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12">      <span class="fu">es-time-format:</span><span class="at"> yyyy.MM.dd</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#json中第一层{}中包含的字段名</span></a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">      <span class="fu">lv1-fields:</span><span class="at"> dd,rd,ud,ni,nm,od,mc,sc,mi,ti,od,oi</span></a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#json中jdata中包含的字段名</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16">      <span class="fu">lv2-fields:</span><span class="at"> srcMac,Mac,srcip,ip,time,cmd,uri,host,referer,content-length,access-time,IsConnect,PKIID,Unit,UserName,UserID,Cmd,Time</span></a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#数据处理配置</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18">      <span class="fu">fix:</span></a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#字段重命名</span></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20">        <span class="fu">rename:</span></a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#原始字段名:新的字段名</span></a>
+<a class="sourceLine" id="cb9-22" data-line-number="22">          <span class="kw">-</span> <span class="fu">Cmd:</span><span class="at">cmd</span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23">          <span class="kw">-</span> <span class="fu">Time:</span><span class="at">time</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#字段转义</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25">        <span class="fu">handle:</span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#字段名称:处理方法</span></a>
+<a class="sourceLine" id="cb9-27" data-line-number="27">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">uriDecode</span></a>
+<a class="sourceLine" id="cb9-28" data-line-number="28">          <span class="kw">-</span> <span class="fu">host:</span><span class="at">uriDecode</span></a>
+<a class="sourceLine" id="cb9-29" data-line-number="29">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">toDate</span></a>
+<a class="sourceLine" id="cb9-30" data-line-number="30">          <span class="kw">-</span> <span class="fu">uri:</span></a>
+<a class="sourceLine" id="cb9-31" data-line-number="31"><span class="co">#新增字段</span></a>
+<a class="sourceLine" id="cb9-32" data-line-number="32"><span class="co">#       add</span></a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"><span class="co">#         - -:@timestamp  #只新增一个@timestamp字段</span></a>
+<a class="sourceLine" id="cb9-34" data-line-number="34"><span class="co">#         - time:newTime  #新增一个newTime字段,并将time的值赋进来</span></a>
+<a class="sourceLine" id="cb9-35" data-line-number="35">  <span class="kw">-</span> <span class="fu">setting:</span></a>
+<a class="sourceLine" id="cb9-36" data-line-number="36">      <span class="fu">type:</span><span class="at"> Z_31</span></a>
+<a class="sourceLine" id="cb9-37" data-line-number="37">      <span class="fu">index:</span><span class="at"> startshutdown</span></a>
+<a class="sourceLine" id="cb9-38" data-line-number="38">      <span class="fu">time-key:</span><span class="at"> time</span></a>
+<a class="sourceLine" id="cb9-39" data-line-number="39">      <span class="fu">time-format:</span><span class="at"> yyyy-MM-dd HH:mm:ss</span></a>
+<a class="sourceLine" id="cb9-40" data-line-number="40">      <span class="fu">es-time-format:</span><span class="at"> yyyy.MM</span></a>
+<a class="sourceLine" id="cb9-41" data-line-number="41">      <span class="fu">lv1-fields:</span><span class="at"> dd,rd,ud,ni,nm,od,mc,sc,mi,ti,od,oi</span></a>
+<a class="sourceLine" id="cb9-42" data-line-number="42">      <span class="fu">lv2-fields:</span><span class="at"> cmd,time,PKIID,Unit,UserName,UserID,Cmd</span></a>
+<a class="sourceLine" id="cb9-43" data-line-number="43">      <span class="fu">fix:</span></a>
+<a class="sourceLine" id="cb9-44" data-line-number="44">        <span class="fu">add:</span></a>
+<a class="sourceLine" id="cb9-45" data-line-number="45">          <span class="kw">-</span> <span class="fu">cmd:</span><span class="at">cmdDescription</span></a>
+<a class="sourceLine" id="cb9-46" data-line-number="46">        <span class="fu">rename:</span></a>
+<a class="sourceLine" id="cb9-47" data-line-number="47">          <span class="kw">-</span> <span class="fu">Cmd:</span><span class="at">cmd</span></a>
+<a class="sourceLine" id="cb9-48" data-line-number="48">        <span class="fu">handle:</span></a>
+<a class="sourceLine" id="cb9-49" data-line-number="49">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">uriDecode</span></a>
+<a class="sourceLine" id="cb9-50" data-line-number="50">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">toDate</span></a>
+<a class="sourceLine" id="cb9-51" data-line-number="51">          <span class="kw">-</span> <span class="fu">cmdDescription:</span><span class="at">codeToText</span></a>
+<a class="sourceLine" id="cb9-52" data-line-number="52">  <span class="kw">-</span> <span class="fu">setting:</span></a>
+<a class="sourceLine" id="cb9-53" data-line-number="53">      <span class="fu">type:</span><span class="at"> Z_31_test_</span></a>
+<a class="sourceLine" id="cb9-54" data-line-number="54">      <span class="fu">index:</span><span class="at"> startshutdown-test</span></a>
+<a class="sourceLine" id="cb9-55" data-line-number="55">      <span class="co">#time-key: time &lt;= 不配置time-key,不按时间生成索引,索引名为:startshutdown-test</span></a>
+<a class="sourceLine" id="cb9-56" data-line-number="56">      <span class="fu">lv1-fields:</span><span class="at"> dd,rd,ud,ni,nm,od,mc,sc,mi,ti,od,oi</span></a>
+<a class="sourceLine" id="cb9-57" data-line-number="57">      <span class="fu">lv2-fields:</span><span class="at"> cmd,time,PKIID,Unit,UserName,UserID,Cmd</span></a>
+<a class="sourceLine" id="cb9-58" data-line-number="58">      <span class="fu">fix:</span></a>
+<a class="sourceLine" id="cb9-59" data-line-number="59">        <span class="fu">add:</span></a>
+<a class="sourceLine" id="cb9-60" data-line-number="60">          <span class="kw">-</span> <span class="fu">cmd:</span><span class="at">cmdDescription</span></a>
+<a class="sourceLine" id="cb9-61" data-line-number="61">        <span class="fu">rename:</span></a>
+<a class="sourceLine" id="cb9-62" data-line-number="62">          <span class="kw">-</span> <span class="fu">Cmd:</span><span class="at">cmd</span></a>
+<a class="sourceLine" id="cb9-63" data-line-number="63">        <span class="fu">handle:</span></a>
+<a class="sourceLine" id="cb9-64" data-line-number="64">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">uriDecode</span></a>
+<a class="sourceLine" id="cb9-65" data-line-number="65">          <span class="kw">-</span> <span class="fu">time:</span><span class="at">toDate</span></a>
+<a class="sourceLine" id="cb9-66" data-line-number="66">          <span class="kw">-</span> <span class="fu">cmdDescription:</span><span class="at">codeToText</span></a></code></pre></div>
+<h3 id="hive-schemayml"><del>hive-schema.yml</del></h3>
+<blockquote>
+<p>废弃,仅为兼容老的配置保留,新的配置参考 table-schema.yml</p>
+</blockquote>
+<ul>
+<li>parquet类型需要配置字段类型</li>
+<li>文本类型可以不配置</li>
+<li>parquet格式partitions配置无效,只支持时间按天分区</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="fu">conf.schemas:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">schema:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#索引名称  </span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">      <span class="fu">index:</span><span class="at"> net</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#hive中的表名</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">      <span class="fu">table:</span><span class="at"> browsewebpagelog</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co">#hive分区取值的字段名</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">      <span class="fu">partitions:</span><span class="at"> </span><span class="kw">[</span>oi<span class="kw">,</span>time<span class="kw">]</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#string类型的字段</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">      <span class="fu">string-fields:</span><span class="at"> areacode,devonlyid,regorgancode,myonlyid,toolboxonlyid,srcmac,mac,srcip,ip,time,cmd,uri,host,protocol,connection,accept,user_agent,referer,accept_encoding,accept_language,accept_charset,if_modified_since,content_type,content_length,pragma,keep_alive,cookie,data,accesstime,isconnect</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co">#int类型的字段</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="co">#     int-fields:***</span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="co">#long类型的字段</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co">#     long-fields:***</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#double类型的字段</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#     double-fields:***</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#source输出的字段名和hive中的字段转换,相同字段可以只配一个</span></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#hive有的字段,source没有,source这边用&quot;-&quot;代替,hive必须配置</span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co">#字段顺序需要和hive建表的字段顺序一致</span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">      <span class="fu">mapper:</span></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="co">#source输出的字段名:hive中的字段名</span></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">        <span class="kw">-</span> <span class="fu">od:</span><span class="at">areacode</span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">        <span class="kw">-</span> <span class="fu">dd:</span><span class="at">devonlyid</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">        <span class="kw">-</span> <span class="fu">oi:</span><span class="at">regorgancode</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25">        <span class="kw">-</span> <span class="fu">mi:</span><span class="at">myonlyid</span></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">        <span class="kw">-</span> <span class="fu">ti:</span><span class="at">toolboxonlyid</span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">        <span class="kw">-</span> <span class="fu">srcMac:</span><span class="at">srcmac</span></a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">        <span class="kw">-</span> <span class="fu">Mac:</span><span class="at">mac</span></a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">        <span class="kw">-</span> <span class="fu">srcip:</span><span class="at">srcip</span></a>
+<a class="sourceLine" id="cb10-30" data-line-number="30">        <span class="kw">-</span> <span class="fu">ip:</span><span class="at">ip</span></a>
+<a class="sourceLine" id="cb10-31" data-line-number="31">        <span class="kw">-</span> time  <span class="co">#字段一样只配一个也可以</span></a>
+<a class="sourceLine" id="cb10-32" data-line-number="32">        <span class="kw">-</span> cmd</a>
+<a class="sourceLine" id="cb10-33" data-line-number="33">        <span class="kw">-</span> <span class="fu">uri:</span><span class="at">uri</span></a>
+<a class="sourceLine" id="cb10-34" data-line-number="34">        <span class="kw">-</span> <span class="fu">host:</span><span class="at">host</span></a>
+<a class="sourceLine" id="cb10-35" data-line-number="35">        <span class="kw">-</span> -:protocol  <span class="co">#source里面没有protocol字段用&quot;-&quot;代替</span></a>
+<a class="sourceLine" id="cb10-36" data-line-number="36">        <span class="kw">-</span> -:connection</a>
+<a class="sourceLine" id="cb10-37" data-line-number="37">        <span class="kw">-</span> -:accept</a>
+<a class="sourceLine" id="cb10-38" data-line-number="38">        <span class="kw">-</span> -:user_agent</a>
+<a class="sourceLine" id="cb10-39" data-line-number="39">        <span class="kw">-</span> -:referer</a>
+<a class="sourceLine" id="cb10-40" data-line-number="40">        <span class="kw">-</span> -:accept_encoding</a>
+<a class="sourceLine" id="cb10-41" data-line-number="41">        <span class="kw">-</span> -:accept_language</a>
+<a class="sourceLine" id="cb10-42" data-line-number="42">        <span class="kw">-</span> -:accept_c</a>
+<a class="sourceLine" id="cb10-43" data-line-number="43">        <span class="kw">-</span> harset</a>
+<a class="sourceLine" id="cb10-44" data-line-number="44">        <span class="kw">-</span> -:if_modified_since</a>
+<a class="sourceLine" id="cb10-45" data-line-number="45">        <span class="kw">-</span> -:content_type</a>
+<a class="sourceLine" id="cb10-46" data-line-number="46">        <span class="kw">-</span> -:content_length</a>
+<a class="sourceLine" id="cb10-47" data-line-number="47">        <span class="kw">-</span> -:pragma</a>
+<a class="sourceLine" id="cb10-48" data-line-number="48">        <span class="kw">-</span> -:keep_alive</a>
+<a class="sourceLine" id="cb10-49" data-line-number="49">        <span class="kw">-</span> -:cookie</a>
+<a class="sourceLine" id="cb10-50" data-line-number="50">  <span class="kw">-</span> <span class="fu">schema:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb10-51" data-line-number="51">      <span class="fu">index:</span><span class="at"> startshutdown</span></a>
+<a class="sourceLine" id="cb10-52" data-line-number="52">      <span class="fu">table:</span><span class="at"> loginlogout</span></a>
+<a class="sourceLine" id="cb10-53" data-line-number="53">      <span class="fu">partitions:</span><span class="at"> </span><span class="kw">[</span>oi<span class="kw">,</span>time<span class="kw">]</span></a>
+<a class="sourceLine" id="cb10-54" data-line-number="54">      <span class="fu">string-fields:</span><span class="at"> areacode,devonlyid,regorgancode,myonlyid,toolboxonlyid,ip,time,cmd,mac</span></a>
+<a class="sourceLine" id="cb10-55" data-line-number="55">      <span class="fu">mapper:</span></a>
+<a class="sourceLine" id="cb10-56" data-line-number="56">        <span class="kw">-</span> <span class="fu">od:</span><span class="at">areacode</span></a>
+<a class="sourceLine" id="cb10-57" data-line-number="57">        <span class="kw">-</span> <span class="fu">dd:</span><span class="at">devonlyid</span></a>
+<a class="sourceLine" id="cb10-58" data-line-number="58">        <span class="kw">-</span> <span class="fu">oi:</span><span class="at">regorgancode</span></a>
+<a class="sourceLine" id="cb10-59" data-line-number="59">        <span class="kw">-</span> <span class="fu">mi:</span><span class="at">myonlyid</span></a>
+<a class="sourceLine" id="cb10-60" data-line-number="60">        <span class="kw">-</span> <span class="fu">ti:</span><span class="at">toolboxonlyid</span></a>
+<a class="sourceLine" id="cb10-61" data-line-number="61">        <span class="kw">-</span> <span class="fu">ip:</span><span class="at">ip</span></a>
+<a class="sourceLine" id="cb10-62" data-line-number="62">        <span class="kw">-</span> <span class="fu">time:</span><span class="at">time</span></a>
+<a class="sourceLine" id="cb10-63" data-line-number="63">        <span class="kw">-</span> <span class="fu">cmd:</span><span class="at">cmd</span></a>
+<a class="sourceLine" id="cb10-64" data-line-number="64">        <span class="kw">-</span> <span class="fu">Mac:</span><span class="at">mac</span></a>
+<a class="sourceLine" id="cb10-65" data-line-number="65">  <span class="kw">-</span> <span class="fu">schema:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb10-66" data-line-number="66">      <span class="fu">index:</span><span class="at"> pro</span></a>
+<a class="sourceLine" id="cb10-67" data-line-number="67">      <span class="fu">table:</span><span class="at"> processinfolog</span></a>
+<a class="sourceLine" id="cb10-68" data-line-number="68">      <span class="fu">partitions:</span><span class="at"> </span><span class="kw">[</span>oi<span class="kw">]</span></a>
+<a class="sourceLine" id="cb10-69" data-line-number="69">      <span class="fu">string-fields:</span><span class="at"> areacode,devonlyid,name,md5,companyname,describ,signed,signedname,path,file,createtime,endtime,ip,mac,regorgancode,myonlyid,toolboxonlyid,pid,activetime,disabletime,version</span></a>
+<a class="sourceLine" id="cb10-70" data-line-number="70">      <span class="fu">int-fields:</span><span class="at"> runtime,topwindowtime,topactivetime</span></a>
+<a class="sourceLine" id="cb10-71" data-line-number="71">      <span class="fu">long-fields:</span><span class="at"> runcount</span></a>
+<a class="sourceLine" id="cb10-72" data-line-number="72">      <span class="fu">mapper:</span></a>
+<a class="sourceLine" id="cb10-73" data-line-number="73">        <span class="kw">-</span> <span class="fu">od:</span><span class="at">areacode</span></a>
+<a class="sourceLine" id="cb10-74" data-line-number="74">        <span class="kw">-</span> <span class="fu">dd:</span><span class="at">devonlyid</span></a>
+<a class="sourceLine" id="cb10-75" data-line-number="75">        <span class="kw">-</span> <span class="fu">name:</span><span class="at">name</span></a>
+<a class="sourceLine" id="cb10-76" data-line-number="76">        <span class="kw">-</span> <span class="fu">md5:</span><span class="at">md5</span></a>
+<a class="sourceLine" id="cb10-77" data-line-number="77">        <span class="kw">-</span> <span class="fu">runTime:</span><span class="at">runtime</span></a>
+<a class="sourceLine" id="cb10-78" data-line-number="78">        <span class="kw">-</span> <span class="fu">topActiveTime:</span><span class="at">topactivetime</span></a>
+<a class="sourceLine" id="cb10-79" data-line-number="79">        <span class="kw">-</span> <span class="fu">companyName:</span><span class="at">companyname</span></a>
+<a class="sourceLine" id="cb10-80" data-line-number="80">        <span class="kw">-</span> <span class="fu">desCrib:</span><span class="at">describ</span></a>
+<a class="sourceLine" id="cb10-81" data-line-number="81">        <span class="kw">-</span> <span class="fu">signed:</span><span class="at">signed</span></a>
+<a class="sourceLine" id="cb10-82" data-line-number="82">        <span class="kw">-</span> <span class="fu">signedName:</span><span class="at">signedname</span></a>
+<a class="sourceLine" id="cb10-83" data-line-number="83">        <span class="kw">-</span> <span class="fu">runCount:</span><span class="at">runcount</span></a>
+<a class="sourceLine" id="cb10-84" data-line-number="84">        <span class="kw">-</span> <span class="fu">path:</span><span class="at">path</span></a>
+<a class="sourceLine" id="cb10-85" data-line-number="85">        <span class="kw">-</span> <span class="fu">file:</span><span class="at">file</span></a>
+<a class="sourceLine" id="cb10-86" data-line-number="86">        <span class="kw">-</span> <span class="fu">CreateTime:</span><span class="at">createtime</span></a>
+<a class="sourceLine" id="cb10-87" data-line-number="87">        <span class="kw">-</span> <span class="fu">EndTime:</span><span class="at">endtime</span></a>
+<a class="sourceLine" id="cb10-88" data-line-number="88">        <span class="kw">-</span> <span class="fu">ip:</span><span class="at">ip</span></a>
+<a class="sourceLine" id="cb10-89" data-line-number="89">        <span class="kw">-</span> <span class="fu">Mac:</span><span class="at">mac</span></a>
+<a class="sourceLine" id="cb10-90" data-line-number="90">        <span class="kw">-</span> <span class="fu">oi:</span><span class="at">regorgancode</span></a>
+<a class="sourceLine" id="cb10-91" data-line-number="91">        <span class="kw">-</span> <span class="fu">mi:</span><span class="at">myonlyid</span></a>
+<a class="sourceLine" id="cb10-92" data-line-number="92">        <span class="kw">-</span> <span class="fu">ti:</span><span class="at">toolboxonlyid</span></a>
+<a class="sourceLine" id="cb10-93" data-line-number="93">        <span class="kw">-</span> <span class="fu">PID:</span><span class="at">pid</span></a>
+<a class="sourceLine" id="cb10-94" data-line-number="94">        <span class="kw">-</span> <span class="fu">ActiveTime:</span><span class="at">activetime</span></a>
+<a class="sourceLine" id="cb10-95" data-line-number="95">        <span class="kw">-</span> <span class="fu">DisableTime:</span><span class="at">disabletime</span></a>
+<a class="sourceLine" id="cb10-96" data-line-number="96">        <span class="kw">-</span> <span class="fu">Version:</span><span class="at">version</span></a>
+<a class="sourceLine" id="cb10-97" data-line-number="97">        <span class="kw">-</span> -:topwindowtime</a></code></pre></div>
+<h3 id="buildjs">build.js</h3>
+<ul>
+<li>方法名称parse不能变更</li>
+<li>传入参数event包含方法
+<ul>
+<li>put(key,value) //同java的map方法</li>
+<li>putHeader(key,value) //同java的map方法</li>
+<li>getSource() //返回原始数据字符串</li>
+<li>getHeaders() //返回一个header，一个map对象</li>
+</ul></li>
+<li>Java.type(“java.lang.System”)可以调用java代码中的静态方法</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">function</span> <span class="at">parse</span>(event)<span class="op">{</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="co">//Java.type(&quot;java.lang.System&quot;).out.println(event);</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="co">//var areaUtils = Java.type(&quot;com.vrv.vap.base.utils.AreaUtils&quot;);</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="co">//areaUtils.init(&quot;D:/Eclipse4.3/mars2/vap-flume/release/apache-flume-1.8.0-bin/conf/lc/area.txt&quot;);</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="va">event</span>.<span class="at">getHeaders</span>().<span class="at">put</span>(<span class="st">&quot;_TYPE&quot;</span><span class="op">,</span><span class="st">&quot;test&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="co">//127.0.0.1#admin#200#hello#2019-08-15 06:56:32#a1</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">  <span class="kw">var</span> e <span class="op">=</span> <span class="va">event</span>.<span class="at">getSource</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">  <span class="kw">var</span> arr <span class="op">=</span> <span class="va">e</span>.<span class="at">split</span>(<span class="st">&quot;#&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;ip&quot;</span><span class="op">,</span> arr[<span class="dv">0</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;name&quot;</span><span class="op">,</span> arr[<span class="dv">1</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;code&quot;</span><span class="op">,</span> arr[<span class="dv">2</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;message&quot;</span><span class="op">,</span> arr[<span class="dv">3</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;time&quot;</span><span class="op">,</span> arr[<span class="dv">4</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">  <span class="va">event</span>.<span class="at">put</span>(<span class="st">&quot;agent&quot;</span><span class="op">,</span> arr[<span class="dv">5</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15">  <span class="co">//event.put(&quot;areaName&quot;,areaUtils.getAreaName(&quot;10.64.5.12&quot;));</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16">  <span class="cf">return</span> event<span class="op">;</span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="op">}</span></a></code></pre></div>
+<h3 id="domainyml">domain.yml</h3>
+<p>域名转系统编号配置</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="fu">domains:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">url:</span><span class="at"> http://zyfw.ga</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="fu">code:</span><span class="at"> ZD0100000009</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="kw">-</span> <span class="fu">url:</span><span class="at"> http://zyfw.ga:80</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">    <span class="fu">code:</span><span class="at"> ZD0100000009</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">  <span class="kw">-</span> <span class="fu">url:</span><span class="at"> http://zyfw.ga:80</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">    <span class="fu">code:</span><span class="at"> ZD0100000005</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">  ......</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">  <span class="kw">-</span> <span class="fu">url:</span><span class="at"> https://jdcjsr-zyk.zx.ga</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">    <span class="fu">code:</span><span class="at"> ZD0100000005</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">  <span class="kw">-</span> <span class="fu">url:</span><span class="at"> https://jdcjsr-zyk.zx.ga:443</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">    <span class="fu">code:</span><span class="at"> ZD0100000005</span></a></code></pre></div>
+<h3 id="table-schemayml">table-schema.yml</h3>
+<ul>
+<li>简化原hive-schema.yml配置</li>
+<li>index字段对应data-fix.yml（原logsetting.xml）中的index字段</li>
+<li>table为hive表名</li>
+<li>partitions为hive分区字段，没有可不配置</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="fu">conf.schemas:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">schema:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">      <span class="fu">index:</span><span class="at"> net</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">      <span class="fu">table:</span><span class="at"> browsewebpagelog</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">      <span class="fu">partitions:</span><span class="at"> </span><span class="kw">[</span>oi<span class="kw">,</span>time<span class="kw">]</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="kw">-</span> <span class="fu">schema:</span><span class="at"> </span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">      <span class="fu">index:</span><span class="at"> pki</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">      <span class="fu">table:</span><span class="at"> pkiinfo</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">      <span class="fu">partitions:</span><span class="at"> </span><span class="kw">[</span>oi<span class="kw">,</span>time<span class="kw">]</span></a></code></pre></div>
+<h3 id="assetsyml">assets.yml</h3>
+<p>资产列表配置</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="fu">192.168.118.136:</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">  <span class="fu">type:</span><span class="at"> </span><span class="kw">[</span>资产类型1<span class="kw">,</span>资产类型2<span class="kw">]</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="fu">192.168.118.137:</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="fu">type:</span><span class="at"> </span><span class="kw">[</span>资产类型1<span class="kw">]</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="fu">192.168.118.138:</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">  <span class="fu">type:</span><span class="at"> </span><span class="kw">[</span>资产类型1<span class="kw">,</span>资产类型2<span class="kw">,</span>资产类型3<span class="kw">]</span></a></code></pre></div>
+<h3 id="javafunctiondemojava">JavaFunctionDemo.java</h3>
+<h4 id="内置解析类列表">内置解析类列表</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>class path</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>com.vrv.vap.base.core.function.UseSourceFunction(<strong>默认配置</strong>)</td>
+<td>什么都不处理,将原始数据作为数据体发送</td>
+</tr>
+<tr class="even">
+<td>com.vrv.vap.dysource.function.WindowsNxlogFunction</td>
+<td>windows 安全日志解析 nxlog发送(三峡)</td>
+</tr>
+<tr class="odd">
+<td>com.vrv.vap.sftpsource.function.HuaweiYunFunction</td>
+<td>湖南华为云(hbase/hive/es/solr)审计数据解析</td>
+</tr>
+<tr class="even">
+<td>com.vrv.vap.base.core.function.ContentByteFunction</td>
+<td>解析终端解上报net数据中，jdata.Content字段中的Byte数据转换</td>
+</tr>
+</tbody>
+</table>
+<h4 id="实现自己的-java-解析类">实现自己的 java 解析类</h4>
+<ul>
+<li><p>导入依赖 vap-dynamic-source-1.0.jar</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">&lt;dependency&gt;</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">    <span class="kw">&lt;groupId&gt;</span>com.vrv.vap<span class="kw">&lt;/groupId&gt;</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">    <span class="kw">&lt;artifactId&gt;</span>vap-dynamic-source<span class="kw">&lt;/artifactId&gt;</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="kw">&lt;version&gt;</span>1.0<span class="kw">&lt;/version&gt;</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">&lt;/dependency&gt;</span></a></code></pre></div></li>
+<li><p>继承 com.vrv.vap.dysource.function.JavaFunction 实现解析方法 analysis</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">import</span><span class="im"> com.vrv.vap.dysource.event.JsEvent;</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">public</span> <span class="kw">class</span> JavaFunctionDemo <span class="kw">extends</span> JavaFunction {</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">  <span class="at">@Override</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">  <span class="kw">public</span> JsEvent <span class="fu">analysis</span>(JsEvent jsEvent) {</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">    <span class="co">// 设置头信息</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">    jsEvent.<span class="fu">getHeaders</span>().<span class="fu">put</span>(<span class="st">&quot;_TYPE&quot;</span>, <span class="st">&quot;test&quot;</span>);</a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">    <span class="co">// 获取原始数据 127.0.0.1#admin#200#hello#2019-08-15 06:56:32#a1</span></a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">    <span class="bu">String</span> e = jsEvent.<span class="fu">getSource</span>();</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">    <span class="co">// 解析数据</span></a>
+<a class="sourceLine" id="cb16-12" data-line-number="12">    <span class="bu">String</span>[] arr = e.<span class="fu">split</span>(<span class="st">&quot;#&quot;</span>);</a>
+<a class="sourceLine" id="cb16-13" data-line-number="13">    <span class="co">// 设置解析后的字段和值</span></a>
+<a class="sourceLine" id="cb16-14" data-line-number="14">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;ip&quot;</span>, arr[<span class="dv">0</span>]);</a>
+<a class="sourceLine" id="cb16-15" data-line-number="15">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;name&quot;</span>, arr[<span class="dv">1</span>]);</a>
+<a class="sourceLine" id="cb16-16" data-line-number="16">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;code&quot;</span>, arr[<span class="dv">2</span>]);</a>
+<a class="sourceLine" id="cb16-17" data-line-number="17">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;message&quot;</span>, arr[<span class="dv">3</span>]);</a>
+<a class="sourceLine" id="cb16-18" data-line-number="18">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;time&quot;</span>, arr[<span class="dv">4</span>]);</a>
+<a class="sourceLine" id="cb16-19" data-line-number="19">    jsEvent.<span class="fu">put</span>(<span class="st">&quot;agent&quot;</span>, arr[<span class="dv">5</span>]);</a>
+<a class="sourceLine" id="cb16-20" data-line-number="20">    <span class="co">// 返回解析结果</span></a>
+<a class="sourceLine" id="cb16-21" data-line-number="21">    <span class="kw">return</span> jsEvent;</a>
+<a class="sourceLine" id="cb16-22" data-line-number="22">  }</a>
+<a class="sourceLine" id="cb16-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb16-24" data-line-number="24">}</a></code></pre></div></li>
+</ul>
+<h3 id="tablescsv">tables.csv</h3>
+<ul>
+<li>使用该配置文件的配置项支持多个文件路径配置,多个文件路径用英文逗号分隔</li>
+</ul>
+<blockquote>
+<p>如: /path/table1.csv,/path/tabl2.csv,/path/table3.csv</p>
+</blockquote>
+<ul>
+<li>csv文件中
+<ul>
+<li>第一行为解析信息配置
+<ul>
+<li>table为表名</li>
+<li>join为判断对应字段值是否相等</li>
+<li>betweenIp[开始ip字段,结束ip字段]为判断ip是否在范围内</li>
+<li>add为当条件满足时,会将表里面对应的字段添加进去</li>
+<li>sep为表数据分割符</li>
+</ul></li>
+<li>第二行为表字段名</li>
+<li>第三行开始为静态表数据</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb17-1" data-line-number="1">{<span class="ot">&quot;table&quot;</span>:<span class="ot">&quot;area&quot;</span>,<span class="ot">&quot;join&quot;</span>:<span class="ot">&quot;area_code&quot;</span>,<span class="ot">&quot;betweenIp&quot;</span>:[<span class="ot">&quot;startIp&quot;</span>,<span class="ot">&quot;endIp&quot;</span>],<span class="ot">&quot;add&quot;</span>:[<span class="ot">&quot;area_name&quot;</span>,<span class="ot">&quot;area_code&quot;</span>],<span class="ot">&quot;sep&quot;</span>:<span class="ot">&quot;\t&quot;</span>}</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">id</span>  area_code   area_name   ip_range    parent_code description area_code_sub   <span class="kw">sort</span>    startIp endIp</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="dv">1</span>   <span class="dv">010000000000</span>    公安部 <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">192.0</span><span class="dv">-10</span>.<span class="dv">66</span>.<span class="fl">255.255</span>   <span class="dv">01</span>  公安部 <span class="dv">010000</span>  <span class="dv">1</span>   <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">192.0</span> <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">255.255</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="dv">2</span>   <span class="dv">640000000000</span>    宁夏回族自治区 <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">64.0</span><span class="dv">-10</span>.<span class="dv">68</span>.<span class="fl">127.255</span>    <span class="dv">01</span>  宁夏  <span class="dv">640000</span>  <span class="dv">3</span>   <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">192.0</span> <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">255.255</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="dv">3</span>   <span class="dv">110000000000</span>    北京市 <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">128.0</span><span class="dv">-10</span>.<span class="dv">70</span>.<span class="fl">191.255</span>   <span class="dv">01</span>  北京  <span class="dv">110000</span>  <span class="dv">2</span>   <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">128.0</span> <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">191.255</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="dv">4</span>   <span class="dv">430000000000</span>    湖南省 <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">192.0</span><span class="dv">-10</span>.<span class="dv">67</span>.<span class="fl">255.255</span>   <span class="dv">01</span>  湖南  <span class="dv">430000</span>  <span class="dv">4</span>   <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">192.0</span> <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">255.255</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="dv">5</span>   <span class="dv">410000000000</span>    河南省 <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">67</span>.<span class="fl">63.255</span>  <span class="dv">01</span>  河南  <span class="dv">410000</span>  <span class="dv">5</span>   <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">67</span>.<span class="fl">63.255</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="dv">6</span>   <span class="dv">650000000000</span>    新疆维吾尔自治区    <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">64.0</span><span class="dv">-10</span>.<span class="dv">69</span>.<span class="fl">127.255</span>    <span class="dv">01</span>  新疆  <span class="dv">650000</span>  <span class="dv">6</span>   <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">64.0</span>  <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">127.255</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="dv">7</span>   <span class="dv">620000000000</span>    甘肃省 <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">128.0</span><span class="dv">-10</span>.<span class="dv">66</span>.<span class="fl">191.255</span>   <span class="dv">01</span>  甘肃  <span class="dv">620000</span>  <span class="dv">7</span>   <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">128.0</span> <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">191.255</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="dv">8</span>   <span class="dv">460000000000</span>    海南省 <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">69</span>.<span class="fl">63.255</span>  <span class="dv">01</span>  海南  <span class="dv">460000</span>  <span class="dv">8</span>   <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">69</span>.<span class="fl">63.255</span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="dv">9</span>   <span class="dv">450000000000</span>    广西省 <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">64.0</span><span class="dv">-10</span>.<span class="dv">66</span>.<span class="fl">127.255</span>    <span class="dv">01</span>  广西  <span class="dv">450000</span>  <span class="dv">9</span>   <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">64.0</span>  <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">127.255</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="dv">10</span>  <span class="dv">660000000000</span>    新疆生产建设兵团    <span class="dv">10</span>.<span class="dv">65</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">65</span>.<span class="fl">255.255</span> <span class="dv">01</span>  新疆兵团    <span class="dv">660000</span>  <span class="dv">10</span>  <span class="dv">10</span>.<span class="dv">65</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">65</span>.<span class="fl">255.255</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="dv">11</span>  <span class="dv">340000000000</span>    安徽省 10.<span class="dv">68</span>.<span class="fl">128.0</span><span class="dv">-10</span>.<span class="dv">68</span>.<span class="fl">191.255</span>   <span class="dv">01</span>  安徽  <span class="dv">340000</span>  <span class="dv">11</span>  <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">128.0</span> <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">191.255</span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="dv">12</span>  <span class="dv">120000000000</span>    天津市 <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">68</span>.<span class="fl">63.255</span>  <span class="dv">01</span>  天津  <span class="dv">120000</span>  <span class="dv">12</span>  <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">63.255</span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="dv">13</span>  <span class="dv">630000000000</span>    青海省 <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">70</span>.<span class="fl">63.255</span>  <span class="dv">01</span>  青海  <span class="dv">630000</span>  <span class="dv">13</span>  <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">70</span>.<span class="fl">63.255</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="dv">14</span>  <span class="dv">330000000000</span>    浙江省 <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">192.0</span><span class="dv">-10</span>.<span class="dv">68</span>.<span class="fl">255.255</span>   <span class="dv">01</span>  浙江  <span class="dv">330000</span>  <span class="dv">14</span>  <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">192.0</span> <span class="dv">10</span>.<span class="dv">68</span>.<span class="fl">255.255</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="dv">15</span>  <span class="dv">360000000000</span>    江西省 <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">0.0</span><span class="dv">-10</span>.<span class="dv">66</span>.<span class="fl">63.255</span>  <span class="dv">01</span>  江西  <span class="dv">360000</span>  <span class="dv">15</span>  <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">0.0</span>   <span class="dv">10</span>.<span class="dv">66</span>.<span class="fl">63.255</span></a></code></pre></div>
+<h3 id="kerberosproperties">kerberos.properties</h3>
+<pre class="properties"><code>#-------------hadoop--------------
+#kerberos认证配置文件
+krb5.conf=f://kerberos//krb5.conf
+#认证的域
+krb5.realm=me
+#认证的master服务器
+krb5.kdc=vrv148
+hdfs.site=f://kerberos//hdfs-site.xml
+core.site=f://kerberos//core-site.xml
+#hdfs认证文件
+keytab.hadoop=f://kerberos//hdfs.keytab
+#hdfs认证账号
+keytab.user.hadoop=hdfs/vrv145@me
+
+#----------hbase-------------
+#hbase认证文件
+keytab.hbase=f://kerberos//hbase.keytab
+#hbase认证账号
+hbase.master.princ=hbase/_HOST@me
+#hbase认证账号
+hbase.region.princ=hbase/_HOST@me
+#hbase认证账号
+keytab.user.hbase=hbase/vrv145@me
+
+#--------hive---------
+#hive认证文件  
+keytab.hive=f://kerberos//hive.keytab
+#hive认证账号
+keytab.user.hive=hive/vrv145@me</code></pre>
+<h3 id="esproperties">es.properties</h3>
+<p>华为es连接配置</p>
+<pre class="properties"><code>#集群地址ip:prot
+EsServerHost=1.1.1.1:24148,2.2.2.2:24100,3.3.3.3:24100
+#失败重试超时时间,单位毫秒
+MaxRetryTimeoutMillis=300000
+#连接超时时间,单位毫秒
+ConnectTimeout=5000
+#socket连接超时时间,单位毫秒
+SocketTimeout=60000
+#krb5.conf文件路径
+krb5ConfFile=C:/Users/admin/Desktop/Elasticsearch/elasticsearch-example/conf/krb5.conf
+#jaas.conf文件路径
+jaasPath=C:/Users/admin/Desktop/Elasticsearch/elasticsearch-example/conf/jaas.conf</code></pre>
+<h3 id="multijspathyml">multiJsPath.yml</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="fu">multijs:</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="co">#数据类型(资产类型)</span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> assets1</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">#js脚本中的入口方法,不配默认为 parse(event)</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">    <span class="fu">main:</span><span class="at"> parse</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">#解析脚本路径(不配则使用java解析)</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">    <span class="fu">jsPath:</span><span class="at"> D:\\flume_ui\\file\\00\\nxlog.js</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">#java解析类(不配则使用js解析)</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">    <span class="fu">functionClass:</span><span class="at"> com.vrv.vap.dysource.function.UseSourceFunction</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> assets2</span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11">    <span class="fu">main:</span><span class="at"> parse2</span></a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">    <span class="fu">jsPath:</span><span class="at"> D:\\flume_ui\\file\\00\\test.js</span></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">    <span class="fu">functionClass:</span><span class="at"> com.vrv.vap.dysource.function.WindowsNxlogFunction</span></a>
+<a class="sourceLine" id="cb20-14" data-line-number="14">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> assets3</span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15">    <span class="fu">main:</span><span class="at"> parse3</span></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16">    <span class="fu">jsPath:</span><span class="at"> D:\\flume_ui\\file\\00\\nxlog.js</span></a>
+<a class="sourceLine" id="cb20-17" data-line-number="17">    <span class="fu">functionClass:</span><span class="at"> com.vrv.vap.dysource.function.UseSourceFunction</span></a>
+<a class="sourceLine" id="cb20-18" data-line-number="18">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> assets4</span></a>
+<a class="sourceLine" id="cb20-19" data-line-number="19">    <span class="fu">jsPath:</span><span class="at"> D:\\flume_ui\\file\\00\\test.js</span></a>
+<a class="sourceLine" id="cb20-20" data-line-number="20">    <span class="fu">functionClass:</span><span class="at"> com.vrv.vap.dysource.function.WindowsNxlogFunction</span></a></code></pre></div>
+<h3 id="inputtype说明">InputType说明</h3>
+<table>
+<thead>
+<tr class="header">
+<th>值</th>
+<th>说明</th>
+<th>数据格式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CLIENT或CLIENT_TEXT</td>
+<td>vrv终端数据</td>
+<td>{a:&quot;&quot;,jdata:[{},{}…{}]}</td>
+</tr>
+<tr class="even">
+<td>CLIENT_PIC</td>
+<td>vrv终端图片数据</td>
+<td>{}</td>
+</tr>
+<tr class="odd">
+<td>JULONG</td>
+<td>巨龙数据</td>
+<td>{}</td>
+</tr>
+<tr class="even">
+<td>JSON</td>
+<td>普通json数据,不做字段处理</td>
+<td>{}</td>
+</tr>
+<tr class="odd">
+<td>FLATJSON</td>
+<td>普通json数据</td>
+<td>{}</td>
+</tr>
+<tr class="even">
+<td>ES_JSON</td>
+<td>es中的json数据</td>
+<td>{}</td>
+</tr>
+<tr class="odd">
+<td>JSON_ARRAY</td>
+<td>数据为json数组</td>
+<td>[{},{}…{}]</td>
+</tr>
+<tr class="even">
+<td>NEST</td>
+<td>数据字段嵌套</td>
+<td>{a:{b:{c:“hello”}}}</td>
+</tr>
+<tr class="odd">
+<td>XGS_NETFLOW_JSON</td>
+<td>信工所流量数据</td>
+<td>{}</td>
+</tr>
+<tr class="even">
+<td>XGS_ALERT_JSON</td>
+<td>信工所告警数据</td>
+<td>{}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="databaseyml">database.yml</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="fu">databases:</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> test1 </span><span class="co">#对应datafix中的type</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">    <span class="fu">driver:</span><span class="at"> com.mysql.jdbc.Driver </span><span class="co">#数据库驱动，默认mysql</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">    <span class="fu">url:</span><span class="at"> jdbc:mysql://192.168.119.208:3306/xw?useSSL=false </span><span class="co">#数据库链接</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">    <span class="fu">username:</span><span class="at"> root </span><span class="co">#账号</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="fu">password:</span><span class="at"> root </span><span class="co">#密码</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">    <span class="fu">sql:</span><span class="at"> INSERT INTO base_area (area_code, area_name, ip_range, description) VALUES (?, ?, ?, ?) </span><span class="co">#数据插入sql</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">    <span class="fu">columns:</span><span class="at"> areaCode, areaName, ipRange, description </span><span class="co">#数据中的字段名称（顺序需同insert语句中的字段顺序一致）</span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="kw">-</span> <span class="fu">type:</span><span class="at"> test2</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">    <span class="fu">driver:</span><span class="at"> com.mysql.jdbc.Driver</span></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">    <span class="fu">url:</span><span class="at"> jdbc:mysql://192.168.119.208:3306/xw?useSSL=false</span></a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">    <span class="fu">username:</span><span class="at"> root</span></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">    <span class="fu">password:</span><span class="at"> root</span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">    <span class="fu">sql:</span><span class="at"> INSERT INTO base_area2 (area_code, area_name, ip_range, description) VALUES (?, ?, ?, ?)</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">    <span class="fu">columns:</span><span class="at"> areaCode, areaName, ipRange, description</span></a></code></pre></div>
+</body>
+</html>	

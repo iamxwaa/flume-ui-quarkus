@@ -1,0 +1,31 @@
+<input id="G_TYPE" value="SPILLABLEMEMORY" style="display:none;">
+<div class="form-group">
+	<label>Memory Capacity</label>
+	<input id="memoryCapacity" type="text" value="10000" class="form-control">
+	<small class="form-text text-muted">Maximum number of events stored in memory queue. To disable use of in-memory queue, set this to zero.</small>
+</div>
+<div class="form-group">
+	<label>Overflow Capacity</label>
+	<input id="overflowCapacity" type="text" value="100000000" class="form-control">
+	<small class="form-text text-muted">Maximum number of events stored in overflow disk (i.e File channel). To disable use of overflow, set this to zero.</small>
+</div>
+<div class="form-group">
+	<label>Overflow Timeout</label>
+	<input id="overflowTimeout" type="text" value="3" class="form-control">
+	<small class="form-text text-muted">The number of seconds to wait before enabling disk overflow when memory fills up.</small>
+</div>
+<div class="form-group">
+	<label>Byte Capacity Buffer Percentage</label>
+	<input id="byteCapacityBufferPercentage" type="text" value="20" class="form-control">
+	<small class="form-text text-muted">Defines the percent of buffer between byteCapacity and the estimated total sizeof all events in the channel, to account for data in headers. See below.</small>
+</div>
+<div class="form-group">
+	<label>Byte Capacity</label>
+	<input id="byteCapacity" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Maximum <strong>bytes</strong> of memory allowed as a sum of all events in the memory queue.The implementation only counts the Event <tt class="docutils literal"><span class="pre">body</span></tt>, which is the reason forproviding the <tt class="docutils literal"><span class="pre">byteCapacityBufferPercentage</span></tt> configuration parameter as well.Defaults to a computed value equal to 80% of the maximum memory available tothe JVM (i.e. 80% of the -Xmx value passed on the command line).Note that if you have multiple memory channels on a single JVM, and they happento hold the same physical events (i.e. if you are using a replicating channelselector from a single source) then those event sizes may be double-counted forchannel byteCapacity purposes.Setting this value to <tt class="docutils literal"><span class="pre">0</span></tt> will cause this value to fall back to a hardinternal limit of about 200 GB.</small>
+</div>
+<div class="form-group">
+	<label>Avg Event Size</label>
+	<input id="avgEventSize" type="text" value="500" class="form-control">
+	<small class="form-text text-muted">Estimated average size of events, in bytes, going into the channel</small>
+</div>

@@ -1,0 +1,76 @@
+<input id="G_TYPE" value="hive" style="display:none;">
+<div class="form-group">
+	<label>Hive Metastore</label>
+	<input id="hive.metastore" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Hive metastore URI (eg thrift://a.b.com:9083 )</small>
+</div>
+<div class="form-group">
+	<label>Hive Database</label>
+	<input id="hive.database" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Hive database name</small>
+</div>
+<div class="form-group">
+	<label>Hive Table</label>
+	<input id="hive.table" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Hive table name</small>
+</div>
+<div class="form-group">
+	<label>Hive Partition</label>
+	<input id="hive.partition" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Comma separate list of partition values identifying the partition to write to. May contain escapesequences. E.g: If the table is partitioned by (continent: string, country :string, time : string)then &#8216;Asia,India,2014-02-26-01-21&#8217; will indicate continent=Asia,country=India,time=2014-02-26-01-21</small>
+</div>
+<div class="form-group">
+	<label>Hive Txns Per Batch Ask</label>
+	<input id="hive.txnsPerBatchAsk" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">Hive grants a <em>batch of transactions</em> instead of single transactions to streaming clients like Flume.This setting configures the number of desired transactions per Transaction Batch. Data from alltransactions in a single batch end up in a single file. Flume will write a maximum of batchSize eventsin each transaction in the batch. This setting in conjunction with batchSize provides control over thesize of each file. Note that eventually Hive will transparently compact these files into larger files.</small>
+</div>
+<div class="form-group">
+	<label>Heart Beat Interval</label>
+	<input id="heartBeatInterval" type="text" value="240" class="form-control">
+	<small class="form-text text-muted">(In seconds) Interval between consecutive heartbeats sent to Hive to keep unused transactions from expiring.Set this value to 0 to disable heartbeats.</small>
+</div>
+<div class="form-group">
+	<label>Auto Create Partitions</label>
+	<input id="autoCreatePartitions" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Flume will automatically create the necessary Hive partitions to stream to</small>
+</div>
+<div class="form-group">
+	<label>Batch Size</label>
+	<input id="batchSize" type="text" value="15000" class="form-control">
+	<small class="form-text text-muted">Max number of events written to Hive in a single Hive transaction</small>
+</div>
+<div class="form-group">
+	<label>Max Open Connections</label>
+	<input id="maxOpenConnections" type="text" value="500" class="form-control">
+	<small class="form-text text-muted">Allow only this number of open connections. If this number is exceeded, the least recently used connection is closed.</small>
+</div>
+<div class="form-group">
+	<label>Call Timeout</label>
+	<input id="callTimeout" type="text" value="10000" class="form-control">
+	<small class="form-text text-muted">(In milliseconds) Timeout for Hive &amp; HDFS I/O operations, such as openTxn, write, commit, abort.</small>
+</div>
+<div class="form-group">
+	<label>Serializer</label>
+	<input id="serializer" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Serializer is responsible for parsing out field from the event and mapping them to columns in the hive table.Choice of serializer depends upon the format of the data in the event. Supported serializers: DELIMITED and JSON</small>
+</div>
+<div class="form-group">
+	<label>Round Unit</label>
+	<input id="roundUnit" type="text" value="minute" class="form-control">
+	<small class="form-text text-muted">The unit of the round down value - <tt class="docutils literal"><span class="pre">second</span></tt>, <tt class="docutils literal"><span class="pre">minute</span></tt> or <tt class="docutils literal"><span class="pre">hour</span></tt>.</small>
+</div>
+<div class="form-group">
+	<label>Round Value</label>
+	<input id="roundValue" type="text" value="1" class="form-control">
+	<small class="form-text text-muted">Rounded down to the highest multiple of this (in the unit configured using hive.roundUnit), less than current time</small>
+</div>
+<div class="form-group">
+	<label>Time Zone</label>
+	<input id="timeZone" type="text" value="Local Time" class="form-control">
+	<small class="form-text text-muted">Name of the timezone that should be used for resolving the escape sequences in partition, e.g. America/Los_Angeles.</small>
+</div>
+<div class="form-group">
+	<label>Use Local Time Stamp</label>
+	<input id="useLocalTimeStamp" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Use the local time (instead of the timestamp from the event header) while replacing the escape sequences.</small>
+</div>

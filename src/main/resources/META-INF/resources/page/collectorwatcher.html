@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="v3/fragment :: head"></head>
+<style>
+</style>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>平台管理</a>
+            <a><cite>采集器运行状态</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <table lay-filter="fileTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th lay-data="{field:'id', width:300}">采集器ID</th>
+                                    <th lay-data="{field:'pid', width:100}">进程ID</th>
+                                    <th lay-data="{field:'lastRestartTimeString', width:200}">上次重启时间</th>
+                                    <th lay-data="{field:'retry'}">重试次数</th>
+                                    <th lay-data="{field:'restartTimes'}">自动重启次数</th>
+                                    <th lay-data="{field:'ignore'}">守护进程是否有效</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="u,uStat:${status}">
+                                    <td th:text="${u?.id}"></td>
+                                    <td th:text="${u?.pid}"></td>
+                                    <td th:text="${u?.lastRestartTimeString}"></td>
+                                    <td th:text="${u?.retry}"></td>
+                                    <td th:text="${u?.restartTimes}"></td>
+                                    <td th:text="${u?.ignore?'否':'是'}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="v3/fragment :: javascript2"></div>
+    <script>
+        layui.use(['table'], function () {
+            var table = layui.table;
+            table.init('fileTable', { limit: 5000 });
+        })
+    </script>
+</body>
+
+</html>

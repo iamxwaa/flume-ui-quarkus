@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header /}
+    <style>
+        .content-div {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+        }
+    
+        .content-iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border: none;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo" th:text="${title}">Flume Manager</div>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <a href="/index" title="首页">
+                        <i class="layui-icon layui-icon-home" style="color: #333;"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:reloadPage();" title="刷新">
+                        <i class="layui-icon layui-icon-refresh" style="color: #333;"></i>
+                    </a>
+                </li>
+                <span class="layui-nav-bar" style="left: 94px; top: 48px; width: 0px; opacity: 0;"></span>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item" lay-unselect="">
+                    <a href="/readme.html" target="blank" style="color: #333;">
+                        说明文档&nbsp;<i class="layui-icon layui-icon-help"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item" lay-unselect="" th:if="${auth}">
+                    <a href="/logout" style="color: #333;"> 退出 </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="menu">
+                    <li class="layui-nav-item layui-this">
+                        <a data="/info" href="#/info">概览</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a data="/state" href="#/state">采集器监控</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a data="/collect" href="#/collect">采集器管理</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a data="/tourist" href="#/tourist">采集配置生成</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a data="/template" href="#/template">模板管理</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">配置生成</a>
+                        <dl class="layui-nav-child">
+                            <dd><a data="/setting/datafix" href="#/setting/datafix">datafix配置生成</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">平台管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a data="/flume" href="#/flume">Flume管理</a></dd>
+                            <dd><a data="/file" href="#/file">配置文件管理</a></dd>
+                            <dd><a data="/filewatcher" href="#/filewatcher">配置文件监控</a></dd>
+                            <dd><a data="/collectorwatcher" href="#/collectorwatcher">采集器监控详情</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">测试</a>
+                        <dl class="layui-nav-child">
+                            <dd><a data="/test/js" href="#/test/js">JavaScript测试</a></dd>
+                            <dd><a data="/test/datafix" href="#/test/datafix">DataFix测试</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="content-div">
+                <iframe id="content_iframe" class="content-iframe"></iframe>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            © flume.manager
+        </div>
+    </div>
+    {#include footer /}
+    <script>
+        function reloadPage() {
+            var iframe = document.getElementById('content_iframe');
+            iframe.src = iframe.src;
+        }
+        layui.use(['element'], function () {
+            var element = layui.element;
+            element.on('nav(menu)', function (elem) {
+                var url = elem.attr("data");
+                if (undefined != url && "" != url) {
+                    $("#content_iframe").attr({ src: url });
+                }
+            });
+            var h = window.location.href.split("#");
+            if (h.length > 1) {
+                $(".layui-nav-item a[data='" + h[1] + "']").click()
+            }
+        });
+    </script>
+</body>
+
+</html>

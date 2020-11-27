@@ -1,0 +1,86 @@
+<input id="G_TYPE" value="com.vrv.vap.kafkasink.KafkaSink" style="display:none;">
+<div class="form-group">
+	<label>Kafka Bootstrap Servers</label>
+	<input id="kafka.bootstrap.servers" type="text" value="" class="form-control">
+	<small class="form-text text-muted">服务器地址:hostname:port（多个用","分隔）</small>
+</div>
+<div class="form-group">
+	<label>Kafka Topic</label>
+	<input id="kafka.topic" type="text" value="default-flume-topic" class="form-control">
+	<small class="form-text text-muted">默认写入的topic</small>
+</div>
+<div class="form-group">
+	<label>Flume Batch Size</label>
+	<input id="flumeBatchSize" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">每次提交到kafka的数据条数</small>
+</div>
+<div class="form-group">
+	<label>Kafka Producer Acks</label>
+	<input id="kafka.producer.acks" type="text" value="1" class="form-control">
+	<small class="form-text text-muted">数据写入持久性容忍度（1、0、-1）</small>
+</div>
+<div class="form-group">
+	<label>Use Flume Event Format</label>
+	<input id="useFlumeEventFormat" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">数据源是否使用flume avro序列化</small>
+</div>
+<div class="form-group">
+	<label>Default Partition Id</label>
+	<input id="defaultPartitionId" type="text" value="" class="form-control">
+	<small class="form-text text-muted">默认的partition id</small>
+</div>
+<div class="form-group">
+	<label>Partition Id Header</label>
+	<input id="partitionIdHeader" type="text" value="" class="form-control">
+	<small class="form-text text-muted">header中对应partitionId的字段名</small>
+</div>
+<div class="form-group">
+	<label>Allow Topic Override</label>
+	<input id="allowTopicOverride" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">是否使用topicHeader替换默认topic</small>
+</div>
+<div class="form-group">
+	<label>Topic Header</label>
+	<input id="topicHeader" type="text" value="topic" class="form-control">
+	<small class="form-text text-muted">header中对应topic的字段名</small>
+</div>
+<div class="form-group">
+	<label>Kafka Producer Security Protocol</label>
+	<input id="kafka.producer.security.protocol" type="text" value="PLAINTEXT" class="form-control">
+	<small class="form-text text-muted">安全协议（SASL_PLAINTEXT、SASL_SSL、SSL）</small>
+</div>
+<div class="form-group">
+	<label>Open Vap Fix</label>
+	<input id="openVapFix" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">是否开启数据解析过滤</small>
+</div>
+<div class="form-group">
+	<label>Data Fix</label>
+	<input id="dataFix" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#data-fixyml' target='_blank'>data-fix.yml</a>配置文件路径<s>或lc的logSetting.xml配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Filters</label>
+	<input id="filters" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#data-filteryml' target='_blank'>data-filter.yml</a>配置文件路径<s>或lc的filters.xml配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Area</label>
+	<input id="area" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#areayml' target='_blank'>area.yml</a>配置文件路径<s>或lc的area.txt配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Domain</label>
+	<input id="domain" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#domainyml' target='_blank'>domain.yml</a>配置文件路径<s>或lc的domain.txt配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Input Type</label>
+	<input id="inputType" type="text" value="FLATJSON" class="form-control">
+	<small class="form-text text-muted">详见<a href='/readme#inputtype说明' target='_blank'>InputType说明</a></small>
+</div>
+<div class="form-group">
+	<label>Tables</label>
+	<input id="tables" type="text" value="" class="form-control">
+	<small class="form-text text-muted">表关联插入配置,详见<a href='/readme#tablescsv' target='_blank'>tables.csv</a></small>
+</div>

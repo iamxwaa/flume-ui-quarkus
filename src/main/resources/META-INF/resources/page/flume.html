@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="v3/fragment :: head"></head>
+<style>
+    .layui-table-body {
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>平台管理</a>
+            <a><cite>Flume管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">日志配置</li>
+                                <li>Jar包管理</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <!-- tab1 -->
+                                <div class="layui-tab-item layui-show">
+                                    <form class="form-horizontal" role="form" method="post" action="/file/log4j/save">
+                                        <div class="layui-form-item layui-form-text">
+                                            <label class="layui-form-label">log4j</label>
+                                            <div class="layui-input-block">
+                                                <textarea th:text="${fi?.content}" rows="22" class="layui-textarea"
+                                                    name="content" placeholder="请输入内容"></textarea>
+                                            </div>
+                                        </div>
+                                        <input th:value="${fi?.rpath}" type="text" hidden="true" name="path" />
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button type="submit" class="layui-btn" lay-submit=""
+                                                    lay-filter="save">保存</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- tab2 -->
+                                <div class="layui-tab-item">
+                                    <form enctype="multipart/form-data" method="post" action="/file/upload/jar">
+                                        <input type="file" required="required" name="inputfile" id="inputfile" />
+                                        <input type="submit" class="layui-btn layui-bg-green" value="上传文件" />
+                                        <div class="layui-inline layui-word-aux"
+                                            style="line-height: 38px;margin-left: 10px;">
+                                            文件大小最大为10MB
+                                        </div>
+                                    </form>
+                                    <table lay-filter="jarTable" style="display: none;">
+                                        <thead>
+                                            <tr>
+                                                <th lay-data="{field:'num', width:80, sort:true}">序号</th>
+                                                <th lay-data="{field:'fileName', width:200, sort:true}">文件名</th>
+                                                <th lay-data="{field:'path', sort:true}">路径</th>
+                                                <th lay-data="{field:'modifyTime', width:200, sort:true}">修改时间</th>
+                                                <th lay-data="{field:'act', width:140, align: 'center'}"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="u,uStat:${fileinfo}">
+                                                <td th:text="${uStat.count}">1</td>
+                                                <td th:text="${u?.name}">
+                                                </td>
+                                                <td th:text="${u?.path}">路径</td>
+                                                <td th:text="${u?.createTime}">时间</td>
+                                                <td>
+                                                    <a class="layui-btn layui-btn-danger layui-btn-xs"
+                                                        th:data="@{/file/delete/jar(name=${u?.name})}" title="删除">
+                                                        删除
+                                                    </a>
+                                                    <a class="layui-btn layui-btn-primary layui-btn-xs"
+                                                        th:href="@{/file/download/jar(name=${u?.name})}" title="下载">
+                                                        下载
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="v3/fragment :: javascript2"></div>
+    <script>
+        layui.use(['table', 'tools'], function () {
+            layui.table.init('jarTable', { limit: 5000 });
+            layui.tools.setDeleteConfirm("a[title='删除']");
+        })
+    </script>
+</body>
+
+</html>

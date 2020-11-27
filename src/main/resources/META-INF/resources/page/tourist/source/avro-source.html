@@ -1,0 +1,56 @@
+<input id="G_TYPE" value="avro" style="display:none;">
+<div class="form-group">
+	<label>Bind</label>
+	<input id="bind" type="text" value="" class="form-control">
+	<small class="form-text text-muted">hostname or IP address to listen on</small>
+</div>
+<div class="form-group">
+	<label>Port</label>
+	<input id="port" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Port # to bind to</small>
+</div>
+<div class="form-group">
+	<label>Threads</label>
+	<input id="threads" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Maximum number of worker threads to spawn</small>
+</div>
+<div class="form-group">
+	<label>Compression Type</label>
+	<input id="compression-type" type="text" value="none" class="form-control">
+	<small class="form-text text-muted">This can be &#8220;none&#8221; or &#8220;deflate&#8221;.  The compression-type must match the compression-type of matching AvroSource</small>
+</div>
+<div class="form-group">
+	<label>Ssl</label>
+	<input id="ssl" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Set this to true to enable SSL encryption. You must also specify a &#8220;keystore&#8221; and a &#8220;keystore-password&#8221;.</small>
+</div>
+<div class="form-group">
+	<label>Keystore</label>
+	<input id="keystore" type="text" value="" class="form-control">
+	<small class="form-text text-muted">This is the path to a Java keystore file. Required for SSL.</small>
+</div>
+<div class="form-group">
+	<label>Keystore Password</label>
+	<input id="keystore-password" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The password for the Java keystore. Required for SSL.</small>
+</div>
+<div class="form-group">
+	<label>Keystore Type</label>
+	<input id="keystore-type" type="text" value="JKS" class="form-control">
+	<small class="form-text text-muted">The type of the Java keystore. This can be &#8220;JKS&#8221; or &#8220;PKCS12&#8221;.</small>
+</div>
+<div class="form-group">
+	<label>Exclude Protocols</label>
+	<input id="exclude-protocols" type="text" value="SSLv3" class="form-control">
+	<small class="form-text text-muted">Space-separated list of SSL/TLS protocols to exclude. SSLv3 will always be excluded in addition to the protocols specified.</small>
+</div>
+<div class="form-group">
+	<label>Ip Filter</label>
+	<input id="ipFilter" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Set this to true to enable ipFiltering for netty</small>
+</div>
+<div class="form-group">
+	<label>Ip Filter Rules</label>
+	<input id="ipFilterRules" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Define N netty ipFilter pattern rules with this config.</small>
+</div>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="v3/fragment :: head"></head>
+<style>
+</style>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>测试</a>
+            <a><cite>DataFix测试</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">DataFix配置</div>
+                    <div class="layui-card-body" id="datafixbox" style="height: 558px;">
+                        <form class="layui-form" lay-filter="dfform">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">Input Type</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="inputType" value="JSON" class="layui-input">
+                                </div>
+                                <label class="layui-form-label">datafix路径</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="datafix" lay-verify="required" placeholder='datafix.yml路径'
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">区域配置路径</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="area" placeholder='area.yml路径' class="layui-input">
+                                </div>
+                                <label class="layui-form-label">域名配置路径</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="domain" placeholder='domain.yml路径' class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">过滤配置路径</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="filter" placeholder='filter.yml路径' class="layui-input">
+                                </div>
+                                <label class="layui-form-label">表配置路径</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="tables" placeholder='table.csv路径' class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">数据头信息</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="head" lay-verify="required"
+                                        placeholder='例:{"_TYPE":"test"}' class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">测试数据</i>
+                                </label>
+                                <div class="layui-input-block">
+                                    <textarea name="body" id="jsonbody" placeholder='JSON格式测试数据,数据中的双引号("")需添加反斜杠(\)转义'
+                                        rows="10" lay-verify="required" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="test">运行</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header">运行结果</div>
+                    <div class="layui-card-body" id="resultbox" style="height: 558px;">
+                        <textarea id="resultbody" rows="26" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="v3/fragment :: javascript2"></div>
+    <script>
+        layui.use(['form', 'layer', 'tools'], function () {
+            layui.tools.setHeight("resultbox", window.screen.availHeight - 305);
+            layui.tools.setHeight("resultbody", window.screen.availHeight - 340);
+            layui.tools.setHeight("datafixbox", window.screen.availHeight - 305);
+            layui.tools.setHeight("jsonbody", window.screen.availHeight - 650);
+
+            var form = layui.form;
+            var layer = layui.layer;
+
+            form.on('submit(test)', function (data) {
+                layer.load(0, { shade: 0.1 });
+                $("#resultbody").val("...");
+                $.post("/debug/datafix",
+                    {
+                        inputType: data.field.inputType
+                        , datafix: data.field.datafix
+                        , area: data.field.area
+                        , domain: data.field.domain
+                        , filter: data.field.filter
+                        , tables: data.field.tables
+                        , head: data.field.head
+                        , body: data.field.body
+                    }
+                    , function (data) {
+                        if ("" == data) {
+                            $("#resultbody").val("结果为空,请检查参数配置.");
+                        } else {
+                            $("#resultbody").val(data);
+                        }
+                        layer.closeAll();
+                    })
+                return false;
+            });
+
+            form.render();
+        })
+    </script>
+</body>
+
+</html>

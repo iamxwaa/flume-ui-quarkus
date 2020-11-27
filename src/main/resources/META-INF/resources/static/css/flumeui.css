@@ -1,0 +1,43 @@
+/* 整体样式开始 */
+.layui-layout-admin .layui-header {
+    background-color: #fff;
+    border-bottom: none;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+.layui-layout-admin .layui-logo {
+    background-color: #20222A !important;
+    color: rgba(255,255,255,.8);
+}
+.layui-layout-admin .layui-side {
+    top: 50px;
+}
+.layui-nav {
+    background-color: #20222A;
+}
+.layui-bg-black {
+    background-color: #20222A !important;
+}
+.layui-body {
+    background-color: #f2f2f2;
+}
+.layadmin-header {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+}
+.layui-nav-item {
+    line-height: 50px !important;
+}
+.layui-layout-admin .layui-body {
+    top: 50px;
+}
+.layui-fluid {
+    margin-top: 15px;
+}
+/* 整体样式结束 */

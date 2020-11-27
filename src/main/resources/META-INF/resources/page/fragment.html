@@ -1,0 +1,94 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>采集器管理平台</title>
+    <link rel="stylesheet" href="/v3/layui/css/layui.css">
+    <link rel="stylesheet" href="/v3/css/flumeui.css">
+    <link rel="stylesheet" href="/v3/assets/css/styles/xterm.css">
+</head>
+
+<div th:fragment="javascript">
+    <script src="/v3/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/v3/assets/js/xterm.js"></script>
+    <script src="/v3/assets/js/xterm-addon-fit.js"></script>
+    <script src="/v3/layui/layui.js"></script>
+    <script src="/v3/js/flumeui.js"></script>
+</div>
+
+<div th:fragment="javascript2">
+    <div id="server_message" style="display: none;" th:text="${T(com.vrv.vap.flume.ui.utils.PageAlertUtils).getMgs()}">
+    </div>
+    <script src="/v3/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/v3/assets/js/xterm.js"></script>
+    <script src="/v3/assets/js/xterm-addon-fit.js"></script>
+    <script src="/v3/layui/layui.js"></script>
+    <script src="/v3/js/flumeui.js"></script>
+    <script>
+        layui.use(['tools'], function () {
+            var info = $("#server_message").text().trim();
+            layui.tools.alert(info);
+        })
+    </script>
+</div>
+
+<div th:fragment="highlight-css">
+    <link rel="stylesheet" href="/v3/assets/css/styles/dracula.css">
+    <style>
+        .card-body-pre {
+            border: 1px solid #e6e6e6;
+            display: block;
+            overflow: hidden;
+            cursor: text;
+        }
+
+        .card-body-code {
+            font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+            overflow: auto;
+            padding: 6px 10px;
+        }
+
+        .card-body-code>span {
+            line-height: 20px;
+        }
+
+        .card-body-textarea {
+            display: none;
+            background: #282a36;
+            color: #f8f8f2;
+        }
+
+        .card-body-textarea-show {
+            background: #282a36;
+            color: #f8f8f2;
+        }
+    </style>
+</div>
+<div th:fragment="highlight-js">
+    <script src="/v3/assets/js/highlight.pack.js"></script>
+    <script>
+        function loadhljs() {
+            var cb = $("#codeBody");
+            var cb2 = $("#codeBody2");
+            cb.click(function () {
+                $(this).parent().hide();
+                cb2.show();
+                cb2.focus();
+            })
+            cb2.blur(function () {
+                cb.parent().show();
+                hljs.highlightBlock(cb.get()[0]);
+                $(this).hide();
+            })
+            cb2.mouseout(function () {
+                cb.html($(this).val());
+            })
+            hljs.configure({ languages: ["java", "yaml", "javascript", "properties", "json", "shell", "plaintext", "xml", "ruby"] });
+            if (undefined != cb.get()[0]) {
+                hljs.highlightBlock(cb.get()[0]);
+            }
+        }
+        loadhljs();
+    </script>
+</div>

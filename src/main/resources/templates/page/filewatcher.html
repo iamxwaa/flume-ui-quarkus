@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header /}
+</head>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>平台管理</a>
+            <a><cite>配置文件监控</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <table lay-filter="fileTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th lay-data="\{field:'cid', width:300, sort:true}">采集器ID</th>
+                                    <th lay-data="\{field:'modifyTime', width:200, sort:true}">修改时间</th>
+                                    <th lay-data="\{field:'path', sort:true}">路径</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {#for u in fileinfo}
+                                <tr>
+                                    <td>{u.cid}</td>
+                                    <td>{u.modifyTime}</td>
+                                    <td>{u.path}</td>
+                                </tr>
+                                {/for}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#include footer2 /}
+    <script>
+        layui.use(['table'], function () {
+            var table = layui.table;
+            table.init('fileTable', { limit: 5000 });
+        })
+    </script>
+</body>
+
+</html>

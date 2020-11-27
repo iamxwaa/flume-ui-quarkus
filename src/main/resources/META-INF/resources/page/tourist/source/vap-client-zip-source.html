@@ -1,0 +1,41 @@
+<input id="G_TYPE" value="com.vrv.vap.zipsource.ZipSource" style="display:none;">
+<div class="form-group">
+	<label>Store Path</label>
+	<input id="store.path" type="text" value="" class="form-control">
+	<small class="form-text text-muted">终端上报文件保存目录</small>
+</div>
+<div class="form-group">
+	<label>Backup Path</label>
+	<input id="backup.path" type="text" value="" class="form-control">
+	<small class="form-text text-muted">文件处理失败备份路径</small>
+</div>
+<div class="form-group">
+	<label>Type Patn</label>
+	<input id="type.patn" type="text" value=".*(Z_\\d*).*" class="form-control">
+	<small class="form-text text-muted">正则表达式匹配终端数据类型</small>
+</div>
+<div class="form-group">
+	<label>After Policy</label>
+	<input id="afterPolicy" type="text" value="DELETE" class="form-control">
+	<small class="form-text text-muted">终端文件处理完毕后的策略(DELETE, BACKUP, IGNORE)</small>
+</div>
+<div class="form-group">
+	<label>Interval</label>
+	<input id="interval" type="text" value="10" class="form-control">
+	<small class="form-text text-muted">扫描终端文件目录间隔（单位秒）</small>
+</div>
+<div class="form-group">
+	<label>Encode</label>
+	<input id="encode" type="text" value="UTF-8" class="form-control">
+	<small class="form-text text-muted">数据编码格式</small>
+</div>
+<div class="form-group">
+	<label>File Min Size</label>
+	<input id="file.minSize" type="text" value="10240" class="form-control">
+	<small class="form-text text-muted">终端压缩包最小有效文件大小(单位byte)</small>
+</div>
+<div class="form-group">
+	<label>Types</label>
+	<input id="types" type="text" value="Z_30,Z_31,Z_32,Z_41,Z_42,Z_43,Z_44" class="form-control">
+	<small class="form-text text-muted">需要采集的终端数据类型</small>
+</div>

@@ -1,0 +1,151 @@
+<input id="G_TYPE" value="hdfs" style="display:none;">
+<div class="form-group">
+	<label>Hdfs Path</label>
+	<input id="hdfs.path" type="text" value="" class="form-control">
+	<small class="form-text text-muted">HDFS directory path (eg hdfs://namenode/flume/webdata/)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs File Prefix</label>
+	<input id="hdfs.filePrefix" type="text" value="FlumeData" class="form-control">
+	<small class="form-text text-muted">Name prefixed to files created by Flume in hdfs directory</small>
+</div>
+<div class="form-group">
+	<label>Hdfs File Suffix</label>
+	<input id="hdfs.fileSuffix" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Suffix to append to file (eg <tt class="docutils literal"><span class="pre">.avro</span></tt> - <em>NOTE: period is not automatically added</em>)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs In Use Prefix</label>
+	<input id="hdfs.inUsePrefix" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Prefix that is used for temporal files that flume actively writes into</small>
+</div>
+<div class="form-group">
+	<label>Hdfs In Use Suffix</label>
+	<input id="hdfs.inUseSuffix" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Suffix that is used for temporal files that flume actively writes into</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Roll Interval</label>
+	<input id="hdfs.rollInterval" type="text" value="30" class="form-control">
+	<small class="form-text text-muted">Number of seconds to wait before rolling current file(0 = never roll based on time interval)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Roll Size</label>
+	<input id="hdfs.rollSize" type="text" value="1024" class="form-control">
+	<small class="form-text text-muted">File size to trigger roll, in bytes (0: never roll based on file size)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Roll Count</label>
+	<input id="hdfs.rollCount" type="text" value="10" class="form-control">
+	<small class="form-text text-muted">Number of events written to file before it rolled(0 = never roll based on number of events)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Idle Timeout</label>
+	<input id="hdfs.idleTimeout" type="text" value="0" class="form-control">
+	<small class="form-text text-muted">Timeout after which inactive files get closed(0 = disable automatic closing of idle files)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Batch Size</label>
+	<input id="hdfs.batchSize" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">number of events written to file before it is flushed to HDFS</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Code C</label>
+	<input id="hdfs.codeC" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Compression codec. one of following : gzip, bzip2, lzo, lzop, snappy</small>
+</div>
+<div class="form-group">
+	<label>Hdfs File Type</label>
+	<input id="hdfs.fileType" type="text" value="SequenceFile" class="form-control">
+	<small class="form-text text-muted">File format: currently <tt class="docutils literal"><span class="pre">SequenceFile</span></tt>, <tt class="docutils literal"><span class="pre">DataStream</span></tt> or <tt class="docutils literal"><span class="pre">CompressedStream</span></tt>(1)DataStream will not compress output file and please don&#8217;t set codeC(2)CompressedStream requires set hdfs.codeC with an available codeC</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Max Open Files</label>
+	<input id="hdfs.maxOpenFiles" type="text" value="5000" class="form-control">
+	<small class="form-text text-muted">Allow only this number of open files. If this number is exceeded, the oldest file is closed.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Min Block Replicas</label>
+	<input id="hdfs.minBlockReplicas" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Specify minimum number of replicas per HDFS block. If not specified, it comes from the default Hadoop config in the classpath.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Write Format</label>
+	<input id="hdfs.writeFormat" type="text" value="Writable" class="form-control">
+	<small class="form-text text-muted">Format for sequence file records. One of <tt class="docutils literal"><span class="pre">Text</span></tt> or <tt class="docutils literal"><span class="pre">Writable</span></tt>. Set to <tt class="docutils literal"><span class="pre">Text</span></tt> before creating data files with Flume, otherwise those files cannot be read by either Apache Impala (incubating) or Apache Hive.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Call Timeout</label>
+	<input id="hdfs.callTimeout" type="text" value="10000" class="form-control">
+	<small class="form-text text-muted">Number of milliseconds allowed for HDFS operations, such as open, write, flush, close.This number should be increased if many HDFS timeout operations are occurring.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Threads Pool Size</label>
+	<input id="hdfs.threadsPoolSize" type="text" value="10" class="form-control">
+	<small class="form-text text-muted">Number of threads per HDFS sink for HDFS IO ops (open, write, etc.)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Roll Timer Pool Size</label>
+	<input id="hdfs.rollTimerPoolSize" type="text" value="1" class="form-control">
+	<small class="form-text text-muted">Number of threads per HDFS sink for scheduling timed file rolling</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Kerberos Principal</label>
+	<input id="hdfs.kerberosPrincipal" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Kerberos user principal for accessing secure HDFS</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Kerberos Keytab</label>
+	<input id="hdfs.kerberosKeytab" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Kerberos keytab for accessing secure HDFS</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Proxy User</label>
+	<input id="hdfs.proxyUser" type="text" value="" class="form-control">
+	<small class="form-text text-muted">暂无描述</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Round</label>
+	<input id="hdfs.round" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Should the timestamp be rounded down (if true, affects all time based escape sequences except %t)</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Round Value</label>
+	<input id="hdfs.roundValue" type="text" value="1" class="form-control">
+	<small class="form-text text-muted">Rounded down to the highest multiple of this (in the unit configured using <tt class="docutils literal"><span class="pre">hdfs.roundUnit</span></tt>), less than current time.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Round Unit</label>
+	<input id="hdfs.roundUnit" type="text" value="second" class="form-control">
+	<small class="form-text text-muted">The unit of the round down value - <tt class="docutils literal"><span class="pre">second</span></tt>, <tt class="docutils literal"><span class="pre">minute</span></tt> or <tt class="docutils literal"><span class="pre">hour</span></tt>.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Time Zone</label>
+	<input id="hdfs.timeZone" type="text" value="Local Time" class="form-control">
+	<small class="form-text text-muted">Name of the timezone that should be used for resolving the directory path, e.g. America/Los_Angeles.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Use Local Time Stamp</label>
+	<input id="hdfs.useLocalTimeStamp" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Use the local time (instead of the timestamp from the event header) while replacing the escape sequences.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Close Tries</label>
+	<input id="hdfs.closeTries" type="text" value="0" class="form-control">
+	<small class="form-text text-muted">Number of times the sink must try renaming a file, after initiating a close attempt. If set to 1, this sink will not re-try a failed rename(due to, for example, NameNode or DataNode failure), and may leave the file in an open state with a .tmp extension.If set to 0, the sink will try to rename the file until the file is eventually renamed (there is no limit on the number of times it would try).The file may still remain open if the close call fails but the data will be intact and in this case, the file will be closed only after a Flume restart.</small>
+</div>
+<div class="form-group">
+	<label>Hdfs Retry Interval</label>
+	<input id="hdfs.retryInterval" type="text" value="180" class="form-control">
+	<small class="form-text text-muted">Time in seconds between consecutive attempts to close a file. Each close call costs multiple RPC round-trips to the Namenode,so setting this too low can cause a lot of load on the name node. If set to 0 or less, the sink will notattempt to close the file if the first attempt fails, and may leave the file open or with a &#8221;.tmp&#8221; extension.</small>
+</div>
+<div class="form-group">
+	<label>Serializer</label>
+	<input id="serializer" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Other possible options include <tt class="docutils literal"><span class="pre">avro_event</span></tt> or thefully-qualified class name of an implementation of the<tt class="docutils literal"><span class="pre">EventSerializer.Builder</span></tt> interface.</small>
+</div>
+<div class="form-group">
+	<label>Serializer.*</label>
+	<input id="serializer.*" type="text" value="" class="form-control">
+	<small class="form-text text-muted">暂无描述</small>
+</div>

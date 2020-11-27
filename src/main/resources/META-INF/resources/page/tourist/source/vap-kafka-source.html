@@ -1,0 +1,66 @@
+<input id="G_TYPE" value="com.vrv.vap.kafkasource.KafkaSource" style="display:none;">
+<div class="form-group">
+	<label>Kafka Bootstrap Servers</label>
+	<input id="kafka.bootstrap.servers" type="text" value="" class="form-control">
+	<small class="form-text text-muted">kafka服务器地址:hostname:port（多个用","分隔）</small>
+</div>
+<div class="form-group">
+	<label>Kafka Consumer Group Id</label>
+	<input id="kafka.consumer.group.id" type="text" value="flume" class="form-control">
+	<small class="form-text text-muted">group唯一id</small>
+</div>
+<div class="form-group">
+	<label>Kafka Topics</label>
+	<input id="kafka.topics" type="text" value="" class="form-control">
+	<small class="form-text text-muted">topic名称（多个用","分隔）</small>
+</div>
+<div class="form-group">
+	<label>Kafka Topics Regex</label>
+	<input id="kafka.topics.regex" type="text" value="" class="form-control">
+	<small class="form-text text-muted">匹配topic的正则表达式，配置该参数会覆盖kafka.topics配置</small>
+</div>
+<div class="form-group">
+	<label>Batch Size</label>
+	<input id="batchSize" type="text" value="1000" class="form-control">
+	<small class="form-text text-muted">每次写入channel的最大条数</small>
+</div>
+<div class="form-group">
+	<label>Batch Duration Millis</label>
+	<input id="batchDurationMillis" type="text" value="1000" class="form-control">
+	<small class="form-text text-muted">Maximum time (in ms) before a batch will be written to Channel The batch will be written whenever the first of size and time will be reached.</small>
+</div>
+<div class="form-group">
+	<label>Backoff Sleep Increment</label>
+	<input id="backoffSleepIncrement" type="text" value="1000" class="form-control">
+	<small class="form-text text-muted">Initial and incremental wait time that is triggered when a Kafka Topic appears to be empty. Wait period will reduce aggressive pinging of an empty Kafka Topic. One second is ideal for ingestion use cases but a lower value may be required for low latency operations with interceptors.</small>
+</div>
+<div class="form-group">
+	<label>Max Backoff Sleep</label>
+	<input id="maxBackoffSleep" type="text" value="5000" class="form-control">
+	<small class="form-text text-muted">Maximum wait time that is triggered when a Kafka Topic appears to be empty. Five seconds is ideal for ingestion use cases but a lower value may be required for low latency operations with interceptors.</small>
+</div>
+<div class="form-group">
+	<label>Use Flume Event Format</label>
+	<input id="useFlumeEventFormat" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">是否使用flume avro序列化数据</small>
+</div>
+<div class="form-group">
+	<label>Set Topic Header</label>
+	<input id="setTopicHeader" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">是否在header中设置topic</small>
+</div>
+<div class="form-group">
+	<label>Topic Header</label>
+	<input id="topicHeader" type="text" value="topic" class="form-control">
+	<small class="form-text text-muted">setTopicHeader为true时，会在该字段中保存topic</small>
+</div>
+<div class="form-group">
+	<label>Migrate Zookeeper Offsets</label>
+	<input id="migrateZookeeperOffsets" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">When no Kafka stored offset is found, look up the offsets in Zookeeper and commit them to Kafka. This should be true to support seamless Kafka client migration from older versions of Flume. Once migrated this can be set to false, though that should generally not be required. If no Zookeeper offset is found, the Kafka configuration kafka.consumer.auto.offset.reset defines how offsets are handled. Check Kafka documentation for details</small>
+</div>
+<div class="form-group">
+	<label>Kafka Consumer Security Protocol</label>
+	<input id="kafka.consumer.security.protocol" type="text" value="PLAINTEXT" class="form-control">
+	<small class="form-text text-muted">Set to SASL_PLAINTEXT, SASL_SSL or SSL if writing to Kafka using some level of security. See below for additional info on secure setup.</small>
+</div>

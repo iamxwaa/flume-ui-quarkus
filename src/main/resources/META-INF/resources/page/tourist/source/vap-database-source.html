@@ -1,0 +1,61 @@
+<input id="G_TYPE" value="com.vrv.vap.dbsource.DatabaseSource" style="display:none;">
+<div class="form-group">
+	<label>Driver</label>
+	<input id="driver" type="text" value="com.mysql.jdbc.Driver" class="form-control">
+	<small class="form-text text-muted">数据库驱动配置</small>
+</div>
+<div class="form-group">
+	<label>Data Type</label>
+	<input id="dataType" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据类型,对应<a href='/readme#data-fixyml' target='_blank'>data-fix.yml</a>中的type</small>
+</div>
+<div class="form-group">
+	<label>Sql</label>
+	<input id="sql" type="text" value="" class="form-control">
+	<small class="form-text text-muted">查询的sql语句,sql中包含${W}时，程序生成的查询条件会替换${W},否则会追加到配置的sql最后面</small>
+</div>
+<div class="form-group">
+	<label>Max Sql</label>
+	<input id="maxSql" type="text" value="" class="form-control">
+	<small class="form-text text-muted">查询数据库increaseKey配置字段的最大值,如:SELECT max(id) FROM abc</small>
+</div>
+<div class="form-group">
+	<label>Url</label>
+	<input id="url" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据库连接</small>
+</div>
+<div class="form-group">
+	<label>User</label>
+	<input id="user" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据库用户</small>
+</div>
+<div class="form-group">
+	<label>Password</label>
+	<input id="password" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据库密码</small>
+</div>
+<div class="form-group">
+	<label>Increase Key</label>
+	<input id="increaseKey" type="text" value="" class="form-control">
+	<small class="form-text text-muted">用来每次查询的字段,timeFormat值不为空时,此字段值当时间处理,否则作为数字处理</small>
+</div>
+<div class="form-group">
+	<label>Interval</label>
+	<input id="interval" type="text" value="10" class="form-control">
+	<small class="form-text text-muted">每次查询间隔（单位秒）</small>
+</div>
+<div class="form-group">
+	<label>Batch</label>
+	<input id="batch" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">每次发送到channel的条数</small>
+</div>
+<div class="form-group">
+	<label>Step</label>
+	<input id="step" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">每次查询开始到结束之间的区间大小,timeFormat不为空时单位为小时</small>
+</div>
+<div class="form-group">
+	<label>Time Format</label>
+	<input id="timeFormat" type="text" value="" class="form-control">
+	<small class="form-text text-muted">时间格式(如:yyyy-MM-dd HH&#58;mm&#58;ss),不为空时,increaseKey当时间处理</small>
+</div>

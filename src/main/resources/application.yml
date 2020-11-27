@@ -1,0 +1,124 @@
+quarkus:
+  http:
+    port: 15588
+    access-log:
+      enabled: true
+    ssl-port: 15589
+    insecure-requests: REDIRECT
+    ssl:
+      certificate:
+        key-store-file: flume_https.keystore
+        key-store-file-type: JKS
+        key-store-password: "123456"
+  log:
+    file:
+      enable: true
+      path: /var/log/flume-ui-quarkus/server.log
+      level: ERROR
+    console:
+      enable: true
+      level: DEBUG
+env:
+  base-home: D:\\flume_ui
+  conf-home: /etc/vap-flume
+  collect: /collect
+  template: /template
+  file: /file
+  history-file: /history
+  flume-bin-home: /flume/bin
+  start-win: flume-ng.cmd
+  start-linux: flume-ng
+  start-cmd-win: ^START^ agent --name ^NAME^ --conf ^CONF^ --conf-file ^CONFIG_FILE^ --property "^OTHERS^"
+  start-cmd-linux: ^START^ agent --name ^NAME^ --conf ^CONF^ --conf-file ^CONFIG_FILE^ --no-reload-conf ^OTHERS^
+  max-allow-mem: 61400
+  auth: false
+  auth-local: true
+  auth-token: vrv@123456789
+  auth-url: http://localhost:8080/token/confirmation
+  rmi-port: 17261
+  jmx-metric: true
+  file-scan-interval: 10
+  auto-restart: false
+  ambari: false
+tourist:
+  source-map:
+    vap-client-zip-source: 终端文本压缩包采集组件
+    vap-client-zip1-source: 终端图片压缩包采集组件
+    vap-database-source: 数据库数据抽取-SQL预编译
+    vap-database1-source: 数据库数据抽取
+    vap-dynamic-source: 文本文件采集组件
+    vap-dynamic1-source: TCP服务端接收组件
+    vap-dynamic2-source: UDP服务端接收组件
+    vap-dynamic3-source: Syslog服务端接收组件
+    vap-dynamic4-source: Netty4 tcp服务端接收组件
+    vap-dynamic5-source: Netty4 udp服务端接收组件
+    vap-dynamic6-source: UDP服务端资产联动组件
+    vap-elasticsearch-source: 开源ElasticSearch数据查询组件
+    vap-elasticsearch1-source: 华为ElasticSearch数据查询组件
+    vap-elasticsearch2-source: ElasticSearch单索引抽取组件
+    vap-kafka-source: kafka数据抽取组件
+    vap-kafka1-source: VRV-kafka数据抽取组件
+    vap-redis-source: 网络会话格式
+    vap-sftp-source: sftp数据获取组件
+    vap-snmp-source: SNMP数据接收组件
+    vap-spec-lvmeng-source: 绿盟探针数据抽取组件
+    vap-spec-twas-source: TWAS探针数据抽取组件
+    vap-webservice-source: 演示demo-天气查询
+    vap-webservice1-source: 北信源内网webservice v2.0
+    avro-source: Avro Source
+    exec-source: Exec Source
+    http-source: HTTP Source
+    jms-source: JMS Source
+    kafka-source: Kafka Source
+    netcat-tcp-source: NetCat TCP Source
+    netcat-udp-source: NetCat UDP Source
+    sequence-generator-source: Sequence Generator Source
+    spooling-directory-source: Spooling Directory Source
+    stress-source: Stress Source
+    taildir-source: Taildir Source
+    thrift-source: Thrift Source
+  channel-map:
+    vap-file-channel: 文件通道
+    vap-memory-channel: 内存通道
+    vap-test-channel: 计数测试通道
+    file-channel: File Channel
+    jdbc-channel: JDBC Channel
+    kafka-channel: Kafka Channel
+    memory-channel: Memory Channel
+    pseudo-transaction-channel: Pseudo Transaction Channel
+    spillable-memory-channel: Spillable Memory Channel
+  sink-map:
+    vap-complex-sink: 终端数据同时入es和hbase
+    vap-database-sink: 数据入单个数据库
+    vap-database1-sink: 数据入多个数据库
+    vap-datahub-sink: 阿里云datahub入库组件
+    vap-elasticsearch-sink: 开源ElasticSearch入库组件
+    vap-elasticsearch1-sink: 华为ElasticSearch入库组件
+    vap-hbase-sink: 终端图片入hbase组件
+    vap-hive-sink: hive入库parquet格式
+    vap-hive1-sink: hive入库文本格式
+    vap-kafka-sink: kafka入库组件
+    vap-kafka1-sink: VRV-kafka入库组件
+    vap-log-sink: JSON输出到控制台组件
+    vap-log1-sink: 终端图片保存组件
+    vap-log3-sink: 模拟解析输出组件
+    vap-socket-sink: udp协议转发
+    vap-socket1-sink: tcp协议转发
+    vap-socket2-sink: syslog转发
+    avro-sink: Avro Sink
+    elasticsearchsink: ElasticSearch Sink
+    file-roll-sink: File Roll Sink
+    hdfs-sink: HDFS Sink
+    hive-sink: Hive Sink
+    http-sink: HTTP Sink
+    irc-sink: IRC Sink
+    kafka-sink: Kafka Sink
+    kite-dataset-sink: Kite Dataset Sink
+    logger-sink: Logger Sink
+    morphlinesolrsink: MorphlineSolr Sink
+    null-sink: Null Sink
+    thrift-sink: Thrift Sink
+  interceptor-map:
+    vap-avro-interceptor: Avro 数据反序列化
+    vap-function-interceptor: JS 脚本数据处理
+    static-interceptor: Header 配置

@@ -1,0 +1,46 @@
+<input id="G_TYPE" value="com.vrv.vap.hbasesink.HbaseZipPictureSink" style="display:none;">
+<div class="form-group">
+	<label>Batch</label>
+	<input id="batch" type="text" value="1000" class="form-control">
+	<small class="form-text text-muted">每次从channel取的数据条数</small>
+</div>
+<div class="form-group">
+	<label>Upper</label>
+	<input id="upper" type="text" value="7" class="form-control">
+	<small class="form-text text-muted">时间校验往前多少天</small>
+</div>
+<div class="form-group">
+	<label>Lower</label>
+	<input id="lower" type="text" value="0" class="form-control">
+	<small class="form-text text-muted">时间校验往后多少天</small>
+</div>
+<div class="form-group">
+	<label>No Time Check</label>
+	<input id="noTimeCheck" type="text" value="" class="form-control">
+	<small class="form-text text-muted">不需要时间校验的数据类型</small>
+</div>
+<div class="form-group">
+	<label>Namespace</label>
+	<input id="namespace" type="text" value="" class="form-control">
+	<small class="form-text text-muted">hbase命名空间</small>
+</div>
+<div class="form-group">
+	<label>Log Settings</label>
+	<input id="logSettings" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#data-fixyml' target='_blank'>data-fix.yml</a>配置文件路径<s>或lc的logSetting.xml配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Hbase Site</label>
+	<input id="hbaseSite" type="text" value="" class="form-control">
+	<small class="form-text text-muted">hbase-site.xml配置文件路径</small>
+</div>
+<div class="form-group">
+	<label>Hbase User</label>
+	<input id="hbaseUser" type="text" value="hbase" class="form-control">
+	<small class="form-text text-muted">habse用户名</small>
+</div>
+<div class="form-group">
+	<label>Kerberos</label>
+	<input id="kerberos" type="text" value="" class="form-control">
+	<small class="form-text text-muted">lc的<a href='/readme#kerberosproperties' target='_blank'>kerberos.properties</a>配置文件路径</small>
+</div>

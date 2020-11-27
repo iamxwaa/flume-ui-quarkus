@@ -1,0 +1,56 @@
+<input id="G_TYPE" value="com.vrv.vap.socketsink.TcpSink" style="display:none;">
+<div class="form-group">
+	<label>Batch</label>
+	<input id="batch" type="text" value="500" class="form-control">
+	<small class="form-text text-muted">从channel中获取的数据条数</small>
+</div>
+<div class="form-group">
+	<label>Dst Ip</label>
+	<input id="dstIp" type="text" value="localhost" class="form-control">
+	<small class="form-text text-muted">目标ip地址</small>
+</div>
+<div class="form-group">
+	<label>Dst Port</label>
+	<input id="dstPort" type="text" value="514" class="form-control">
+	<small class="form-text text-muted">目标端口</small>
+</div>
+<div class="form-group">
+	<label>Delay</label>
+	<input id="delay" type="text" value="0" class="form-control">
+	<small class="form-text text-muted">每条数据延迟发送的时间,单位毫秒</small>
+</div>
+<div class="form-group">
+	<label>Input Type</label>
+	<input id="inputType" type="text" value="JSON" class="form-control">
+	<small class="form-text text-muted">详见<a href='/readme#inputtype说明' target='_blank'>InputType说明</a></small>
+</div>
+<div class="form-group">
+	<label>Log Settings</label>
+	<input id="logSettings" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#data-fixyml' target='_blank'>data-fix.yml</a>配置文件路径<s>或lc的logSetting.xml配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Tables</label>
+	<input id="tables" type="text" value="" class="form-control">
+	<small class="form-text text-muted">表关联插入配置,详见<a href='/readme#tablescsv' target='_blank'>tables.csv</a></small>
+</div>
+<div class="form-group">
+	<label>Filters</label>
+	<input id="filters" type="text" value="" class="form-control">
+	<small class="form-text text-muted"><a href='/readme#data-filteryml' target='_blank'>data-filter.yml</a>配置文件路径<s>或lc的filters.xml配置文件路径</s></small>
+</div>
+<div class="form-group">
+	<label>Format</label>
+	<input id="format" type="text" value="" class="form-control">
+	<small class="form-text text-muted">数据重新格式化,例:${ip}##${time}##${desc},为空则输出json</small>
+</div>
+<div class="form-group">
+	<label>Charset In</label>
+	<input id="charsetIn" type="text" value="UTF-8" class="form-control">
+	<small class="form-text text-muted">输入数据编码</small>
+</div>
+<div class="form-group">
+	<label>Charset Out</label>
+	<input id="charsetOut" type="text" value="UTF-8" class="form-control">
+	<small class="form-text text-muted">输出数据编码</small>
+</div>

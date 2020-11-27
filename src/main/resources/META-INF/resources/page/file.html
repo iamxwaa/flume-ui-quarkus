@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="v3/fragment :: head"></head>
+<style>
+</style>
+
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a>平台管理</a>
+            <a lay-href=""><cite>文件管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <form enctype="multipart/form-data" method="post" action="/file/upload">
+                            <input type="file" required="required" name="inputfile" id="inputfile" />
+                            <input type="submit" class="layui-btn layui-bg-green" value="上传文件" />
+                            <div class="layui-inline layui-word-aux" style="line-height: 38px;margin-left: 10px;">
+                                文件大小最大为10MB
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <table lay-filter="fileTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th lay-data="{field:'num', width:60, sort:true}">序号</th>
+                                    <th lay-data="{field:'fileName', width:200, sort:true}">文件名</th>
+                                    <th lay-data="{field:'path', sort:true}">路径</th>
+                                    <th lay-data="{field:'modifyTime', width:180, sort:true}">修改时间</th>
+                                    <th lay-data="{field:'act', width:240, align: 'center'}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="u,uStat:${fileinfo}">
+                                    <td th:text="${uStat.count}">1</td>
+                                    <td th:text="${u?.name}">
+                                    </td>
+                                    <td th:text="${u?.path}">路径</td>
+                                    <td th:text="${u?.createTime}">时间</td>
+                                    <td>
+                                        <a class="layui-btn layui-btn-xs" th:href="@{/file/update(name=${u?.rpath})}"
+                                            title="修改">
+                                            修改
+                                        </a>
+                                        <a class="layui-btn layui-btn-danger layui-btn-xs"
+                                            th:data="@{/file/delete(name=${u?.rpath})}" title="删除">
+                                            删除
+                                        </a>
+                                        <a class="layui-btn layui-btn-primary layui-btn-xs"
+                                            th:href="@{/file/history(path=${u?.rpath})}" title="历史记录">
+                                            历史
+                                        </a>
+                                        <a class="layui-btn layui-btn-primary layui-btn-xs"
+                                            th:href="@{/file/download(name=${u?.rpath})}" title="下载">
+                                            下载
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="v3/fragment :: javascript2"></div>
+    <script>
+        layui.use(['table', 'tools'], function () {
+            layui.table.init('fileTable', { limit: 5000 });
+            layui.tools.setDeleteConfirm("a[title='删除']");
+        })
+    </script>
+</body>
+
+</html>

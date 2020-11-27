@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="v3/fragment :: head"></head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-md12 layui-col-space15">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <h1>错误!</h1>
+                </div>
+                <div class="layui-card-body">
+                    <p>请重新<a style='color: #01AAED;' href='/login'>登录</a>或联系管理员处理.</p>
+                    <div class="common-hint-word">
+                        <div th:text="${#dates.format(timestamp,'yyyy-MM-dd HH:mm:ss')}"></div>
+                        <div th:text="${message}"></div>
+                        <div th:text="${exception}"></div>
+                        <div th:text="${error}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

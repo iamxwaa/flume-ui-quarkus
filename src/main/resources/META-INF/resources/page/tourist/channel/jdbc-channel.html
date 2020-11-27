@@ -1,0 +1,71 @@
+<input id="G_TYPE" value="jdbc" style="display:none;">
+<div class="form-group">
+	<label>Db Type</label>
+	<input id="db.type" type="text" value="DERBY" class="form-control">
+	<small class="form-text text-muted">Database vendor, needs to be DERBY.</small>
+</div>
+<div class="form-group">
+	<label>Driver Class</label>
+	<input id="driver.class" type="text" value="org.apache.derby.jdbc.EmbeddedDriver" class="form-control">
+	<small class="form-text text-muted">Class for vendor&#8217;s JDBC driver</small>
+</div>
+<div class="form-group">
+	<label>Driver Url</label>
+	<input id="driver.url" type="text" value="(constructed from other properties)" class="form-control">
+	<small class="form-text text-muted">JDBC connection URL</small>
+</div>
+<div class="form-group">
+	<label>Db Username</label>
+	<input id="db.username" type="text" value="&#8220;sa&#8221;" class="form-control">
+	<small class="form-text text-muted">User id for db connection</small>
+</div>
+<div class="form-group">
+	<label>Db Password</label>
+	<input id="db.password" type="text" value="" class="form-control">
+	<small class="form-text text-muted">password for db connection</small>
+</div>
+<div class="form-group">
+	<label>Connection Properties File</label>
+	<input id="connection.properties.file" type="text" value="" class="form-control">
+	<small class="form-text text-muted">JDBC Connection property file path</small>
+</div>
+<div class="form-group">
+	<label>Create Schema</label>
+	<input id="create.schema" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">If true, then creates db schema if not there</small>
+</div>
+<div class="form-group">
+	<label>Create Index</label>
+	<input id="create.index" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">Create indexes to speed up lookups</small>
+</div>
+<div class="form-group">
+	<label>Create Foreignkey</label>
+	<input id="create.foreignkey" type="text" value="true" class="form-control">
+	<small class="form-text text-muted">暂无描述</small>
+</div>
+<div class="form-group">
+	<label>Transaction Isolation</label>
+	<input id="transaction.isolation" type="text" value="&#8220;READ_COMMITTED&#8221;" class="form-control">
+	<small class="form-text text-muted">Isolation level for db session READ_UNCOMMITTED,READ_COMMITTED, SERIALIZABLE, REPEATABLE_READ</small>
+</div>
+<div class="form-group">
+	<label>Maximum Connections</label>
+	<input id="maximum.connections" type="text" value="10" class="form-control">
+	<small class="form-text text-muted">Max connections allowed to db</small>
+</div>
+<div class="form-group">
+	<label>Maximum Capacity</label>
+	<input id="maximum.capacity" type="text" value="0 (unlimited)" class="form-control">
+	<small class="form-text text-muted">Max number of events in the channel</small>
+</div>
+<div class="form-group">
+	<label>Sysprop.*</label>
+	<input id="sysprop.*" type="text" value="" class="form-control">
+	<small class="form-text text-muted">DB Vendor specific properties</small>
+</div>
+<div class="form-group">
+	<label>Sysprop User Home</label>
+	<input id="sysprop.user.home" type="text" value="" class="form-control">
+	<small class="form-text text-muted">Home path to store embedded Derby database</small>
+</div>

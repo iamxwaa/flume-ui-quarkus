@@ -1,0 +1,76 @@
+<input id="G_TYPE" value="thrift" style="display:none;">
+<div class="form-group">
+	<label>Hostname</label>
+	<input id="hostname" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The hostname or IP address to bind to.</small>
+</div>
+<div class="form-group">
+	<label>Port</label>
+	<input id="port" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The port # to listen on.</small>
+</div>
+<div class="form-group">
+	<label>Batch Size</label>
+	<input id="batch-size" type="text" value="100" class="form-control">
+	<small class="form-text text-muted">number of event to batch together for send.</small>
+</div>
+<div class="form-group">
+	<label>Connect Timeout</label>
+	<input id="connect-timeout" type="text" value="20000" class="form-control">
+	<small class="form-text text-muted">Amount of time (ms) to allow for the first (handshake) request.</small>
+</div>
+<div class="form-group">
+	<label>Request Timeout</label>
+	<input id="request-timeout" type="text" value="20000" class="form-control">
+	<small class="form-text text-muted">Amount of time (ms) to allow for requests after the first.</small>
+</div>
+<div class="form-group">
+	<label>Connection Reset Interval</label>
+	<input id="connection-reset-interval" type="text" value="none" class="form-control">
+	<small class="form-text text-muted">Amount of time (s) before the connection to the next hop is reset. This will force the Thrift Sink to reconnect to the next hop. This will allow the sink to connect to hosts behind a hardware load-balancer when news hosts are added without having to restart the agent.</small>
+</div>
+<div class="form-group">
+	<label>Ssl</label>
+	<input id="ssl" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Set to true to enable SSL for this ThriftSink. When configuring SSL, you can optionally set a &#8220;truststore&#8221;, &#8220;truststore-password&#8221; and &#8220;truststore-type&#8221;</small>
+</div>
+<div class="form-group">
+	<label>Truststore</label>
+	<input id="truststore" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The path to a custom Java truststore file. Flume uses the certificate authority information in this file to determine whether the remote Thrift Source&#8217;s SSL authentication credentials should be trusted. If not specified, the default Java JSSE certificate authority files (typically &#8220;jssecacerts&#8221; or &#8220;cacerts&#8221; in the Oracle JRE) will be used.</small>
+</div>
+<div class="form-group">
+	<label>Truststore Password</label>
+	<input id="truststore-password" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The password for the specified truststore.</small>
+</div>
+<div class="form-group">
+	<label>Truststore Type</label>
+	<input id="truststore-type" type="text" value="JKS" class="form-control">
+	<small class="form-text text-muted">The type of the Java truststore. This can be &#8220;JKS&#8221; or other supported Java truststore type.</small>
+</div>
+<div class="form-group">
+	<label>Exclude Protocols</label>
+	<input id="exclude-protocols" type="text" value="SSLv3" class="form-control">
+	<small class="form-text text-muted">Space-separated list of SSL/TLS protocols to exclude</small>
+</div>
+<div class="form-group">
+	<label>Kerberos</label>
+	<input id="kerberos" type="text" value="false" class="form-control">
+	<small class="form-text text-muted">Set to true to enable kerberos authentication. In kerberos mode, client-principal, client-keytab and server-principal are required for successful authentication and communication to a kerberos enabled Thrift Source.</small>
+</div>
+<div class="form-group">
+	<label>Client Principal</label>
+	<input id="client-principal" type="text" value="—-" class="form-control">
+	<small class="form-text text-muted">The kerberos principal used by the Thrift Sink to authenticate to the kerberos KDC.</small>
+</div>
+<div class="form-group">
+	<label>Client Keytab</label>
+	<input id="client-keytab" type="text" value="—-" class="form-control">
+	<small class="form-text text-muted">The keytab location used by the Thrift Sink in combination with the client-principal to authenticate to the kerberos KDC.</small>
+</div>
+<div class="form-group">
+	<label>Server Principal</label>
+	<input id="server-principal" type="text" value="" class="form-control">
+	<small class="form-text text-muted">The kerberos principal of the Thrift Source to which the Thrift Sink is configured to connect to.</small>
+</div>

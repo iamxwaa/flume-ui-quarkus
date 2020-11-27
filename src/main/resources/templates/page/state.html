@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {#include header /}
+    <style>
+        .layui-card-header>span {
+            color: #009688;
+            font-size: 24px;
+            padding-left: 10px;
+        }
+
+        dd.layui-col-md4 {
+            padding: 5px;
+        }
+
+        legend>span {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .layui-elem-quote-cmd {
+            height: 176px;
+            word-break: break-all;
+            overflow: auto;
+            color: #666;
+        }
+
+        .code-cmd {
+            color: #009688;
+        }
+
+        .code-key {
+            color: #ff5722;
+        }
+
+        .code-value {
+            color: #777;
+        }
+
+        .console-p,
+        .console-err {
+            margin: 0;
+            padding: 2px 20px 2px 20px;
+            font-size: 12px;
+        }
+
+        .console-err {
+            color: #FF5722;
+        }
+
+        .card-header {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-card layadmin-header">
+        <span class="layui-breadcrumb" id="breadcrumbTitle" lay-filter="breadcrumb" style="visibility: visible;">
+            <a lay-href=""><cite>采集器监控</cite></a>
+        </span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card" style="text-align: center;">
+                    <div class="layui-card-header card-header layui-col-md3">采集器总数<span id="totalCount">0</span></div>
+                    <div class="layui-card-header card-header layui-col-md3">运行<span id="runCount">0</span></div>
+                    <div class="layui-card-header card-header layui-col-md3">停止<span id="stopCount">0</span></div>
+                    <div class="layui-card-header card-header">重启<span id="restartCount">0</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            {#if !flumeinfo.empty }
+            <dl class="layui-col-md12">
+                {#for f in flumeinfo}
+                <dd class="layui-col-md4">
+                    <input id="M_{f.id}" name="metricPort" value="{f.metricPort}" style="display: none">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><strong>{f.name}</strong></div>
+                        <div class="layui-card-body">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">状态</label>
+                                <div class="layui-input-block">
+                                    {#if f.state == 1}
+                                    <input type="text" disabled class="layui-input layui-bg-green" value="运行">
+                                    {#else if f.state == 2}
+                                    <input type="text" disabled class="layui-input layui-bg-blue" value="重启">
+                                    {#else}
+                                    <input type="text" disabled class="layui-input layui-bg-red" value="关闭">
+                                    {/if}
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">进程PID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" disabled value="{f.pid}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">缓存/容量</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" disabled id="C_{f.id}" value="NaN">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">
+                                    <a title="NaN" id="DT_{f.id}" style="color: #1E9FFF;">
+                                        明细
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">接收/发送</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" disabled id="ST_{f.id}" value="NaN">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">
+                                    <a title="NaN" id="DT2_{f.id}" style="color: #1E9FFF;">
+                                        明细
+                                    </a>
+                                </div>
+                            </div>
+                            <fieldset class="layui-elem-field layui-field-title">
+                                <legend>启动命令<span>ID: {f.id}</span></legend>
+                            </fieldset>
+                            <blockquote class="layui-elem-quote layui-elem-quote-cmd">{f.cmd.raw}</blockquote>
+                            <div class="layui-row">
+                                <a href="/collect/start?cid={f.id}" class="layui-btn layui-col-md2 layui-col-md-offset2" title="启动">
+                                    <i class="layui-icon layui-icon-play"></i>
+                                </a>
+                                <a href="/collect/stop?cid={f.id}" class="layui-btn layui-col-md2" title="关闭">
+                                    <i class="layui-icon layui-icon-close-fill"></i>
+                                </a>
+                                <a href="/log/download?cid={f.id}" class="layui-btn layui-col-md2" title="日志下载">
+                                    <i class="layui-icon layui-icon-download-circle"></i>
+                                </a>
+                                <a href="javascript:;" name="watchdog" data="{f.id}" class="layui-btn layui-col-md2" title="日志查看">
+                                    <i class="layui-icon layui-icon-layer"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+                {/for}
+            </dl>
+            {/if}
+        </div>
+    </div>
+</body>
+{#include footer2 /}
+<script>
+    layui.use(['layer', 'element', 'tools', 'ws'], function () {
+        layui.tools.setWaitShade("a[title='启动']");
+        layui.tools.setWaitShade("a[title='关闭']");
+
+        var total = $("dd").length;
+        var dtotal = $(".layui-input.layui-bg-red").length;
+        var rtotal = total - dtotal;
+        var wtotal = $(".layui-input.layui-bg-blue").length;
+        $("#totalCount").text(total);
+        $("#runCount").text(rtotal);
+        $("#stopCount").text(dtotal);
+        $("#restartCount").text(wtotal);
+
+        $("a[name='watchdog']").click(function () {
+            var cid = $(this).attr("data");
+            var layer = layui.layer;
+            var log = layui.ws.log("/ws/log");
+            var height = window.screen.availHeight - 265
+            var width = window.screen.availWidth - 420
+            layer.open({
+                type: 1
+                , area: [width + 'px', height + 'px']
+                , offset: ['50px', '10px']
+                , id: 'logBox'
+                , content: '<div id="log_content" class="layui-row layui-col-md12" style="overflow: auto;height: '
+                    + (height - 45) + 'px;"></div>'
+                , skin: 'layui-bg-black'
+                , btnAlign: 'r'
+                , title: "日志"
+                , yes: function () {
+                    layer.closeAll();
+                }
+                , cancel: function () {
+                    log.close();
+                }
+                , success: function () {
+                    $("#logBox").height(height);
+                    log.open("log_content"
+                        , cid
+                        , 500
+                        , /Exception:|(.*\.java:\d)|^\s+at\s|\sERROR\s|^Caused by:|Exception$|\d more/
+                        , { fontSize: 12 });
+                }
+            });
+        })
+
+        var metricPorts = function () {
+            var p = [];
+            $("input[name='metricPort']").each(function (a, b) {
+                var m = $(b);
+                var port = m.val();
+                if ("" != port) {
+                    var id = m.attr("id").substr(2);
+                    p.push({ id: id, port: port });
+                }
+            })
+            return p;
+        }();
+
+        console.log(metricPorts);
+
+        var ws = layui.ws.create("/ws/jmx/metric");
+        var ok = false;
+        var loadMetric = function () {
+            if (ws.readyState == ws.OPEN) {
+                metricPorts.forEach(a => {
+                    ws.send(a.id);
+                })
+            }
+        }
+
+        var metricObject = {};
+
+        ws.onmessage = function (a) {
+            if (ok) {
+                var id = a.data.substr(0, 32);
+                var data = JSON.parse(a.data.substr(33));
+                var cap = 0;
+                var size = 0;
+                var put = 0;
+                var take = 0;
+                var title = "";
+                var title2 = "";
+                for (var c in data) {
+                    title += c + ": ";
+                    title2 += c + ": ";
+                    if (c.startsWith("CHANNEL")) {
+                        cap += parseInt(data[c].ChannelCapacity);
+                        size += parseInt(data[c].ChannelSize);
+                        put += parseInt(data[c].EventPutSuccessCount);
+                        take += parseInt(data[c].EventTakeSuccessCount);
+                        title += data[c].ChannelSize + "/" + data[c].ChannelCapacity;
+                        title += "\n";
+                        title2 += data[c].EventPutSuccessCount + "/" + data[c].EventTakeSuccessCount;
+                        title2 += "\n";
+                    }
+                }
+                if (undefined == metricObject[id]) {
+                    metricObject[id] = {
+                        c: $("#C_" + id),
+                        st: $("#ST_" + id),
+                        dt: $("#DT_" + id),
+                        dt2: $("#DT2_" + id),
+                        id: id
+                    };
+                    console.log(metricObject);
+                }
+                if ("" != title) {
+                    metricObject[id].c.val(size + "/" + cap);
+                    metricObject[id].st.val(put + "/" + take);
+                    metricObject[id].dt.attr({ title: title });
+                    metricObject[id].dt2.attr({ title: title2 });
+                }
+                return
+            }
+            if (a.data == '200') {
+                console.log("管道监控连接建立成功");
+                ok = true;
+                loadMetric();
+            }
+        }
+        var intervalId = setInterval(loadMetric, 5000);
+        ws.onclose = function () {
+            console.log("关闭日志通道");
+            clearInterval(intervalId);
+        }
+    })
+</script>
+
+</html>
