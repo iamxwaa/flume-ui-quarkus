@@ -33,7 +33,7 @@ import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.CommonUtils;
 import org.github.toxrink.utils.EnvUtils;
-import org.github.toxrink.utils.PageAlertUtils;
+import org.github.toxrink.utils.PageUtils;
 import org.github.toxrink.utils.TemplateUtils;
 import org.github.toxrink.utils.UploadUtils;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
@@ -138,7 +138,7 @@ public class FileController {
             mark = file.delete();
             LOG.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
         }
-        PageAlertUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
         return "redirect:/file";
     }
 
@@ -161,7 +161,7 @@ public class FileController {
             mark = file.delete();
             LOG.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
         }
-        PageAlertUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
         return "redirect:/file";
     }
 
@@ -183,7 +183,7 @@ public class FileController {
             mark = file.delete();
             LOG.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
         }
-        PageAlertUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
         return "redirect:/flume";
     }
 
@@ -214,7 +214,7 @@ public class FileController {
             mark = true;
             LOG.info("update file " + file.getAbsolutePath());
         }
-        PageAlertUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
         return "redirect:/file";
     }
 
@@ -238,7 +238,7 @@ public class FileController {
             mark = true;
             LOG.info("update file " + file.getAbsolutePath());
         }
-        PageAlertUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
         return "redirect:/flume#log4j";
     }
 
@@ -460,7 +460,7 @@ public class FileController {
             LOG.error("", e);
             mark = false;
         }
-        PageAlertUtils.writeInfo("datafix文件生成" + (mark ? "成功" : "失败"));
+        PageUtils.writeInfo("datafix文件生成" + (mark ? "成功" : "失败"));
         return "redirect:/file";
     }
 
