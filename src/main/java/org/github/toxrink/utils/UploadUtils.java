@@ -39,24 +39,6 @@ public final class UploadUtils {
     }
 
     /**
-     * 获取上传文件修改历史信息
-     */
-    public static List<FileInfo> getUploadInfoHistoryList(String name) {
-        List<FileInfo> list = new ArrayList<>();
-        File directory = new File(EnvUtils.getHistoryFilePath() + "/" + name);
-        if (!directory.exists() || !directory.isDirectory()) {
-            return list;
-        }
-        for (File f : FileUtils.listFiles(directory, null, true)) {
-            FileInfo u = buildFileInfo2(f, false);
-            if (u != null) {
-                list.add(u);
-            }
-        }
-        return CommonUtils.sort(list);
-    }
-
-    /**
      * 获取自定义jar包信息
      */
     public static List<FileInfo> getFlumeJarList() {
@@ -74,30 +56,22 @@ public final class UploadUtils {
     /**
      * 获取文件信息
      * 
-     * @param path 文件路径
+     * @param path
+     *                 文件路径
      * @return 文件信息
-     * @throws IOException 读写异常
+     * @throws IOException
+     *                         读写异常
      */
     public static FileInfo getFileInfoByPath(String path) throws IOException {
         return buildFileInfo(new File(EnvUtils.getFilePath() + path), true);
     }
 
     /**
-     * 获取历史文件信息
-     *
-     * @param path 文件路径
-     * @return 文件信息
-     * @throws IOException 读写异常
-     */
-    public static FileInfo getHistoryFileInfoByPath(String path) throws IOException {
-        return buildFileInfo(new File(EnvUtils.getHistoryFilePath() + path), true);
-    }
-
-    /**
      * 获取log4j
      * 
      * @return log4j内容
-     * @throws IOException 读写异常
+     * @throws IOException
+     *                         读写异常
      */
     public static FileInfo getLog4j() throws IOException {
         EnvConfig config = EnvUtils.getEnvConfig();
@@ -111,8 +85,10 @@ public final class UploadUtils {
     /**
      * 构建 FileInfo
      * 
-     * @param file       文件
-     * @param getContent 是否读取文件内容
+     * @param file
+     *                       文件
+     * @param getContent
+     *                       是否读取文件内容
      * @return FileInfo
      */
     public static FileInfo buildFileInfo(File file, boolean getContent) {
@@ -127,31 +103,6 @@ public final class UploadUtils {
             fileInfo.setContent(CommonUtils.readFileToString(file));
         }
         fileInfo.setRpath(fileInfo.getPath().substring(EnvUtils.getFilePath().length()));
-        if (fileInfo.getRpath().charAt(0) != '/') {
-            fileInfo.setRpath('/' + fileInfo.getRpath());
-        }
-        return fileInfo;
-    }
-
-    /**
-     * 构建 FileInfo
-     *
-     * @param file       历史文件
-     * @param getContent 是否读取文件内容
-     * @return FileInfo
-     */
-    public static FileInfo buildFileInfo2(File file, boolean getContent) {
-        if (!file.exists()) {
-            return null;
-        }
-        FileInfo fileInfo = new FileInfo();
-        fileInfo.setName(file.getName());
-        fileInfo.setPath(file.getAbsolutePath());
-        fileInfo.setCreateTime(TimeUtils.format2(new Date(file.lastModified())));
-        if (getContent) {
-            fileInfo.setContent(CommonUtils.readFileToString(file));
-        }
-        fileInfo.setRpath(fileInfo.getPath().substring(EnvUtils.getHistoryFilePath().length()));
         if (fileInfo.getRpath().charAt(0) != '/') {
             fileInfo.setRpath('/' + fileInfo.getRpath());
         }
@@ -178,7 +129,8 @@ public final class UploadUtils {
     /**
      * 获取存储路径
      * 
-     * @param fileName 文件名
+     * @param fileName
+     *                     文件名
      * @return 存储路径
      */
     public static String getStorePath(String fileName) {

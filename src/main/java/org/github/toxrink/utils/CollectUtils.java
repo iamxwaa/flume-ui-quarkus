@@ -31,7 +31,6 @@ import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.model.FlumeInfo;
 import org.github.toxrink.watcher.CollectorWatcher;
 
-import x.common.constant.JxConst;
 import x.os.CmdWrapper;
 import x.os.FileInfo;
 

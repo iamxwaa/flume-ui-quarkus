@@ -1,7 +1,6 @@
 package org.github.toxrink.resource;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -9,16 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.JsonSyntaxException;
-
 import org.github.toxrink.config.TouristConfig;
-import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.model.JVMInfo;
-import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
-import org.github.toxrink.utils.CommonUtils;
 import org.github.toxrink.utils.ServerUtils;
-import org.github.toxrink.utils.TemplateUtils;
 import org.github.toxrink.utils.UploadUtils;
 import org.github.toxrink.watcher.CollectorWatcher;
 import org.github.toxrink.watcher.FileWatcher;
@@ -47,24 +40,12 @@ public class PageResource {
     Template tourist;
 
     @Inject
-    @ResourcePath("page/template.html")
-    Template template;
-
-    @Inject
-    @ResourcePath("page/templateForm.html")
-    Template templateForm;
-
-    @Inject
     @ResourcePath("page/datafixFile.html")
     Template datafixFile;
 
     @Inject
     @ResourcePath("page/flume.html")
     Template flume;
-
-    @Inject
-    @ResourcePath("page/file.html")
-    Template file;
 
     @Inject
     @ResourcePath("page/filewatcher.html")
@@ -81,10 +62,6 @@ public class PageResource {
     @Inject
     @ResourcePath("page/datafix.html")
     Template datafix;
-
-    @Inject
-    @ResourcePath("page/fileForm.html")
-    Template fileForm;
 
     @Inject
     private TouristConfig touristConfig;
@@ -124,31 +101,6 @@ public class PageResource {
     }
 
     @GET
-    @Path("/template")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance template() {
-        return template.data("templateinfo", TemplateUtils.getTemplateInfoList());
-    }
-
-    @GET
-    @Path("/template/new")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance templateForm() {
-        TemplateInfo ti = new TemplateInfo();
-        return templateForm.data("ti", ti);
-    }
-
-    @GET
-    @Path("/template/update")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance templateUpdate(@QueryParam String tid) throws JsonSyntaxException, IOException {
-        System.out.println(tid);
-        String cp = TemplateUtils.getJsonFilePath(tid);
-        TemplateInfo ti = CommonUtils.readFileToObject(cp, TemplateInfo.class);
-        return templateForm.data("ti", ti);
-    }
-
-    @GET
     @Path("/setting/datafix")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance datafixFile() {
@@ -160,13 +112,6 @@ public class PageResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance flume() throws IOException {
         return flume.data("fileinfo", UploadUtils.getFlumeJarList()).data("fi", UploadUtils.getLog4j());
-    }
-
-    @GET
-    @Path("/file")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance file() {
-        return file.data("fileinfo", UploadUtils.getUploadInfoList());
     }
 
     @GET
@@ -195,13 +140,6 @@ public class PageResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance datafix() {
         return datafix.instance();
-    }
-
-    @GET
-    @Path("/file/update")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance fileUpdate(@QueryParam String name) throws IOException {
-        return fileForm.data("fi", UploadUtils.getFileInfoByPath(name));
     }
 
 }

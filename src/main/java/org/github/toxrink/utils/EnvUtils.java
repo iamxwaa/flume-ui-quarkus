@@ -3,8 +3,6 @@ package org.github.toxrink.utils;
 import java.io.File;
 import java.nio.charset.Charset;
 
-import javax.inject.Inject;
-
 import com.google.common.collect.ImmutableList;
 
 import org.apache.commons.logging.Log;

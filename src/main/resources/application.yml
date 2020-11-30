@@ -2,7 +2,7 @@ quarkus:
   http:
     port: 15588
     access-log:
-      enabled: true
+      enabled: false
     ssl-port: 15589
     insecure-requests: REDIRECT
     ssl:
@@ -14,7 +14,7 @@ quarkus:
     file:
       enable: true
       path: /var/log/flume-ui-quarkus/server.log
-      level: ERROR
+      level: INFO
     console:
       enable: true
       level: DEBUG

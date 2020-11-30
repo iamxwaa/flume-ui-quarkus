@@ -98,7 +98,7 @@ public class ServerLogWs {
         public void push(String msg) {
             try {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 LOG.error("", e);
                 IOUtils.closeQuietly(session);
             }

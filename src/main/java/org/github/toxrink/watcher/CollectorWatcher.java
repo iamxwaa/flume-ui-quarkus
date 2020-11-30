@@ -10,16 +10,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.metric.JMXMetricUtils;
 import org.github.toxrink.model.FlumeCheck;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.ServerUtils;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * 监控flume运行状态

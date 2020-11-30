@@ -1,4 +1,4 @@
-package org.github.toxrink.controller;
+package org.github.toxrink.resource;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,22 +8,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.github.toxrink.utils.EnvUtils;
-import org.github.toxrink.utils.ServerUtils;
-import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.github.toxrink.utils.EnvUtils;
+import org.github.toxrink.utils.ServerUtils;
+import org.jboss.resteasy.annotations.jaxrs.FormParam;
 
 import x.os.CmdWrapper;
 import x.os.JxProcess;
 
-/**
- * DebugController
- */
-public class DebugController {
-    private static final Log LOG = LogFactory.getLog(DebugController.class);
+@Path("debug")
+public class DebugResource {
+    private static final Log LOG = LogFactory.getLog(DebugResource.class);
 
     /**
      * js测试
@@ -39,10 +37,10 @@ public class DebugController {
      * @return
      */
     @POST
-    @Path("/debug/js")
+    @Path("js")
     @Produces(MediaType.APPLICATION_JSON)
-    public String testJS(@QueryParam String headerdata, @QueryParam String jscontent, @QueryParam String jspath,
-            @QueryParam String sourcedata) {
+    public String testJS(@FormParam String headerdata, @FormParam String jscontent, @FormParam String jspath,
+            @FormParam String sourcedata) {
         String path = jspath;
         if (StringUtils.isEmpty(path)) {
             String jsName = "test-" + System.currentTimeMillis();
@@ -92,11 +90,11 @@ public class DebugController {
      * @return
      */
     @POST
-    @Path("/debug/datafix")
+    @Path("datafix")
     @Produces(MediaType.APPLICATION_JSON)
-    public String testJS(@QueryParam String inputType, @QueryParam String datafix, @QueryParam String area,
-            @QueryParam String domain, @QueryParam String filter, @QueryParam String tables, @QueryParam String head,
-            @QueryParam String body) {
+    public String testJS(@FormParam String inputType, @FormParam String datafix, @FormParam String area,
+            @FormParam String domain, @FormParam String filter, @FormParam String tables, @FormParam String head,
+            @FormParam String body) {
         String run = EnvUtils.getBaseHomePath() + "/flume/tools/vap-flume-tools";
         String i = "-i" + inputType;
         String b = "-b" + body;
