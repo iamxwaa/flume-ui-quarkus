@@ -61,7 +61,7 @@ public class FileWatcher {
             watch2();
             return;
         }
-        LOG.info("open config watcher(all)");
+        LOG.info("开启(全部采集器)配置文件改动监听");
         executor.scheduleWithFixedDelay(() -> {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("refresh using file info");
@@ -132,7 +132,7 @@ public class FileWatcher {
      * 监听启用自动重启配置的采集器
      */
     public static void watch2() {
-        LOG.info("open config watcher");
+        LOG.info("开启配置文件改动监听");
         executor.scheduleWithFixedDelay(() -> {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("refresh using file info");

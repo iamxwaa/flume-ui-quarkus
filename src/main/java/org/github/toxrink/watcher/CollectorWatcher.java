@@ -201,7 +201,7 @@ public class CollectorWatcher {
      * 启动监控
      */
     public static void watch() {
-        LOG.info("open collector state watcher");
+        LOG.info("启动采集器状态监控");
         executor.scheduleWithFixedDelay(() -> {
             if (updating) {
                 if (LOG.isDebugEnabled()) {

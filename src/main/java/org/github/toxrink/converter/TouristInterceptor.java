@@ -1,7 +1,9 @@
 package org.github.toxrink.converter;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.annotation.Priority;
 
@@ -44,11 +46,29 @@ public class TouristInterceptor implements ConfigSourceInterceptor {
 
             }
             if (null != filter) {
-                Map<String, String> map = new TreeMap<>();
+                List<String[]> list = new ArrayList<>();
                 context.iterateValues().forEachRemaining(a -> {
                     if (a.getName().startsWith(filter)) {
-                        map.put(a.getName().substring(filter.length() + 1), a.getValue());
+                        list.add(new String[] { a.getName().substring(filter.length() + 1), a.getValue() });
                     }
+                });
+                list.sort((c1, c2) -> {
+                    String a = c1[0];
+                    String b = c2[0];
+                    if (a.startsWith("vap")) {
+                        if (b.startsWith("vap")) {
+                            return a.compareTo(b);
+                        }
+                        return -1;
+                    } else if (b.startsWith("vap")) {
+                        return 1;
+                    } else {
+                        return a.compareTo(b);
+                    }
+                });
+                Map<String, String> map = new LinkedHashMap<>();
+                list.forEach(s -> {
+                    map.put(s[0], s[1]);
                 });
                 String value = new Gson().toJson(map);
                 configValue = new ConfigValueBuilder().withName(name).withValue(value).build();
