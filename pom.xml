@@ -63,17 +63,11 @@
             <groupId>jxwrapper</groupId>
             <artifactId>jxwrapper</artifactId>
             <version>0.10.4.1_213</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.curator</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.jcraft</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>mysql</groupId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.13.3</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
