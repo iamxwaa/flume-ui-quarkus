@@ -43,14 +43,6 @@ public class PageResource {
     Template state;
 
     @Inject
-    @ResourcePath("page/collect.html")
-    Template collect;
-
-    @Inject
-    @ResourcePath("page/collectForm.html")
-    Template collectForm;
-
-    @Inject
     @ResourcePath("page/tourist.html")
     Template tourist;
 
@@ -104,7 +96,7 @@ public class PageResource {
     }
 
     @GET
-    @Path("info")
+    @Path("/info")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance info() {
         JVMInfo jvm = new JVMInfo();
@@ -121,36 +113,6 @@ public class PageResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance state() {
         return state.data("flumeinfo", ServerUtils.getFlumeInfoList());
-    }
-
-    @GET
-    @Path("collect")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance collect() {
-        return collect.data("collectinfo", CollectUtils.getCollectInfoList());
-    }
-
-    @GET
-    @Path("/collect/new")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance collectNew() {
-        CollectInfo ci = new CollectInfo();
-        List<TemplateInfo> templates = TemplateUtils.getTemplateInfoList();
-        return collectForm.data("ci", ci).data("templates", templates).data("sources", touristConfig.getSourceMap())
-                .data("channels", touristConfig.getChannelMap()).data("sinks", touristConfig.getSinkMap())
-                .data("interceptors", touristConfig.getInterceptorMap());
-    }
-
-    @GET
-    @Path("/collect/update")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance collectUpdate(@QueryParam String cid) throws JsonSyntaxException, IOException {
-        String cp = CollectUtils.getJsonFilePath(cid);
-        CollectInfo ci = CommonUtils.readFileToObject(cp, CollectInfo.class);
-        List<TemplateInfo> templates = TemplateUtils.getTemplateInfoList();
-        return collectForm.data("ci", ci).data("templates", templates).data("sources", touristConfig.getSourceMap())
-                .data("channels", touristConfig.getChannelMap()).data("sinks", touristConfig.getSinkMap())
-                .data("interceptors", touristConfig.getInterceptorMap());
     }
 
     @GET

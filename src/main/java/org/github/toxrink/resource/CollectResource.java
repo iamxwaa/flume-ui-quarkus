@@ -1,14 +1,19 @@
-package org.github.toxrink.controller;
+package org.github.toxrink.resource;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.google.gson.JsonSyntaxException;
 
@@ -16,16 +21,65 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.github.toxrink.config.TouristConfig;
 import org.github.toxrink.model.CollectInfo;
+import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
-import org.github.toxrink.utils.PageAlertUtils;
+import org.github.toxrink.utils.CommonUtils;
+import org.github.toxrink.utils.PageUtils;
 import org.github.toxrink.utils.ServerUtils;
+import org.github.toxrink.utils.TemplateUtils;
+import org.jboss.resteasy.annotations.jaxrs.FormParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
+import io.quarkus.qute.Template;
+import io.quarkus.qute.TemplateInstance;
+import io.quarkus.qute.api.ResourcePath;
 import x.utils.TimeUtils;
 
-public class CollectController {
-    private static final Log LOG = LogFactory.getLog(CollectController.class);
+@Path("collect")
+public class CollectResource {
+    private static final Log LOG = LogFactory.getLog(CollectResource.class);
+
+    @Inject
+    private TouristConfig touristConfig;
+
+    @Inject
+    @ResourcePath("page/collect.html")
+    Template collect;
+
+    @Inject
+    @ResourcePath("page/collectForm.html")
+    Template collectForm;
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance collect() {
+        return collect.data("collectinfo", CollectUtils.getCollectInfoList());
+    }
+
+    @GET
+    @Path("/new")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance collectNew() {
+        CollectInfo ci = new CollectInfo();
+        List<TemplateInfo> templates = TemplateUtils.getTemplateInfoList();
+        return collectForm.data("ci", ci).data("templates", templates).data("sources", touristConfig.getSourceMap())
+                .data("channels", touristConfig.getChannelMap()).data("sinks", touristConfig.getSinkMap())
+                .data("interceptors", touristConfig.getInterceptorMap());
+    }
+
+    @GET
+    @Path("/update")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance collectUpdate(@QueryParam String cid) throws JsonSyntaxException, IOException {
+        String cp = CollectUtils.getJsonFilePath(cid);
+        CollectInfo ci = CommonUtils.readFileToObject(cp, CollectInfo.class);
+        List<TemplateInfo> templates = TemplateUtils.getTemplateInfoList();
+        return collectForm.data("ci", ci).data("templates", templates).data("sources", touristConfig.getSourceMap())
+                .data("channels", touristConfig.getChannelMap()).data("sinks", touristConfig.getSinkMap())
+                .data("interceptors", touristConfig.getInterceptorMap());
+    }
 
     /**
      * 保存采集器
@@ -53,12 +107,11 @@ public class CollectController {
      *                                 读写异常
      */
     @POST
-    @Path("/collect/save")
-    @Produces(MediaType.TEXT_HTML)
-    public String save(@QueryParam String cid, @QueryParam String name, @QueryParam String desc,
-            @QueryParam String company, @QueryParam String product, @QueryParam String productVersion,
-            @QueryParam String setting, @QueryParam String memSize, @QueryParam String autoStart,
-            @QueryParam String autoRestart) throws JsonSyntaxException, IOException {
+    @Path("/save")
+    public Response save(@FormParam String cid, @FormParam String name, @FormParam String desc,
+            @FormParam String company, @FormParam String product, @FormParam String productVersion,
+            @FormParam String setting, @FormParam String memSize, @FormParam String autoStart,
+            @FormParam String autoRestart) throws JsonSyntaxException, IOException {
         if (StringUtils.isNotEmpty(cid)) {
             Optional<CollectInfo> ci = CollectUtils.getCollectInfoById(cid);
             if (ci.isPresent()) {
@@ -85,10 +138,10 @@ public class CollectController {
                     ci.get().setMemSize("2048");
                 }
                 CollectUtils.update(ci.get());
-                PageAlertUtils.writeInfo("修改采集器成功");
+                PageUtils.writeInfo("修改采集器成功");
             } else {
                 LOG.error("does not exist collect id " + cid);
-                PageAlertUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
+                PageUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
             }
         } else {
             CollectInfo ci = new CollectInfo();
@@ -116,9 +169,9 @@ public class CollectController {
                 ci.setMemSize("2048");
             }
             CollectUtils.save(ci);
-            PageAlertUtils.writeInfo("新建采集器成功");
+            PageUtils.writeInfo("新建采集器成功");
         }
-        return "redirect:/collect";
+        return PageUtils.redirect("/collect");
     }
 
     /**
@@ -131,9 +184,8 @@ public class CollectController {
      *                         读写异常
      */
     @GET
-    @Path("/collect/delete")
-    @Produces(MediaType.TEXT_HTML)
-    public String delete(@QueryParam String cid) throws IOException {
+    @Path("/delete")
+    public Response delete(@QueryParam String cid) throws IOException {
         CollectUtils.stop(cid);
         if (!ServerUtils.getRunningFlumeInfoById(cid).isPresent()) {
             Optional<CollectInfo> ci = CollectUtils.getCollectInfoById(cid);
@@ -144,13 +196,13 @@ public class CollectController {
                 FileUtils.forceDelete(new File(ci.get().getJsonFilePath()));
             } else {
                 LOG.error("does not exist collect id " + cid);
-                PageAlertUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
+                PageUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
             }
-            PageAlertUtils.writeInfo("采集器删除成功");
+            PageUtils.writeInfo("采集器删除成功");
         } else {
-            PageAlertUtils.writeInfo("采集器删除失败[运行中]");
+            PageUtils.writeInfo("采集器删除失败[运行中]");
         }
-        return "redirect:/collect";
+        return PageUtils.redirect("/collect");
     }
 
     /**
@@ -165,16 +217,15 @@ public class CollectController {
      *                                 读写异常
      */
     @GET
-    @Path("/collect/start")
-    @Produces(MediaType.TEXT_HTML)
-    public String start(@QueryParam String cid) throws JsonSyntaxException, IOException {
+    @Path("/start")
+    public Response start(@QueryParam String cid) throws JsonSyntaxException, IOException {
         Optional<String> m = CollectUtils.start(cid);
         if (m.isPresent()) {
-            PageAlertUtils.writeInfo(m.get());
+            PageUtils.writeInfo(m.get());
         } else {
-            PageAlertUtils.writeInfo("采集器启动成功");
+            PageUtils.writeInfo("采集器启动成功");
         }
-        return "redirect:/state";
+        return PageUtils.redirect("/state");
     }
 
     /**
@@ -185,15 +236,14 @@ public class CollectController {
      * @return
      */
     @GET
-    @Path("/collect/stop")
-    @Produces(MediaType.TEXT_HTML)
-    public String stop(@QueryParam String cid) {
+    @Path("/stop")
+    public Response stop(@QueryParam String cid) {
         Optional<String> m = CollectUtils.stop(cid);
         if (m.isPresent()) {
-            PageAlertUtils.writeInfo(m.get());
+            PageUtils.writeInfo(m.get());
         } else {
-            PageAlertUtils.writeInfo("采集器停止成功");
+            PageUtils.writeInfo("采集器停止成功");
         }
-        return "redirect:/state";
+        return PageUtils.redirect("/state");
     }
 }
