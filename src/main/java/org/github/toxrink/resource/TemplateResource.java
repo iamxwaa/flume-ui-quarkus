@@ -47,7 +47,7 @@ public class TemplateResource {
     }
 
     @GET
-    @Path("/new")
+    @Path("new")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance templateForm() {
         TemplateInfo ti = new TemplateInfo();
@@ -55,7 +55,7 @@ public class TemplateResource {
     }
 
     @GET
-    @Path("/update")
+    @Path("update")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance templateUpdate(@QueryParam String tid) throws JsonSyntaxException, IOException {
         System.out.println(tid);
@@ -123,7 +123,7 @@ public class TemplateResource {
      *                                 读写错误
      */
     @GET
-    @Path("/delete")
+    @Path("delete")
     public Response delete(@QueryParam String tid) throws JsonSyntaxException, IOException {
         Optional<TemplateInfo> ti = TemplateUtils.getTemplateInfoById(tid);
         if (ti.isPresent()) {

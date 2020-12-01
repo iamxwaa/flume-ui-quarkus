@@ -74,7 +74,7 @@ public class PageResource {
     }
 
     @GET
-    @Path("/info")
+    @Path("info")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance info() {
         JVMInfo jvm = new JVMInfo();
@@ -87,14 +87,14 @@ public class PageResource {
     }
 
     @GET
-    @Path("/state")
+    @Path("state")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance state() {
         return state.data("flumeinfo", ServerUtils.getFlumeInfoList());
     }
 
     @GET
-    @Path("/tourist")
+    @Path("tourist")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance tourist() {
         return tourist.data("sources", touristConfig.getSourceMap()).data("channels", touristConfig.getChannelMap())
@@ -102,42 +102,42 @@ public class PageResource {
     }
 
     @GET
-    @Path("/setting/datafix")
+    @Path("setting/datafix")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance datafixFile() {
         return datafixFile.instance();
     }
 
     @GET
-    @Path("/flume")
+    @Path("flume")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance flume() throws IOException {
         return flume.data("fileinfo", UploadUtils.getFlumeJarList()).data("fi", UploadUtils.getLog4j());
     }
 
     @GET
-    @Path("/filewatcher")
+    @Path("filewatcher")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance filewatcher() {
         return filewatcher.data("fileinfo", FileWatcher.getUseingFileList());
     }
 
     @GET
-    @Path("/collectorwatcher")
+    @Path("collectorwatcher")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance collectorwatcher() {
         return collectorwatcher.data("status", CollectorWatcher.getAutoRestartMap().values());
     }
 
     @GET
-    @Path("/test/js")
+    @Path("test/js")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance js() {
         return js.instance();
     }
 
     @GET
-    @Path("/test/datafix")
+    @Path("test/datafix")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance datafix() {
         return datafix.instance();

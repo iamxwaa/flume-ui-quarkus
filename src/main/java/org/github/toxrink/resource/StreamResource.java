@@ -52,7 +52,7 @@ public class StreamResource {
      *                 返回请求
      */
     @GET
-    @Path("/pkg/download")
+    @Path("pkg/download")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public void pkgFile(@Context HttpServletResponse resp) {
         try {
@@ -135,7 +135,7 @@ public class StreamResource {
      *                         读写异常
      */
     @GET
-    @Path("/collect/package")
+    @Path("collect/package")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public void downloadPackage(@QueryParam String cid, @Context HttpServletResponse resp) throws IOException {
         List<FileInfo> list = CollectUtils.getCollectFilePath(cid);
@@ -154,7 +154,7 @@ public class StreamResource {
      *                         读写异常
      */
     @GET
-    @Path("/log/download")
+    @Path("log/download")
     @Produces(MediaType.APPLICATION_JSON)
     public void downloadLog(@QueryParam String cid, @Context HttpServletResponse resp) throws IOException {
         File file = CollectUtils.getLogFileById(cid);

@@ -96,7 +96,7 @@ public class FileResource extends StreamResource {
      * @return 跳转页面
      */
     @GET
-    @Path("/delete")
+    @Path("delete")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@QueryParam String name) {
         StringBuilder filePath = new StringBuilder(EnvUtils.getFilePath());
@@ -121,7 +121,7 @@ public class FileResource extends StreamResource {
      * @return 跳转页面
      */
     @POST
-    @Path("/upload/jar")
+    @Path("upload/jar")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadJar(@MultipartForm MultipartFormDataInput multipartFormDataInput) {
         AtomicBoolean mark = new AtomicBoolean(true);
@@ -161,7 +161,7 @@ public class FileResource extends StreamResource {
      * @return 跳转页面
      */
     @GET
-    @Path("/delete/jar")
+    @Path("delete/jar")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteJar(@QueryParam String name) {
         String dstFile = EnvUtils.getBaseHomePath() + "/flume/" + UploadUtils.FLUME_JAR_DIR + name;
@@ -187,7 +187,7 @@ public class FileResource extends StreamResource {
      *                         读写异常
      */
     @POST
-    @Path("/save")
+    @Path("save")
     public Response update(@FormParam String path, @FormParam String content) throws IOException {
         StringBuilder filePath = new StringBuilder(EnvUtils.getFilePath());
         filePath.append("/" + path);
@@ -215,7 +215,7 @@ public class FileResource extends StreamResource {
      *                         读写异常
      */
     @POST
-    @Path("/log4j/save")
+    @Path("log4j/save")
     public Response updateLog4j(@FormParam String content) throws IOException {
         File file = new File(UploadUtils.getLog4j().getPath());
         boolean mark = false;
@@ -237,7 +237,7 @@ public class FileResource extends StreamResource {
      *                 返回请求
      */
     @GET
-    @Path("/download")
+    @Path("download")
     @Produces(MediaType.APPLICATION_JSON)
     public void downloadFile(@QueryParam String name, @Context HttpServletResponse resp) {
         StringBuilder filePath = new StringBuilder(EnvUtils.getFilePath());
@@ -256,7 +256,7 @@ public class FileResource extends StreamResource {
      *                 返回请求
      */
     @GET
-    @Path("/download/jar")
+    @Path("download/jar")
     @Produces(MediaType.APPLICATION_JSON)
     public void downloadJarFile(@QueryParam String name, @Context HttpServletResponse resp) {
         String dstFile = EnvUtils.getBaseHomePath() + "/flume/plugins.d/custom/lib/" + name;
@@ -275,7 +275,7 @@ public class FileResource extends StreamResource {
      * @return
      */
     @POST
-    @Path("/datafix/save")
+    @Path("datafix/save")
     public Response saveDatafix(@FormParam String datafixName, @FormParam String datafixContent) {
         File file = new File(UploadUtils.getStorePath(datafixName));
         boolean mark = true;

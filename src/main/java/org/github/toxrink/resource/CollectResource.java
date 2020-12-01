@@ -59,7 +59,7 @@ public class CollectResource {
     }
 
     @GET
-    @Path("/new")
+    @Path("new")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance collectNew() {
         CollectInfo ci = new CollectInfo();
@@ -70,7 +70,7 @@ public class CollectResource {
     }
 
     @GET
-    @Path("/update")
+    @Path("update")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance collectUpdate(@QueryParam String cid) throws JsonSyntaxException, IOException {
         String cp = CollectUtils.getJsonFilePath(cid);
@@ -107,7 +107,7 @@ public class CollectResource {
      *                                 读写异常
      */
     @POST
-    @Path("/save")
+    @Path("save")
     public Response save(@FormParam String cid, @FormParam String name, @FormParam String desc,
             @FormParam String company, @FormParam String product, @FormParam String productVersion,
             @FormParam String setting, @FormParam String memSize, @FormParam String autoStart,
@@ -184,7 +184,7 @@ public class CollectResource {
      *                         读写异常
      */
     @GET
-    @Path("/delete")
+    @Path("delete")
     public Response delete(@QueryParam String cid) throws IOException {
         CollectUtils.stop(cid);
         if (!ServerUtils.getRunningFlumeInfoById(cid).isPresent()) {
@@ -217,7 +217,7 @@ public class CollectResource {
      *                                 读写异常
      */
     @GET
-    @Path("/start")
+    @Path("start")
     public Response start(@QueryParam String cid) throws JsonSyntaxException, IOException {
         Optional<String> m = CollectUtils.start(cid);
         if (m.isPresent()) {
@@ -236,7 +236,7 @@ public class CollectResource {
      * @return
      */
     @GET
-    @Path("/stop")
+    @Path("stop")
     public Response stop(@QueryParam String cid) {
         Optional<String> m = CollectUtils.stop(cid);
         if (m.isPresent()) {
