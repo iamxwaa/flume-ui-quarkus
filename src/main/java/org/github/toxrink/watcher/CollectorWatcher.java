@@ -69,7 +69,7 @@ public class CollectorWatcher {
                 ? Pattern.compile("com.sun.management.jmxremote.port=(\\d{3,5})")
                 : Pattern.compile("flume.monitoring.port=(\\d{3,5})");
         long checkTime = System.currentTimeMillis();
-        for (String p : IOUtils.readLines(proc.getInputStream())) {
+        for (String p : IOUtils.readLines(proc.getInputStream(), EnvUtils.UTF8)) {
             if (!p.contains("DflumeCid")) {
                 continue;
             }
@@ -132,7 +132,7 @@ public class CollectorWatcher {
                 ? Pattern.compile("com.sun.management.jmxremote.port=(\\d{3,5})")
                 : Pattern.compile("flume.monitoring.port=(\\d{3,5})");
         long checkTime = System.currentTimeMillis();
-        for (String p : IOUtils.readLines(proc.getInputStream())) {
+        for (String p : IOUtils.readLines(proc.getInputStream(), EnvUtils.UTF8)) {
             String[] tmp = p.split("org.apache.flume.node.Application");
             if (tmp.length > 1 && StringUtils.isNumeric(tmp[0].trim())) {
                 Matcher mat = ptn.matcher(tmp[1]);
@@ -166,7 +166,7 @@ public class CollectorWatcher {
         FlumeCheck flumeCheck = null;
         boolean getPid = false;
         long checkTime = System.currentTimeMillis();
-        for (String p : IOUtils.readLines(proc.getInputStream())) {
+        for (String p : IOUtils.readLines(proc.getInputStream(), EnvUtils.UTF8)) {
             if (StringUtils.isEmpty(p)) {
                 continue;
             }

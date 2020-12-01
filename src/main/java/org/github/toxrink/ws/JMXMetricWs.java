@@ -1,5 +1,6 @@
 package org.github.toxrink.ws;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -11,7 +12,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.metric.JMXMetricUtils;
@@ -39,7 +39,11 @@ public class JMXMetricWs {
      */
     @OnClose
     public void onClose(Session session) {
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
     /**
@@ -73,7 +77,11 @@ public class JMXMetricWs {
     @OnError
     public void onError(Session session, Throwable error) {
         LOG.error("", error);
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
 }

@@ -46,7 +46,7 @@ public class DebugResource {
             String jsName = "test-" + System.currentTimeMillis();
             File testJS = new File(FileUtils.getTempDirectory(), jsName);
             try {
-                FileUtils.writeStringToFile(testJS, jscontent);
+                FileUtils.writeStringToFile(testJS, jscontent, EnvUtils.UTF8);
             } catch (IOException e) {
                 LOG.error("", e);
                 return "创建临时JS文件失败";

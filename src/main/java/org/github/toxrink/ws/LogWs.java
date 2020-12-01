@@ -14,7 +14,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.CollectInfo;
@@ -47,7 +46,11 @@ public class LogWs {
      */
     @OnClose
     public void onClose(Session session) {
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
     /**
@@ -68,8 +71,12 @@ public class LogWs {
                     CmdWrapper.tailf(new FileWatcherImpl(session), file, 1024 * 2, 0);
                 } else {
                     session.getAsyncRemote().sendText("Log file does not exist !!!");
-                    IOUtils.closeQuietly(session);
                     LOG.warn(message + " log file does not exist");
+                    try {
+                        session.close();
+                    } catch (IOException e) {
+                        LOG.error("", e);
+                    }
                 }
             });
         }
@@ -86,7 +93,11 @@ public class LogWs {
     @OnError
     public void onError(Session session, Throwable error) {
         LOG.error("", error);
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
     static class FileWatcherImpl implements FileWatcher {
@@ -103,7 +114,11 @@ public class LogWs {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
             } catch (IOException e) {
                 LOG.error("", e);
-                IOUtils.closeQuietly(session);
+                try {
+                    session.close();
+                } catch (IOException e1) {
+                    LOG.error("", e1);
+                }
             }
         }
 

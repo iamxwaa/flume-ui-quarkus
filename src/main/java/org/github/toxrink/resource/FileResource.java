@@ -1,21 +1,9 @@
 package org.github.toxrink.resource;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
-import java.util.zip.GZIPOutputStream;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -28,30 +16,21 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.github.toxrink.model.MultipartBody;
-import org.github.toxrink.model.TemplateInfo;
-import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.CommonUtils;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.PageUtils;
-import org.github.toxrink.utils.TemplateUtils;
 import org.github.toxrink.utils.UploadUtils;
 import org.jboss.resteasy.annotations.jaxrs.FormParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
-import x.os.CmdWrapper;
-import x.os.FileInfo;
 import x.utils.TimeUtils;
 
 @Path("file")
@@ -99,10 +78,8 @@ public class FileResource extends StreamResource {
             }
             File file = new File(UploadUtils.getStorePath(multipartBody.getFileName()));
             mark.set(true);
-            try {
-                FileOutputStream output = new FileOutputStream(file);
+            try (FileOutputStream output = new FileOutputStream(file)) {
                 IOUtils.copy(multipartBody.getFile(), output);
-                IOUtils.closeQuietly(output);
                 LOG.info("upload file to " + file.getAbsolutePath());
             } catch (IOException e) {
                 LOG.error("", e);
@@ -166,10 +143,8 @@ public class FileResource extends StreamResource {
                 LOG.info("目标文件已存在,备份为: " + dstFile2);
             }
             file = new File(dstFile);
-            try {
-                FileOutputStream output = new FileOutputStream(file);
+            try (FileOutputStream output = new FileOutputStream(file)) {
                 IOUtils.copy(m.getFile(), output);
-                IOUtils.closeQuietly(output);
                 LOG.info("upload file to " + file.getAbsolutePath());
             } catch (IOException e) {
                 LOG.error("", e);
@@ -306,10 +281,8 @@ public class FileResource extends StreamResource {
     public Response saveDatafix(@FormParam String datafixName, @FormParam String datafixContent) {
         File file = new File(UploadUtils.getStorePath(datafixName));
         boolean mark = true;
-        try {
-            FileOutputStream output = new FileOutputStream(file);
+        try (FileOutputStream output = new FileOutputStream(file)) {
             IOUtils.write(datafixContent.getBytes(), output);
-            IOUtils.closeQuietly(output);
             LOG.info("upload file to " + file.getAbsolutePath());
         } catch (IOException e) {
             LOG.error("", e);

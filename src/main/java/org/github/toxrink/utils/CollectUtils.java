@@ -95,7 +95,7 @@ public final class CollectUtils {
                     CommonUtils.writeFile(file, ci.getSetting());
                     pathList.add(new FileInfo(file));
                 }
-                IOUtils.readLines(new ByteArrayInputStream(ci.getSetting().getBytes())).forEach(line -> {
+                IOUtils.readLines(new ByteArrayInputStream(ci.getSetting().getBytes()), EnvUtils.UTF8).forEach(line -> {
                     int idx = line.indexOf("=");
                     if (-1 != idx && !line.startsWith("#")) {
                         int i1 = line.indexOf(".") + 1;

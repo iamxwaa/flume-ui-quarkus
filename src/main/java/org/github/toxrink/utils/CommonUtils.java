@@ -71,14 +71,13 @@ public class CommonUtils {
             conn.setConnectTimeout(30 * 1000);
             conn.setReadTimeout(30 * 1000);
             conn.setDoOutput(true);
-            conn.setDoInput(true);
+            conn.setDoInput(false);
             conn.connect();
             conn.getOutputStream().write(
                     new StringBuilder().append("{\"token\":\"").append(token).append("\"}").toString().getBytes());
-            boolean auth = IOUtils.readLines(conn.getInputStream()).stream().anyMatch(s -> {
+            boolean auth = IOUtils.readLines(conn.getInputStream(), EnvUtils.UTF8).stream().anyMatch(s -> {
                 return s.contains("\"res\":true");
             });
-            IOUtils.closeQuietly(conn.getInputStream());
             return auth;
         } catch (IOException e) {
             LOG.error("", e);
@@ -359,9 +358,7 @@ public class CommonUtils {
     protected static Map<String, String> getFileConfigToMap(String filePath) {
         Properties pps = new Properties();
         Map<String, String> map = null;
-        InputStream in = null;
-        try {
-            in = new BufferedInputStream(new FileInputStream(filePath));
+        try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
             pps.load(new InputStreamReader(in, "UTF-8"));
             map = new LinkedHashMap<>(pps.keySet().size());
             Map<String, String> finalMap = map;
@@ -372,17 +369,13 @@ public class CommonUtils {
         } catch (IOException e) {
             LOG.error("", e);
             return null;
-        } finally {
-            IOUtils.closeQuietly(in);
         }
     }
 
     protected static Map<String, String> getFileConfigToMap2(String content) {
         Properties pps = new Properties();
         Map<String, String> map = null;
-        InputStream in = null;
-        try {
-            in = new ByteArrayInputStream(content.getBytes("UTF-8"));
+        try (InputStream in = new ByteArrayInputStream(content.getBytes("UTF-8"));) {
             pps.load(new InputStreamReader(in, "UTF-8"));
             map = new LinkedHashMap<>(pps.keySet().size());
             Map<String, String> finalMap = map;
@@ -393,8 +386,6 @@ public class CommonUtils {
         } catch (IOException e) {
             LOG.error("", e);
             return null;
-        } finally {
-            IOUtils.closeQuietly(in);
         }
     }
 

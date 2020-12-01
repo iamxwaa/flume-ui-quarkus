@@ -13,7 +13,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -48,7 +47,11 @@ public class ServerLogWs {
      */
     @OnClose
     public void onClose(Session session) {
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
     /**
@@ -83,7 +86,11 @@ public class ServerLogWs {
     @OnError
     public void onError(Session session, Throwable error) {
         LOG.error("", error);
-        IOUtils.closeQuietly(session);
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error("", e);
+        }
     }
 
     static class FileWatcherImpl implements FileWatcher {
@@ -100,7 +107,11 @@ public class ServerLogWs {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
             } catch (Exception e) {
                 LOG.error("", e);
-                IOUtils.closeQuietly(session);
+                try {
+                    session.close();
+                } catch (IOException e1) {
+                    LOG.error("", e1);
+                }
             }
         }
 

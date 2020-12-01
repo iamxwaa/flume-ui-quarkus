@@ -25,7 +25,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
@@ -166,22 +165,14 @@ public class StreamResource {
             return;
         }
         File zfile = file;
-        ZipArchiveOutputStream zout = null;
-        try {
-            List<FileInfo> list = new ArrayList<>();
-            for (File ff : new File(EnvUtils.getFlumeLogHomePath(cid)).listFiles()) {
-                FileInfo fi = new FileInfo();
-                fi.setName(ff.getName());
-                fi.setPath(ff.getAbsolutePath());
-                list.add(fi);
-            }
-            zfile = CmdWrapper.zip(list, cid + "-");
-        } catch (IOException e) {
-            LOG.error("", e);
-        } finally {
-            IOUtils.closeQuietly(zout);
+        List<FileInfo> list = new ArrayList<>();
+        for (File ff : new File(EnvUtils.getFlumeLogHomePath(cid)).listFiles()) {
+            FileInfo fi = new FileInfo();
+            fi.setName(ff.getName());
+            fi.setPath(ff.getAbsolutePath());
+            list.add(fi);
         }
-
+        zfile = CmdWrapper.zip(list, cid + "-");
         download(cid + ".zip", zfile, resp);
     }
 
@@ -205,21 +196,17 @@ public class StreamResource {
         }
     }
 
-    protected void download(String name, InputStream in, HttpServletResponse resp) throws UnsupportedEncodingException {
+    protected void download(String name, InputStream inputStream, HttpServletResponse resp)
+            throws UnsupportedEncodingException {
         resp.setCharacterEncoding("UTF-8");
         resp.setHeader("content-type", "application/octet-stream");
         resp.setHeader("content-encoding", "gzip");
         resp.setContentType("application/octet-stream");
         resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(name, "UTF-8"));
-        OutputStream out = null;
-        try {
-            out = new GZIPOutputStream(resp.getOutputStream());
+        try (OutputStream out = new GZIPOutputStream(resp.getOutputStream()); InputStream in = inputStream) {
             IOUtils.copy(in, out);
         } catch (IOException e) {
             LOG.error("", e);
-        } finally {
-            IOUtils.closeQuietly(in);
-            IOUtils.closeQuietly(out);
         }
     }
 }

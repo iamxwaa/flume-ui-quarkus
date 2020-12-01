@@ -15,7 +15,6 @@ import org.github.toxrink.utils.ServerUtils;
 import org.github.toxrink.utils.UploadUtils;
 import org.github.toxrink.watcher.CollectorWatcher;
 import org.github.toxrink.watcher.FileWatcher;
-import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
