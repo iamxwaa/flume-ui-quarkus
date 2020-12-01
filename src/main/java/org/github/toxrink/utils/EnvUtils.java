@@ -5,10 +5,10 @@ import java.nio.charset.Charset;
 
 import com.google.common.collect.ImmutableList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.FlumeUi;
 import org.github.toxrink.config.EnvConfig;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 路径处理
@@ -17,9 +17,8 @@ import org.github.toxrink.config.EnvConfig;
  *
  *         2018年8月2日
  */
+@Log4j2
 public final class EnvUtils {
-    private static final Log LOG = LogFactory.getLog(EnvUtils.class);
-
     public static final Charset UTF8 = Charset.forName("UTF-8");
 
     /**
@@ -30,7 +29,7 @@ public final class EnvUtils {
                 .forEach(path -> {
                     File file = new File(path);
                     if (!file.exists()) {
-                        LOG.info("create dir " + file.getAbsolutePath());
+                        log.info("create dir " + file.getAbsolutePath());
                         file.mkdirs();
                     }
                 });

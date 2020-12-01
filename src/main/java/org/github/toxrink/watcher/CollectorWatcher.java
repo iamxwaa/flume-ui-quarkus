@@ -12,13 +12,13 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.metric.JMXMetricUtils;
 import org.github.toxrink.model.FlumeCheck;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.ServerUtils;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 监控flume运行状态
@@ -27,9 +27,8 @@ import org.github.toxrink.utils.ServerUtils;
  * 
  *         2020年06月28日
  */
+@Log4j2
 public class CollectorWatcher {
-    private static final Log LOG = LogFactory.getLog(CollectorWatcher.class);
-
     private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     /**
@@ -73,8 +72,8 @@ public class CollectorWatcher {
             if (!p.contains("DflumeCid")) {
                 continue;
             }
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(p);
+            if (log.isDebugEnabled()) {
+                log.debug(p);
             }
             String[] tmp = p.split("org.apache.flume.node.Application");
             int start = -1;
@@ -200,11 +199,11 @@ public class CollectorWatcher {
      * 启动监控
      */
     public static void watch() {
-        LOG.info("启动采集器状态监控");
+        log.info("启动采集器状态监控");
         executor.scheduleWithFixedDelay(() -> {
             if (updating) {
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug("正在更新状态,上次更新时间" + updateTime);
+                if (log.isDebugEnabled()) {
+                    log.debug("正在更新状态,上次更新时间" + updateTime);
                 }
                 return;
             }
@@ -227,31 +226,31 @@ public class CollectorWatcher {
                 });
                 autoRestartMap.forEach((k, v) -> {
                     if (v.isIgnore()) {
-                        if (LOG.isDebugEnabled()) {
-                            LOG.debug("超过连续重试自动重启次数" + v.getRetry() + ",请手动启动: " + k);
+                        if (log.isDebugEnabled()) {
+                            log.debug("超过连续重试自动重启次数" + v.getRetry() + ",请手动启动: " + k);
                         }
                         return;
                     }
                     FlumeCheck flumeCheck = statusMap.get(k);
                     if (CollectUtils.isStopping(k)) {
-                        LOG.info("手动关闭中,忽略自动重启:" + k);
+                        log.info("手动关闭中,忽略自动重启:" + k);
                         return;
                     }
                     // 服务挂了,重启
                     if (null == flumeCheck || 0 == flumeCheck.getState()) {
                         new Thread(() -> {
                             if (v.isRestarting()) {
-                                if (LOG.isDebugEnabled()) {
-                                    LOG.debug("重启中:" + k);
+                                if (log.isDebugEnabled()) {
+                                    log.debug("重启中:" + k);
                                 }
                                 return;
                             }
-                            LOG.warn("采集器" + k + "已停止运行,尝试自动重启.");
+                            log.warn("采集器" + k + "已停止运行,尝试自动重启.");
                             try {
                                 v.setRestarting(true);
                                 JMXMetricUtils.closeJMXService(k);
                                 if (v.getRetry() > RETRY) {
-                                    LOG.error("超过连续重试自动重启次数" + v.getRetry() + ",请手动启动: " + k);
+                                    log.error("超过连续重试自动重启次数" + v.getRetry() + ",请手动启动: " + k);
                                     v.setIgnore(true);
                                     return;
                                 }
@@ -274,7 +273,7 @@ public class CollectorWatcher {
                     }
                 });
             } catch (Exception e) {
-                LOG.error("", e);
+                log.error("", e);
             }
         }, 0, 10, TimeUnit.SECONDS);
     }
@@ -285,8 +284,8 @@ public class CollectorWatcher {
      * @return
      */
     public static Map<String, FlumeCheck> getRunningCollector() {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("更新采集器运行状态");
+        if (log.isDebugEnabled()) {
+            log.debug("更新采集器运行状态");
         }
         Map<String, FlumeCheck> map = new HashMap<>();
         try {
@@ -299,22 +298,22 @@ public class CollectorWatcher {
                     try {
                         putWindowsStatusByJPS(map);
                     } catch (IOException e1) {
-                        LOG.error("", e1);
+                        log.error("", e1);
                     }
                 }
             } else {
                 try {
                     putLinuxStatus(map);
                 } catch (IOException e) {
-                    LOG.error("", e);
+                    log.error("", e);
                 }
             }
             updateTime = System.currentTimeMillis();
         } finally {
             updating = false;
         }
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("更新采集器运行状态完毕");
+        if (log.isDebugEnabled()) {
+            log.debug("更新采集器运行状态完毕");
         }
         return map;
     }
@@ -367,10 +366,10 @@ public class CollectorWatcher {
             return;
         }
         if (CollectUtils.isStopping(cid)) {
-            LOG.info("手动关闭中,取消添加采集器进程守护:" + cid);
+            log.info("手动关闭中,取消添加采集器进程守护:" + cid);
             return;
         }
-        LOG.info("添加采集器进程守护: " + cid);
+        log.info("添加采集器进程守护: " + cid);
         FlumeCheck flumeCheck2 = new FlumeCheck();
         flumeCheck2.setId(cid);
         flumeCheck2.setIgnore(false);
@@ -387,7 +386,7 @@ public class CollectorWatcher {
      *                id
      */
     public static void removeAutoRestart(String cid) {
-        LOG.info("移除采集器进程守护: " + cid);
+        log.info("移除采集器进程守护: " + cid);
         autoRestartMap.remove(cid);
     }
 }

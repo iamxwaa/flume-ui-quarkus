@@ -9,12 +9,11 @@ import java.util.stream.Collectors;
 import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.FlumeCheck;
 import org.github.toxrink.model.FlumeInfo;
 import org.github.toxrink.watcher.CollectorWatcher;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 
 /**
@@ -24,9 +23,8 @@ import x.os.CmdWrapper;
  *
  *         2018年8月2日
  */
+@Log4j2
 public final class ServerUtils {
-    private static final Log LOG = LogFactory.getLog(ServerUtils.class);
-
     /**
      * 获取采集器运行情况
      * 
@@ -54,7 +52,7 @@ public final class ServerUtils {
                     cmd = CollectUtils.getStartCmd(f.getId());
                     fi.setCmd(cmd.orElse("error"));
                 } catch (JsonSyntaxException | IOException e) {
-                    LOG.error("", e);
+                    log.error("", e);
                 }
             }
             if (CollectUtils.isRestarting(fi.getId())) {
@@ -73,7 +71,8 @@ public final class ServerUtils {
      * 获取运行的采集器
      * 
      * @return Map(采集器id,运行信息)
-     * @throws IOException 控制台错误
+     * @throws IOException
+     *                         控制台错误
      */
     public static Map<String, FlumeCheck> getRunningFlumeInfoList() {
         while (CollectorWatcher.isUpdating()) {
@@ -85,7 +84,8 @@ public final class ServerUtils {
     /**
      * 根据配置文件名获取运行情况
      * 
-     * @param cid 采集器id
+     * @param cid
+     *                采集器id
      * @return 运行信息
      */
     public static Optional<FlumeInfo> getRunningFlumeInfoById(String cid) {

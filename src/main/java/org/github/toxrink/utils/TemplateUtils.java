@@ -10,13 +10,12 @@ import java.util.stream.Collectors;
 import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.TemplateInfo;
 
-public final class TemplateUtils {
-    private static final Log LOG = LogFactory.getLog(TemplateUtils.class);
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
+public final class TemplateUtils {
     /**
      * 获取采集器信息
      * 
@@ -29,7 +28,7 @@ public final class TemplateUtils {
                 TemplateInfo ti = CommonUtils.readFileToObject(f, TemplateInfo.class);
                 return ti;
             } else {
-                LOG.warn("ignore template : " + f.getAbsolutePath());
+                log.warn("ignore template : " + f.getAbsolutePath());
             }
             return null;
         }).filter(f -> f != null).collect(Collectors.toList()));
@@ -38,22 +37,27 @@ public final class TemplateUtils {
     /**
      * 保存采集器信息
      * 
-     * @param ti 模板对象
-     * @throws IOException 写错误
+     * @param ti
+     *               模板对象
+     * @throws IOException
+     *                         写错误
      */
     public static void save(TemplateInfo ti) throws IOException {
         fillTemplateInfo(ti, true);
-        LOG.info("save template to " + ti.getJsonFilePath());
+        log.info("save template to " + ti.getJsonFilePath());
         CommonUtils.writeFile(ti.getJsonFilePath(), ti);
     }
 
     /**
      * 获取模板对象
      * 
-     * @param tid 模板id
+     * @param tid
+     *                模板id
      * @return 模板对象
-     * @throws JsonSyntaxException json格式错误
-     * @throws IOException         读错误
+     * @throws JsonSyntaxException
+     *                                 json格式错误
+     * @throws IOException
+     *                                 读错误
      */
     public static Optional<TemplateInfo> getTemplateInfoById(String tid) throws JsonSyntaxException, IOException {
         if (StringUtils.isEmpty(tid)) {
@@ -68,20 +72,24 @@ public final class TemplateUtils {
     /**
      * 修改采集器信息
      * 
-     * @param ti 模板对象
-     * @throws IOException 写异常
+     * @param ti
+     *               模板对象
+     * @throws IOException
+     *                         写异常
      */
     public static void update(TemplateInfo ti) throws IOException {
         fillTemplateInfo(ti, false);
-        LOG.info("update template : " + ti.getJsonFilePath());
+        log.info("update template : " + ti.getJsonFilePath());
         CommonUtils.writeFile(ti.getJsonFilePath(), ti);
     }
 
     /**
      * 补全CollectInfo 必要字段
      * 
-     * @param ti     模板对象
-     * @param autoId 是否自动生成模板id
+     * @param ti
+     *                   模板对象
+     * @param autoId
+     *                   是否自动生成模板id
      */
     public static void fillTemplateInfo(TemplateInfo ti, boolean autoId) {
         if (StringUtils.isEmpty(ti.getId()) && !autoId) {
@@ -98,7 +106,8 @@ public final class TemplateUtils {
     /**
      * 获取采集器信息文件名
      * 
-     * @param tid 模板id
+     * @param tid
+     *                模板id
      * @return
      */
     public static String getJsonFilePath(String tid) {
@@ -109,7 +118,8 @@ public final class TemplateUtils {
     /**
      * 获取采集器信息文件名
      * 
-     * @param ti TemplateInfo
+     * @param ti
+     *               TemplateInfo
      * @return
      */
     public static String getTemplateId(TemplateInfo ti) {

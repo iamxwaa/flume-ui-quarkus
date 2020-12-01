@@ -13,16 +13,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import x.utils.TimeUtils;
-
 import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.model.UsingFileInfo;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.ServerUtils;
+
+import lombok.extern.log4j.Log4j2;
+import x.utils.TimeUtils;
 
 /**
  * 监听配置文件改动
@@ -31,9 +29,8 @@ import org.github.toxrink.utils.ServerUtils;
  *
  *         2019年1月18日
  */
+@Log4j2
 public class FileWatcher {
-    private static final Log LOG = LogFactory.getLog(FileWatcher.class);
-
     private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     /**
@@ -61,10 +58,10 @@ public class FileWatcher {
             watch2();
             return;
         }
-        LOG.info("开启(全部采集器)配置文件改动监听");
+        log.info("开启(全部采集器)配置文件改动监听");
         executor.scheduleWithFixedDelay(() -> {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("refresh using file info");
+            if (log.isDebugEnabled()) {
+                log.debug("refresh using file info");
             }
             Map<String, UsingFileInfo> ufiMapTmp = new HashMap<String, UsingFileInfo>();
             // 获取正在使用的配置
@@ -96,7 +93,7 @@ public class FileWatcher {
                         ufiMap.put(k, ufiTmp);
                         // 配置文件改动,重启采集器
                         if (!already.contains(ufiTmp.getCid())) {
-                            LOG.info(ufiTmp.getPath() + " was changed , restart collector.");
+                            log.info(ufiTmp.getPath() + " was changed , restart collector.");
                             int i = 0;
                             while (i < RETRY) {
                                 if (CollectUtils.restart(ufiTmp.getCid())) {
@@ -106,7 +103,7 @@ public class FileWatcher {
                                 i++;
                             }
                             if (i >= RETRY) {
-                                LOG.error(">> " + ufiTmp.getCid() + " << start fail " + i + " times !!!");
+                                log.error(">> " + ufiTmp.getCid() + " << start fail " + i + " times !!!");
                             }
                         }
                     }
@@ -132,10 +129,10 @@ public class FileWatcher {
      * 监听启用自动重启配置的采集器
      */
     public static void watch2() {
-        LOG.info("开启配置文件改动监听");
+        log.info("开启配置文件改动监听");
         executor.scheduleWithFixedDelay(() -> {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("refresh using file info");
+            if (log.isDebugEnabled()) {
+                log.debug("refresh using file info");
             }
             Map<String, UsingFileInfo> ufiMapTmp = new HashMap<String, UsingFileInfo>();
             // 获取正在使用的配置
@@ -172,7 +169,7 @@ public class FileWatcher {
                         ufiMap.put(k, ufiTmp);
                         // 配置文件改动,重启采集器
                         if (!already.contains(ufiTmp.getCid())) {
-                            LOG.info(ufiTmp.getPath() + " was changed , restart collector.");
+                            log.info(ufiTmp.getPath() + " was changed , restart collector.");
                             int i = 0;
                             while (i < RETRY) {
                                 if (CollectUtils.restart(ufiTmp.getCid())) {
@@ -182,7 +179,7 @@ public class FileWatcher {
                                 i++;
                             }
                             if (i >= RETRY) {
-                                LOG.error(">> " + ufiTmp.getCid() + " << start fail " + i + " times !!!");
+                                log.error(">> " + ufiTmp.getCid() + " << start fail " + i + " times !!!");
                             }
                         }
                     }

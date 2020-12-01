@@ -13,19 +13,17 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.github.toxrink.utils.EnvUtils;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.FileWatcher;
 
 @ServerEndpoint("/ws/uilog")
 @ApplicationScoped
+@Log4j2
 public class ServerLogWs {
-    private static final Log LOG = LogFactory.getLog(ServerLogWs.class);
-
     private static final ExecutorService exec = Executors.newFixedThreadPool(10);
 
     @ConfigProperty(name = "quarkus.log.file.path")
@@ -50,7 +48,7 @@ public class ServerLogWs {
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -64,7 +62,7 @@ public class ServerLogWs {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        LOG.info(message + " fetching ui log");
+        log.info(message + " fetching ui log");
         exec.execute(() -> {
             if (session.isOpen()) {
                 File file = new File(serverLogPath);
@@ -85,11 +83,11 @@ public class ServerLogWs {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        LOG.error("", error);
+        log.error("", error);
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -106,11 +104,11 @@ public class ServerLogWs {
             try {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
             } catch (Exception e) {
-                LOG.error("", e);
+                log.error("", e);
                 try {
                     session.close();
                 } catch (IOException e1) {
-                    LOG.error("", e1);
+                    log.error("", e1);
                 }
             }
         }

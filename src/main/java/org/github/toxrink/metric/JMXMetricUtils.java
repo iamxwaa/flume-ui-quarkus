@@ -19,6 +19,8 @@ import javax.management.remote.JMXServiceURL;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.watcher.CollectorWatcher;
 
+import lombok.extern.log4j.Log4j2;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.flume.instrumentation.ChannelCounterMBean;
@@ -28,10 +30,8 @@ import x.os.CmdWrapper;
 /**
  * JMXMetric
  */
+@Log4j2
 public class JMXMetricUtils {
-
-    private static final Log LOG = LogFactory.getLog(JMXMetricUtils.class);
-
     private static final Map<String, JMXService> jmxServiceMap = Collections.synchronizedMap(new HashMap<>());
 
     // public static void main(String[] args) throws Exception {
@@ -45,7 +45,8 @@ public class JMXMetricUtils {
     /**
      * 关闭监控
      * 
-     * @param cid 采集器id
+     * @param cid
+     *                采集器id
      */
     public static void closeJMXService(String cid) {
         JMXService service = jmxServiceMap.remove(cid);
@@ -57,7 +58,8 @@ public class JMXMetricUtils {
     /**
      * 获取监控数据
      * 
-     * @param cid 采集器id
+     * @param cid
+     *                采集器id
      * @return
      */
     public static String getMetricJSON(String cid) {
@@ -85,7 +87,7 @@ public class JMXMetricUtils {
             } catch (IllegalArgumentException e) {
                 return "{}";
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
             }
         }
         return getMetricJSON(service);
@@ -94,7 +96,8 @@ public class JMXMetricUtils {
     /**
      * 获取监控数据
      * 
-     * @param service JMXService
+     * @param service
+     *                    JMXService
      * @return
      */
     public static String getMetricJSON(JMXService service) {
@@ -119,7 +122,7 @@ public class JMXMetricUtils {
             }
         } catch (Exception e) {
             closeJMXService(service.cid);
-            LOG.error("", e);
+            log.error("", e);
         }
         stringBuilder.append("}");
         return stringBuilder.toString();
@@ -145,11 +148,11 @@ public class JMXMetricUtils {
 
         void connect() throws IOException {
             url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:" + port + "/jmxrmi");
-            LOG.info(cid + " create jmx service at " + url.toString());
+            log.info(cid + " create jmx service at " + url.toString());
             jmxConnector = JMXConnectorFactory.newJMXConnector(url, null);
             jmxConnector.connect();
             mbeanServerConnection = jmxConnector.getMBeanServerConnection();
-            LOG.info(cid + " jmx service connected");
+            log.info(cid + " jmx service connected");
         }
 
         Map<String, ChannelCounterMBean> getChannelCounterMBeans() throws MalformedObjectNameException, IOException {
@@ -173,9 +176,9 @@ public class JMXMetricUtils {
         void close() {
             try {
                 jmxConnector.close();
-                LOG.info(cid + " jmx service closed");
+                log.info(cid + " jmx service closed");
             } catch (IOException e) {
-                LOG.error(e);
+                log.error(e);
             }
             isClosed = true;
         }

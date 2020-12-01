@@ -22,8 +22,6 @@ import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.config.EnvConfig;
 import org.github.toxrink.metric.JMXMetricUtils;
 import org.github.toxrink.metric.MetricUtils;
@@ -31,6 +29,7 @@ import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.model.FlumeInfo;
 import org.github.toxrink.watcher.CollectorWatcher;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.FileInfo;
 
@@ -41,9 +40,8 @@ import x.os.FileInfo;
  *
  *         2018年8月3日
  */
+@Log4j2
 public final class CollectUtils {
-    private static final Log LOG = LogFactory.getLog(CollectUtils.class);
-
     /**
      * 重启中的cid
      */
@@ -135,7 +133,7 @@ public final class CollectUtils {
 
                 });
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
             }
         }
 
@@ -154,7 +152,7 @@ public final class CollectUtils {
                 CollectInfo ci = CommonUtils.readFileToObject(f, CollectInfo.class);
                 return ci;
             } else {
-                LOG.warn("ignore collect : " + f.getAbsolutePath());
+                log.warn("ignore collect : " + f.getAbsolutePath());
             }
             return null;
         }).filter(f -> f != null).collect(Collectors.toList()));
@@ -171,14 +169,14 @@ public final class CollectUtils {
     public static void save(CollectInfo ci) throws IOException {
         fillCollectInfo(ci, true);
         createFlumeConf(ci, true);
-        LOG.info("save flume collect to " + ci.getJsonFilePath());
+        log.info("save flume collect to " + ci.getJsonFilePath());
         CommonUtils.writeFile(ci.getJsonFilePath(), ci);
     }
 
     private static void createFlumeConf(CollectInfo ci, boolean force) throws IOException {
         File file = new File(ci.getConfFilePath());
         if (!file.exists() || force) {
-            LOG.info("save flume config to " + ci.getConfFilePath());
+            log.info("save flume config to " + ci.getConfFilePath());
             CommonUtils.writeFile(file, ci.getSetting());
         }
     }
@@ -193,14 +191,14 @@ public final class CollectUtils {
      */
     public static void update(CollectInfo ci) throws IOException {
         fillCollectInfo(ci, false);
-        LOG.info("update flume collect config : " + ci.getConfFilePath());
+        log.info("update flume collect config : " + ci.getConfFilePath());
         if (!CommonUtils.readFileToString(ci.getConfFilePath()).equals(ci.getSetting())) {
-            LOG.info("backup flume collect config to " + ci.getConfFilePath() + ".bak");
+            log.info("backup flume collect config to " + ci.getConfFilePath() + ".bak");
             // 每次修改备份上一次的文件
             CommonUtils.backupFile(ci.getConfFilePath());
         }
         CommonUtils.writeFile(ci.getConfFilePath(), ci.getSetting());
-        LOG.info("update flume collect : " + ci.getJsonFilePath());
+        log.info("update flume collect : " + ci.getJsonFilePath());
         CommonUtils.writeFile(ci.getJsonFilePath(), ci);
     }
 
@@ -343,7 +341,7 @@ public final class CollectUtils {
             cmd = cmd.replace("^OTHERS^", sb.toString());
             return Optional.of(cmd);
         }
-        LOG.error("no agent name : " + ci.get().getId() + " : " + ci.get().getSetting());
+        log.error("no agent name : " + ci.get().getId() + " : " + ci.get().getSetting());
         return Optional.empty();
     }
 
@@ -359,7 +357,7 @@ public final class CollectUtils {
             if (!ServerUtils.getRunningFlumeInfoById(cid).isPresent()) {
                 Optional<String> run = getStartCmd(cid);
                 if (!run.isPresent()) {
-                    LOG.error("cant find agent name !!!");
+                    log.error("cant find agent name !!!");
                     return Optional.of("未找到有效配置的采集器");
                 }
                 Optional<String> allow = checkMem(cid);
@@ -385,14 +383,14 @@ public final class CollectUtils {
                 }
                 cd.set(0);
             } else {
-                LOG.info(cid + " already started !!!");
+                log.info(cid + " already started !!!");
                 return Optional.of("采集器已经启动");
             }
         } catch (Exception e) {
-            LOG.error("", e);
+            log.error("", e);
             return Optional.of("采集器启动异常");
         }
-        LOG.info(ServerUtils.getRunningFlumeInfoById(cid));
+        log.info(ServerUtils.getRunningFlumeInfoById(cid));
         CollectorWatcher.addAutoRestart(cid);
         return Optional.empty();
     }
@@ -415,7 +413,7 @@ public final class CollectUtils {
                 MetricUtils.removeMetric(cid);
                 String cmd = ServerUtils.isWindows() ? "taskkill /F /PID " + fi.get().getPid()
                         : "kill -15 " + fi.get().getPid();
-                LOG.info("close collector " + fi.get().getId());
+                log.info("close collector " + fi.get().getId());
                 CmdWrapper.run(cmd);
                 // 页面倒计时60s
                 AtomicInteger cd = new AtomicInteger(60);
@@ -438,7 +436,7 @@ public final class CollectUtils {
                 return Optional.of("采集器未运行");
             }
         } catch (Exception e) {
-            LOG.error("", e);
+            log.error("", e);
             if (fi.isPresent()) {
                 JMXMetricUtils.closeJMXService(cid);
                 MetricUtils.removeMetric(cid);
@@ -493,7 +491,7 @@ public final class CollectUtils {
      * @return 重启结果
      */
     public static synchronized boolean restart(String cid) {
-        LOG.debug("restart collector, id: " + cid);
+        log.debug("restart collector, id: " + cid);
         try {
             restartSet.add(cid);
             CollectUtils.stop(cid);

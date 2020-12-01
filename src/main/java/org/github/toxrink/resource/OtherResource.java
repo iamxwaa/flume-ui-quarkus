@@ -1,4 +1,4 @@
-package org.github.toxrink.rest;
+package org.github.toxrink.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,13 +8,10 @@ import javax.ws.rs.core.MediaType;
 import org.github.toxrink.config.EnvConfig;
 import org.github.toxrink.utils.EnvUtils;
 
-/**
- * EnvironmentController
- */
-public class EnvironmentController {
-
+@Path("")
+public class OtherResource {
     @GET
-    @Path("/env/config")
+    @Path("env/config")
     @Produces(MediaType.APPLICATION_JSON)
     public EnvConfig getConfig() {
         return EnvUtils.getEnvConfig();

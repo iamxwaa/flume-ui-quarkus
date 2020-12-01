@@ -12,15 +12,14 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.metric.JMXMetricUtils;
+
+import lombok.extern.log4j.Log4j2;
 
 @ServerEndpoint("/ws/jmx/metric")
 @ApplicationScoped
+@Log4j2
 public class JMXMetricWs {
-    private static final Log LOG = LogFactory.getLog(JMXMetricWs.class);
-
     private static final ExecutorService exec = Executors.newFixedThreadPool(10);
 
     /**
@@ -42,7 +41,7 @@ public class JMXMetricWs {
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -76,11 +75,11 @@ public class JMXMetricWs {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        LOG.error("", error);
+        log.error("", error);
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 

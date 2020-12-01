@@ -64,6 +64,10 @@
             <artifactId>resteasy-multipart-provider</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.jboss.logmanager</groupId>
+            <artifactId>log4j2-jboss-logmanager</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jxwrapper</groupId>
             <artifactId>jxwrapper</artifactId>
             <version>0.10.4.1_213</version>

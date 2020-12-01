@@ -17,8 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.utils.CommonUtils;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.PageUtils;
@@ -31,12 +29,12 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
+import lombok.extern.log4j.Log4j2;
 import x.utils.TimeUtils;
 
 @Path("file")
+@Log4j2
 public class FileResource extends StreamResource {
-    private static final Log LOG = LogFactory.getLog(FileResource.class);
-
     @Inject
     @ResourcePath("page/file.html")
     Template file;
@@ -80,9 +78,9 @@ public class FileResource extends StreamResource {
             mark.set(true);
             try (FileOutputStream output = new FileOutputStream(file)) {
                 IOUtils.copy(multipartBody.getFile(), output);
-                LOG.info("upload file to " + file.getAbsolutePath());
+                log.info("upload file to " + file.getAbsolutePath());
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
                 mark.set(false);
             }
         });
@@ -107,7 +105,7 @@ public class FileResource extends StreamResource {
         boolean mark = true;
         if (file.exists()) {
             mark = file.delete();
-            LOG.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
+            log.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
         }
         PageUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
         return PageUtils.redirect("/file");
@@ -140,14 +138,14 @@ public class FileResource extends StreamResource {
                         + "." + TimeUtils.getTimestamp();
                 File dest = new File(dstFile2);
                 file.renameTo(dest);
-                LOG.info("目标文件已存在,备份为: " + dstFile2);
+                log.info("目标文件已存在,备份为: " + dstFile2);
             }
             file = new File(dstFile);
             try (FileOutputStream output = new FileOutputStream(file)) {
                 IOUtils.copy(m.getFile(), output);
-                LOG.info("upload file to " + file.getAbsolutePath());
+                log.info("upload file to " + file.getAbsolutePath());
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
                 mark.set(false);
             }
         });
@@ -171,7 +169,7 @@ public class FileResource extends StreamResource {
         boolean mark = true;
         if (file.exists()) {
             mark = file.delete();
-            LOG.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
+            log.info("delete file " + file.getAbsolutePath() + " [" + mark + "]");
         }
         PageUtils.writeInfo("文件删除" + (mark ? "成功" : "失败"));
         return PageUtils.redirect("/flume");
@@ -201,7 +199,7 @@ public class FileResource extends StreamResource {
             CommonUtils.backupFile(file, EnvUtils.getHistoryFilePath() + "/" + path);
             CommonUtils.writeFile(file, content);
             mark = true;
-            LOG.info("update file " + file.getAbsolutePath());
+            log.info("update file " + file.getAbsolutePath());
         }
         PageUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
         return PageUtils.redirect("/file");
@@ -224,7 +222,7 @@ public class FileResource extends StreamResource {
         if (file.exists()) {
             CommonUtils.writeFile(file, content);
             mark = true;
-            LOG.info("update file " + file.getAbsolutePath());
+            log.info("update file " + file.getAbsolutePath());
         }
         PageUtils.writeInfo("文件修改" + (mark ? "成功" : "失败"));
         return PageUtils.redirect("/flume#log4j");
@@ -245,7 +243,7 @@ public class FileResource extends StreamResource {
         StringBuilder filePath = new StringBuilder(EnvUtils.getFilePath());
         filePath.append("/" + name);
         File file = new File(filePath.toString());
-        LOG.info("download file " + file.getAbsolutePath());
+        log.info("download file " + file.getAbsolutePath());
         download(file, resp);
     }
 
@@ -263,7 +261,7 @@ public class FileResource extends StreamResource {
     public void downloadJarFile(@QueryParam String name, @Context HttpServletResponse resp) {
         String dstFile = EnvUtils.getBaseHomePath() + "/flume/plugins.d/custom/lib/" + name;
         File file = new File(dstFile);
-        LOG.info("download file " + file.getAbsolutePath());
+        log.info("download file " + file.getAbsolutePath());
         download(file, resp);
     }
 
@@ -283,9 +281,9 @@ public class FileResource extends StreamResource {
         boolean mark = true;
         try (FileOutputStream output = new FileOutputStream(file)) {
             IOUtils.write(datafixContent.getBytes(), output);
-            LOG.info("upload file to " + file.getAbsolutePath());
+            log.info("upload file to " + file.getAbsolutePath());
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
             mark = false;
         }
         PageUtils.writeInfo("datafix文件生成" + (mark ? "成功" : "失败"));

@@ -10,19 +10,17 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.ServerUtils;
 import org.jboss.resteasy.annotations.jaxrs.FormParam;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.JxProcess;
 
 @Path("debug")
+@Log4j2
 public class DebugResource {
-    private static final Log LOG = LogFactory.getLog(DebugResource.class);
-
     /**
      * js测试
      * 
@@ -48,7 +46,7 @@ public class DebugResource {
             try {
                 FileUtils.writeStringToFile(testJS, jscontent, EnvUtils.UTF8);
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
                 return "创建临时JS文件失败";
             }
             path = testJS.getAbsolutePath();

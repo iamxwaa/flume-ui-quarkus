@@ -15,9 +15,11 @@ quarkus:
       enable: true
       path: /var/log/flume-ui-quarkus/server.log
       level: INFO
+      format: "%d{yyyy-MM-dd HH:mm:ss} [%-5p] -%c{50}:%L - %m%n"
     console:
       enable: true
       level: DEBUG
+      format: "%d{yyyy-MM-dd HH:mm:ss} [%-5p] -%c{50}:%L - %m%n"
 env:
   base-home: D:\\flume_ui
   conf-home: /etc/vap-flume

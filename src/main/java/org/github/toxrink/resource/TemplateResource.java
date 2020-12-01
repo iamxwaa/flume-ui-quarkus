@@ -16,8 +16,6 @@ import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CommonUtils;
 import org.github.toxrink.utils.PageUtils;
@@ -28,12 +26,12 @@ import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
+import lombok.extern.log4j.Log4j2;
 import x.utils.TimeUtils;
 
 @Path("template")
+@Log4j2
 public class TemplateResource {
-    private static final Log LOG = LogFactory.getLog(TemplateResource.class);
-
     @Inject
     @ResourcePath("page/template.html")
     Template template;
@@ -97,7 +95,7 @@ public class TemplateResource {
                 TemplateUtils.update(ti.get());
                 PageUtils.writeInfo("修改模板成功");
             } else {
-                LOG.error("does not exist template id " + tid);
+                log.error("does not exist template id " + tid);
                 PageUtils.writeInfo("修改模板ID: " + tid + " 不存在");
             }
         } else {
@@ -129,12 +127,12 @@ public class TemplateResource {
     public Response delete(@QueryParam String tid) throws JsonSyntaxException, IOException {
         Optional<TemplateInfo> ti = TemplateUtils.getTemplateInfoById(tid);
         if (ti.isPresent()) {
-            LOG.info("delete file " + ti.get().getJsonFilePath());
+            log.info("delete file " + ti.get().getJsonFilePath());
             FileUtils.forceDelete(new File(ti.get().getJsonFilePath()));
             PageUtils.writeInfo("模板删除成功");
             return PageUtils.redirect("/template");
         }
-        LOG.error("does not exist collect id " + tid);
+        log.error("does not exist collect id " + tid);
         PageUtils.writeInfo("修改模板ID: " + tid + " 不存在");
         return PageUtils.redirect("/template");
     }

@@ -17,9 +17,8 @@ import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.config.TouristConfig;
+import org.github.toxrink.metric.JMXMetricUtils;
 import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
@@ -28,17 +27,18 @@ import org.github.toxrink.utils.PageUtils;
 import org.github.toxrink.utils.ServerUtils;
 import org.github.toxrink.utils.TemplateUtils;
 import org.jboss.resteasy.annotations.jaxrs.FormParam;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
+import lombok.extern.log4j.Log4j2;
 import x.utils.TimeUtils;
 
 @Path("collect")
+@Log4j2
 public class CollectResource {
-    private static final Log LOG = LogFactory.getLog(CollectResource.class);
-
     @Inject
     private TouristConfig touristConfig;
 
@@ -138,7 +138,7 @@ public class CollectResource {
                 CollectUtils.update(ci.get());
                 PageUtils.writeInfo("修改采集器成功");
             } else {
-                LOG.error("does not exist collect id " + cid);
+                log.error("does not exist collect id " + cid);
                 PageUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
             }
         } else {
@@ -188,12 +188,12 @@ public class CollectResource {
         if (!ServerUtils.getRunningFlumeInfoById(cid).isPresent()) {
             Optional<CollectInfo> ci = CollectUtils.getCollectInfoById(cid);
             if (ci.isPresent()) {
-                LOG.info("delete file " + ci.get().getConfFilePath());
+                log.info("delete file " + ci.get().getConfFilePath());
                 FileUtils.forceDelete(new File(ci.get().getConfFilePath()));
-                LOG.info("delete file " + ci.get().getJsonFilePath());
+                log.info("delete file " + ci.get().getJsonFilePath());
                 FileUtils.forceDelete(new File(ci.get().getJsonFilePath()));
             } else {
-                LOG.error("does not exist collect id " + cid);
+                log.error("does not exist collect id " + cid);
                 PageUtils.writeInfo("修改采集器ID: " + cid + " 不存在");
             }
             PageUtils.writeInfo("采集器删除成功");
@@ -243,5 +243,12 @@ public class CollectResource {
             PageUtils.writeInfo("采集器停止成功");
         }
         return PageUtils.redirect("/state");
+    }
+
+    @GET
+    @Path("metric/{cid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMetricInfo(@PathParam String cid) {
+        return JMXMetricUtils.getMetricJSON(cid);
     }
 }

@@ -5,8 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.config.EnvConfig;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.EnvUtils;
@@ -16,6 +14,7 @@ import org.github.toxrink.watcher.FileWatcher;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 服务启动入口
@@ -26,9 +25,8 @@ import io.quarkus.runtime.annotations.QuarkusMain;
  */
 
 @QuarkusMain
+@Log4j2
 public class FlumeUi {
-    private static final Log LOG = LogFactory.getLog(FlumeUi.class);
-
     private static EnvConfig staticEnvConfig;
 
     /**
@@ -60,11 +58,11 @@ public class FlumeUi {
             Executors.newSingleThreadScheduledExecutor().schedule(() -> {
                 CollectUtils.getCollectInfoList().forEach(ci -> {
                     if ("on".equals(ci.getAutoStart())) {
-                        LOG.info("Auto start collector " + ci.getId());
+                        log.info("Auto start collector " + ci.getId());
                         try {
                             CollectUtils.start(ci.getId());
                         } catch (Exception e) {
-                            LOG.error(e);
+                            log.error(e);
                         }
                     }
                 });

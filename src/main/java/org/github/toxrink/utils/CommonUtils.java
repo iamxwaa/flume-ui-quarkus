@@ -24,11 +24,10 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.ConfigSettingInfo;
 import org.github.toxrink.model.FileInfo;
 
+import lombok.extern.log4j.Log4j2;
 import x.utils.StrUtils;
 import x.utils.TimeUtils;
 
@@ -39,9 +38,8 @@ import x.utils.TimeUtils;
  * 
  *         2019年04月22日
  */
+@Log4j2
 public class CommonUtils {
-    private static final Log LOG = LogFactory.getLog(CommonUtils.class);
-
     /**
      * 生成32位MD5
      * 
@@ -80,7 +78,7 @@ public class CommonUtils {
             });
             return auth;
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
         return false;
     }
@@ -150,7 +148,7 @@ public class CommonUtils {
         try {
             FileUtils.write(file, content, EnvUtils.UTF8);
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -164,7 +162,7 @@ public class CommonUtils {
         try {
             FileUtils.copyFile(new File(path), new File(path + ".bak"));
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -183,7 +181,7 @@ public class CommonUtils {
         try {
             FileUtils.copyFile(sourceFile, new File(sb.toString()));
         } catch (IOException e) {
-            LOG.error("failed for backup", e);
+            log.error("failed for backup", e);
         }
     }
 
@@ -215,7 +213,7 @@ public class CommonUtils {
             try {
                 return clazz.newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
-                LOG.error("", e);
+                log.error("", e);
                 return null;
             }
         }
@@ -245,7 +243,7 @@ public class CommonUtils {
             try {
                 return FileUtils.readFileToString(file, EnvUtils.UTF8);
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
             }
         }
         return "";
@@ -367,7 +365,7 @@ public class CommonUtils {
             });
             return finalMap;
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
             return null;
         }
     }
@@ -384,7 +382,7 @@ public class CommonUtils {
             });
             return finalMap;
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
             return null;
         }
     }

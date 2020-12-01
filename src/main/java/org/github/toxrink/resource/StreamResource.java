@@ -27,8 +27,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.MultipartBody;
 import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
@@ -39,14 +37,14 @@ import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.FileInfo;
 import x.utils.TimeUtils;
 
 @Path("")
+@Log4j2
 public class StreamResource {
-    private static final Log LOG = LogFactory.getLog(StreamResource.class);
-
     /**
      * 模板打包下载
      * 
@@ -70,7 +68,7 @@ public class StreamResource {
             }
             download("templates.pkg", new ByteArrayInputStream(tmp2), resp);
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -115,12 +113,12 @@ public class StreamResource {
                     try {
                         TemplateUtils.save(ti);
                     } catch (IOException e) {
-                        LOG.error("", e);
+                        log.error("", e);
                     }
                 });
                 PageUtils.writeInfo("模板导入成功");
             } catch (IOException | ClassNotFoundException e) {
-                LOG.error("", e);
+                log.error("", e);
             }
         });
         return PageUtils.redirect("/template");
@@ -184,7 +182,7 @@ public class StreamResource {
         try {
             download(file.getName(), FileUtils.openInputStream(file), resp);
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -192,7 +190,7 @@ public class StreamResource {
         try {
             download(name, FileUtils.openInputStream(file), resp);
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -206,7 +204,7 @@ public class StreamResource {
         try (OutputStream out = new GZIPOutputStream(resp.getOutputStream()); InputStream in = inputStream) {
             IOUtils.copy(in, out);
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 }

@@ -14,20 +14,18 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.CollectInfo;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.utils.EnvUtils;
 
+import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.FileWatcher;
 
 @ServerEndpoint("/ws/log")
 @ApplicationScoped
+@Log4j2
 public class LogWs {
-    private static final Log LOG = LogFactory.getLog(LogWs.class);
-
     private static final ExecutorService exec = Executors.newFixedThreadPool(10);
 
     /**
@@ -49,7 +47,7 @@ public class LogWs {
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -71,11 +69,11 @@ public class LogWs {
                     CmdWrapper.tailf(new FileWatcherImpl(session), file, 1024 * 2, 0);
                 } else {
                     session.getAsyncRemote().sendText("Log file does not exist !!!");
-                    LOG.warn(message + " log file does not exist");
+                    log.warn(message + " log file does not exist");
                     try {
                         session.close();
                     } catch (IOException e) {
-                        LOG.error("", e);
+                        log.error("", e);
                     }
                 }
             });
@@ -92,11 +90,11 @@ public class LogWs {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        LOG.error("", error);
+        log.error("", error);
         try {
             session.close();
         } catch (IOException e) {
-            LOG.error("", e);
+            log.error("", e);
         }
     }
 
@@ -113,11 +111,11 @@ public class LogWs {
             try {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
             } catch (IOException e) {
-                LOG.error("", e);
+                log.error("", e);
                 try {
                     session.close();
                 } catch (IOException e1) {
-                    LOG.error("", e1);
+                    log.error("", e1);
                 }
             }
         }
