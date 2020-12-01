@@ -1,8 +1,7 @@
-package org.github.toxrink.ws;
+package org.github.toxrink.websocket;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,19 +13,23 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.github.toxrink.model.CollectInfo;
-import org.github.toxrink.utils.CollectUtils;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.github.toxrink.utils.EnvUtils;
 
+import lombok.experimental.PackagePrivate;
 import lombok.extern.log4j.Log4j2;
 import x.os.CmdWrapper;
 import x.os.FileWatcher;
 
-@ServerEndpoint("/ws/log")
+@ServerEndpoint("/ws/uilog")
 @ApplicationScoped
 @Log4j2
-public class LogWs {
+public class ServerLogWs {
     private static final ExecutorService exec = Executors.newFixedThreadPool(10);
+
+    @ConfigProperty(name = "quarkus.log.file.path")
+    @PackagePrivate
+    String serverLogPath;
 
     /**
      * 连接建立执行
@@ -61,23 +64,15 @@ public class LogWs {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        Optional<CollectInfo> ci = CollectUtils.getCollectInfoById(message);
-        if (ci.isPresent()) {
-            exec.execute(() -> {
-                File file = CollectUtils.getLogFileById(message);
-                if (null != file && session.isOpen()) {
+        log.info(message + " fetching ui log");
+        exec.execute(() -> {
+            if (session.isOpen()) {
+                File file = new File(serverLogPath);
+                if (file.exists()) {
                     CmdWrapper.tailf(new FileWatcherImpl(session), file, 1024 * 2, 0);
-                } else {
-                    session.getAsyncRemote().sendText("Log file does not exist !!!");
-                    log.warn(message + " log file does not exist");
-                    try {
-                        session.close();
-                    } catch (IOException e) {
-                        log.error("", e);
-                    }
                 }
-            });
-        }
+            }
+        });
     }
 
     /**
@@ -110,7 +105,7 @@ public class LogWs {
         public void push(String msg) {
             try {
                 session.getAsyncRemote().sendText(new String(msg.getBytes("ISO-8859-1"), EnvUtils.UTF8));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 log.error("", e);
                 try {
                     session.close();

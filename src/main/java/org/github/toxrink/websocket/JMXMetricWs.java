@@ -1,4 +1,4 @@
-package org.github.toxrink.ws;
+package org.github.toxrink.websocket;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

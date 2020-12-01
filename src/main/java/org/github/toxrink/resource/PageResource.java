@@ -19,6 +19,7 @@ import org.github.toxrink.watcher.FileWatcher;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
+import lombok.experimental.PackagePrivate;
 
 @Path("")
 public class PageResource {
@@ -63,7 +64,8 @@ public class PageResource {
     Template datafix;
 
     @Inject
-    private TouristConfig touristConfig;
+    @PackagePrivate
+    TouristConfig touristConfig;
 
     @GET
     @Produces(MediaType.TEXT_HTML)

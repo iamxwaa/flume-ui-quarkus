@@ -16,15 +16,11 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
+import org.apache.flume.instrumentation.ChannelCounterMBean;
 import org.github.toxrink.utils.CollectUtils;
 import org.github.toxrink.watcher.CollectorWatcher;
 
 import lombok.extern.log4j.Log4j2;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.flume.instrumentation.ChannelCounterMBean;
-
 import x.os.CmdWrapper;
 
 /**

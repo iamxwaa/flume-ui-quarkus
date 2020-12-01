@@ -33,6 +33,7 @@ import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.ResourcePath;
+import lombok.experimental.PackagePrivate;
 import lombok.extern.log4j.Log4j2;
 import x.utils.TimeUtils;
 
@@ -40,7 +41,8 @@ import x.utils.TimeUtils;
 @Log4j2
 public class CollectResource {
     @Inject
-    private TouristConfig touristConfig;
+    @PackagePrivate
+    TouristConfig touristConfig;
 
     @Inject
     @ResourcePath("page/collect.html")
