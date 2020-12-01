@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
@@ -24,6 +25,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
@@ -31,6 +33,7 @@ import org.apache.commons.logging.LogFactory;
 import org.github.toxrink.model.MultipartBody;
 import org.github.toxrink.model.TemplateInfo;
 import org.github.toxrink.utils.CollectUtils;
+import org.github.toxrink.utils.EnvUtils;
 import org.github.toxrink.utils.PageUtils;
 import org.github.toxrink.utils.TemplateUtils;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
@@ -141,6 +144,45 @@ public class StreamResource {
         List<FileInfo> list = CollectUtils.getCollectFilePath(cid);
         File zfile = CmdWrapper.zip(list, "flume-" + TimeUtils.getTimestamp() + "_");
         download(zfile, resp);
+    }
+
+    /**
+     * 日志下载
+     * 
+     * @param cid
+     *                 采集器id
+     * @param resp
+     *                 返回请求
+     * @throws IOException
+     *                         读写异常
+     */
+    @GET
+    @Path("/log/download")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void downloadLog(@QueryParam String cid, @Context HttpServletResponse resp) throws IOException {
+        File file = CollectUtils.getLogFileById(cid);
+        if (null == file) {
+            download(File.createTempFile("empty-" + cid + "-", ".log"), resp);
+            return;
+        }
+        File zfile = file;
+        ZipArchiveOutputStream zout = null;
+        try {
+            List<FileInfo> list = new ArrayList<>();
+            for (File ff : new File(EnvUtils.getFlumeLogHomePath(cid)).listFiles()) {
+                FileInfo fi = new FileInfo();
+                fi.setName(ff.getName());
+                fi.setPath(ff.getAbsolutePath());
+                list.add(fi);
+            }
+            zfile = CmdWrapper.zip(list, cid + "-");
+        } catch (IOException e) {
+            LOG.error("", e);
+        } finally {
+            IOUtils.closeQuietly(zout);
+        }
+
+        download(cid + ".zip", zfile, resp);
     }
 
     protected List<MultipartBody> getMultipartBodys(MultipartFormDataInput multipartFormDataInput) {

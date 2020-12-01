@@ -256,45 +256,6 @@ public class FileResource extends StreamResource {
     }
 
     /**
-     * 日志下载
-     * 
-     * @param cid
-     *                 采集器id
-     * @param resp
-     *                 返回请求
-     * @throws IOException
-     *                         读写异常
-     */
-    @GET
-    @Path("/log/download")
-    @Produces(MediaType.APPLICATION_JSON)
-    public void downloadLog(@QueryParam String cid, @Context HttpServletResponse resp) throws IOException {
-        File file = CollectUtils.getLogFileById(cid);
-        if (null == file) {
-            download(File.createTempFile("empty-" + cid + "-", ".log"), resp);
-            return;
-        }
-        File zfile = file;
-        ZipArchiveOutputStream zout = null;
-        try {
-            List<FileInfo> list = new ArrayList<>();
-            for (File ff : new File(EnvUtils.getFlumeLogHomePath(cid)).listFiles()) {
-                FileInfo fi = new FileInfo();
-                fi.setName(ff.getName());
-                fi.setPath(ff.getAbsolutePath());
-                list.add(fi);
-            }
-            zfile = CmdWrapper.zip(list, cid + "-");
-        } catch (IOException e) {
-            LOG.error("", e);
-        } finally {
-            IOUtils.closeQuietly(zout);
-        }
-
-        download(cid + ".zip", zfile, resp);
-    }
-
-    /**
      * 文件下载
      * 
      * @param name
