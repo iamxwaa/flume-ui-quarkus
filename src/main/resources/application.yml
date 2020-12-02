@@ -24,8 +24,8 @@ quarkus:
       level: DEBUG
       format: ${quarkus.log.file.format}
 env:
-  base-home: D:\\flume_ui
-  conf-home: /etc/vap-flume
+  base-home: ${FLUME_UI_HOME:D:\\flume_ui}
+  conf-home: ${FLUME_CONFIG_HOME:/etc/vap-flume}
   collect: /collect
   template: /template
   file: /file
@@ -35,16 +35,16 @@ env:
   start-linux: flume-ng
   start-cmd-win: ^START^ agent --name ^NAME^ --conf ^CONF^ --conf-file ^CONFIG_FILE^ --property "^OTHERS^"
   start-cmd-linux: ^START^ agent --name ^NAME^ --conf ^CONF^ --conf-file ^CONFIG_FILE^ --no-reload-conf ^OTHERS^
-  max-allow-mem: 61400
-  auth: false
-  auth-local: true
-  auth-token: vrv@123456789
-  auth-url: http://localhost:8080/token/confirmation
-  rmi-port: 17261
-  jmx-metric: true
-  file-scan-interval: 10
-  auto-restart: false
-  ambari: false
+  max-allow-mem: ${MAX_ALLOW_MEM:61400}
+  auth: ${FLUME_UI_AUTH:false}
+  auth-local: ${FLUME_UI_AUTH_LOCAL:true}
+  auth-token: ${FLUME_UI_AUTH_TOKEN:@123456789}
+  auth-url: ${FLUME_UI_AUTH_URL:http://localhost:8080/token/confirmation}
+  rmi-port: ${FLUME_UI_RMI:17261}
+  jmx-metric: ${FLUME_JMX_METRIC:true}
+  file-scan-interval: ${FLUME_FILE_SCAN:10}
+  auto-restart: ${AUTO_RESTART:false}
+  ambari: ${IS_AMBARI:false}
 tourist:
   source-map:
     vap-client-zip-source: 终端文本压缩包采集组件
