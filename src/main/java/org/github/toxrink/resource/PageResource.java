@@ -119,7 +119,7 @@ public class PageResource {
     @Path("filewatcher")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance filewatcher() {
-        return filewatcher.data("fileinfo", FileWatcher.getUseingFileList());
+        return filewatcher.data("fileinfo", FileWatcher.getUsingFileList());
     }
 
     @GET
