@@ -17,4 +17,6 @@ public class TouristConfig {
 
     private Map<String, String> interceptorMap;
 
+    private Map<String, String> componentMap;
+
 }

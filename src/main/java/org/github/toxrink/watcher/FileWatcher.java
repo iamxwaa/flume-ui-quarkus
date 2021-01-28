@@ -206,7 +206,7 @@ public class FileWatcher {
      * 
      * @return
      */
-    public static List<UsingFileInfo> getUseingFileList() {
+    public static List<UsingFileInfo> getUsingFileList() {
         List<UsingFileInfo> list = new ArrayList<UsingFileInfo>();
         list.addAll(ufiMap.values());
         list.sort((a, b) -> a.getCid().compareTo(b.getCid()));
